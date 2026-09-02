@@ -31,6 +31,11 @@ function validate(values: Fields): Errors {
   return errors;
 }
 
+// ─── Formspree form ID ────────────────────────────────────────────────────────
+// 1. Go to https://formspree.io  →  New form  →  link to codewithabby07@gmail.com
+// 2. Copy the form ID (e.g. "xpwzabcd") and paste it below.
+const FORMSPREE_ID = "YOUR_FORM_ID"; // ← replace this once
+
 export function ContactForm() {
   const [values, setValues] = useState<Fields>(initial);
   const [errors, setErrors] = useState<Errors>({});
@@ -52,8 +57,27 @@ export function ContactForm() {
     }
 
     setStatus("loading");
-    await new Promise((resolve) => setTimeout(resolve, 1100));
-    setStatus("success");
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          message: values.message,
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setValues(initial);
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -196,7 +220,7 @@ export function ContactForm() {
                     ? site.contact.success
                     : status === "error"
                       ? (Object.values(errors)[0] ?? site.contact.error)
-                      : "Frontend only for now — no email is sent yet."}
+                      : `I'll reply to ${site.email} within 24 hours.`}
                 </p>
               </form>
             </div>

@@ -4,6 +4,8 @@ import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { About } from "@/components/About";
 import { Work } from "@/components/Work";
+import { Process } from "@/components/Process";
+import { Testimonials } from "@/components/Testimonials";
 import { Services } from "@/components/Services";
 import { Skills } from "@/components/Skills";
 import { ContactCTA } from "@/components/ContactCTA";
@@ -35,6 +37,8 @@ function Home() {
         <Marquee />
         <About />
         <Work />
+        <Process />
+        <Testimonials />
         <Services />
         <Skills />
         <ContactCTA />
