@@ -1,4 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="CODEWITHABBY">
-  <rect width="32" height="32" fill="#E44C1F"/>
-  <path fill="#fff" d="M16.1 7.2 24.8 25h-3.6l-1.55-3.45h-6.3L11.8 25H8.2L16.1 7.2Zm-2.55 11.1h5.9L16.1 12.1l-2.55 6.2Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="CODEWITHABBY">
+  <!-- Orange circle background with subtle gradient -->
+  <defs>
+    <radialGradient id="bg" cx="45%" cy="38%" r="60%">
+      <stop offset="0%" stop-color="#f06a25"/>
+      <stop offset="100%" stop-color="#d94010"/>
+    </radialGradient>
+    <clipPath id="circle-clip">
+      <circle cx="50" cy="50" r="46"/>
+    </clipPath>
+  </defs>
+
+  <!-- Outer circle -->
+  <circle cx="50" cy="50" r="48" fill="#1a1a1a" opacity="0.18"/>
+  <circle cx="50" cy="50" r="46" fill="url(#bg)"/>
+
+  <!-- Bold A shape -->
+  <path
+    d="M50 14 L20 80 L33 80 L39.5 64 L60.5 64 L67 80 L80 80 Z
+       M44 53 L50 35 L56 53 Z"
+    fill="white"
+    clip-path="url(#circle-clip)"
+  />
+
+  <!-- Diagonal slash / lightning bolt cutting through the A -->
+  <polygon
+    points="62,22 68,22 38,78 32,78"
+    fill="url(#bg)"
+    clip-path="url(#circle-clip)"
+  />
+  <polygon
+    points="64,22 67,22 40,78 37,78"
+    fill="#c93a0e"
+    opacity="0.5"
+    clip-path="url(#circle-clip)"
+  />
 </svg>
+
