@@ -50,8 +50,10 @@ export const skills = [
   "TypeScript",
   "React",
   "Next.js",
-  "Tailwind CSS",
   "Node.js",
+  "Tailwind CSS",
+  "MongoDB",
+  "REST APIs",
   "Git",
-  "GitHub",
+  "Vercel",
 ] as const;

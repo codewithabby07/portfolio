@@ -8,16 +8,16 @@ export const site = {
   brand: "CODEWITHABBY",
   name: "Abby",
   url: "https://codewithabby.com",
-  email: "",
-  jobTitle: "Web Developer",
+  email: "codewithabby07@gmail.com",
+  jobTitle: "Full Stack Developer",
   locale: "en_US",
-  title: "CODEWITHABBY — Abby | Premium Websites & Frontend Experiences",
+  title: "CODEWITHABBY — Abby | Full Stack Developer · Delhi",
   description:
-    "CODEWITHABBY is the portfolio of Abby — building premium websites, modern frontend experiences, and technically refined digital work.",
+    "CODEWITHABBY is the portfolio of Abby — a Delhi-based Full Stack Developer with 3 years of experience building premium websites, scalable web apps, and bespoke digital experiences.",
   ogImage: "/images/og.jpg",
   portrait: {
     src: "/images/portrait.jpg",
-    alt: "Portrait of Abby, web developer.",
+    alt: "Portrait of Abby, Full Stack Developer based in Delhi.",
     width: 768,
     height: 1376,
   },
@@ -31,24 +31,24 @@ export const site = {
   hero: {
     year: "2026",
     tagline:
-      "I BUILD PREMIUM DIGITAL EXPERIENCES THAT ARE SHARP, RESPONSIVE AND BUILT TO LAST",
+      "I BUILD PREMIUM FULL STACK EXPERIENCES THAT ARE SHARP, SCALABLE AND BUILT TO LAST",
     featuredLabel: "Featured",
   },
   about: {
     label: "Introduction.",
-    headline: ["PREMIUM WEBSITES", "WITH PURPOSE", "AND PRECISION"],
-    body: "Abby builds modern frontend experiences, responsive websites, and high-quality UI implementations. The work is focused on craft, clarity, and technical care.",
+    headline: ["FULL STACK", "BUILT IN DELHI,", "BUILT FOR THE WORLD."],
+    body: "Abby is a Delhi-based Full Stack Developer with 3 years of experience crafting premium websites, scalable web applications, and technically refined digital products. Every project is approached with precision, a sharp eye for design, and a commitment to clean, production-ready code.",
     still: {
       src: "/images/about-still.jpg",
       alt: "Sunlit terracotta wall with a sharp geometric shadow.",
     },
   },
   marquee: [
-    "Web Development",
-    "Frontend Development",
+    "Full Stack Development",
+    "React & Next.js",
     "UI/UX Implementation",
+    "Node.js & APIs",
     "Creative Web Experiences",
-    "Technical SEO",
     "Performance Optimization",
   ],
   cta: {
@@ -62,17 +62,18 @@ export const site = {
     kicker: "Start a project",
     background: "/images/contact-bg.jpg",
     success:
-      "Thanks. Your message was validated and is ready — email delivery will be connected next.",
+      "Thanks for reaching out! I'll get back to you within 24 hours.",
     error: "Something went wrong. Please check the form and try again.",
   },
   socials: [
-    { label: "GitHub", href: "" },
+    { label: "GitHub", href: "https://github.com/codewithabby07" },
     { label: "LinkedIn", href: "" },
     { label: "Instagram", href: "" },
     { label: "X", href: "" },
   ],
-  footerNote: "Available for selected projects.",
+  footerNote: "Available for selected projects · Delhi, India",
 } as const;
 
 export type NavItem = (typeof site.nav)[number];
 export type SocialLink = (typeof site.socials)[number];
+
