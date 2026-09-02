@@ -120,11 +120,12 @@ export function Navigation() {
             href="#home"
             onClick={(event) => onHashLinkClick(event, "#home", reduce)}
             className={cn(
-              "relative z-10 font-display text-[13px] font-extrabold tracking-[0.14em] uppercase transition-colors duration-300",
+              "relative z-10 flex items-center gap-2.5 font-display text-[13px] font-extrabold tracking-[0.14em] uppercase transition-colors duration-300",
               onHero ? "text-white" : "text-dark",
             )}
           >
-            {site.brand}
+            <img src="/favicon.svg" alt="" className="h-6 w-6 shrink-0 rounded-full" />
+            <span>{site.brand}</span>
           </a>
 
           <nav
@@ -194,9 +195,10 @@ export function Navigation() {
           )}
         >
           <div className="page-shell flex h-[4.25rem] items-center justify-between md:h-[5rem]">
-            <p className="font-display text-[13px] font-extrabold tracking-[0.14em] uppercase">
-              {site.brand}
-            </p>
+            <div className="flex items-center gap-2.5 font-display text-[13px] font-extrabold tracking-[0.14em] uppercase">
+              <img src="/favicon.svg" alt="" className="h-6 w-6 shrink-0 rounded-full" />
+              <span>{site.brand}</span>
+            </div>
             <button
               ref={closeRef}
               type="button"
