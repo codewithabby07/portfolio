@@ -22,7 +22,7 @@ export function onHashLinkClick(
   href: string,
   reduce = false,
 ) {
-  if (!href.startsWith("#")) return;
+  if (!href || typeof href !== "string" || !href.startsWith("#")) return;
   event.preventDefault();
   scrollToHash(href, reduce);
   history.pushState(null, "", href);

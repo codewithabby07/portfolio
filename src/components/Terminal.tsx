@@ -32,11 +32,11 @@ export function Terminal() {
   const [displayedLogs, setDisplayedLogs] = useState<string[]>([]);
 
   useEffect(() => {
-    const lines = COMMAND_LOGS[activeTab];
+    const lines = COMMAND_LOGS[activeTab] || [];
     setDisplayedLogs([]);
     let i = 0;
     const interval = setInterval(() => {
-      if (i < lines.length) {
+      if (lines[i] !== undefined && i < lines.length) {
         setDisplayedLogs((prev) => [...prev, lines[i]]);
         i++;
       } else {
@@ -105,6 +105,7 @@ export function Terminal() {
       {/* Terminal Content Screen */}
       <div className="space-y-2.5 min-h-[140px]">
         {displayedLogs.map((log, index) => {
+          if (!log || typeof log !== "string") return null;
           const isCommand = log.startsWith("$");
           const isSuccess = log.includes("✔") || log.includes("99 / 100");
           return (
