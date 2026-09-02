@@ -27,6 +27,7 @@ export const site = {
     { label: "About", href: "#about", id: "about" },
     { label: "Work", href: "#work", id: "work" },
     { label: "Services", href: "#services", id: "services" },
+    { label: "FAQ", href: "#faq", id: "faq" },
     { label: "Contact", href: "#contact", id: "contact" },
   ],
   hero: {

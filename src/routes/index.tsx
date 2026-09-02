@@ -12,6 +12,7 @@ import { Faq } from "@/components/Faq";
 import { ContactCTA } from "@/components/ContactCTA";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { Seo } from "@/components/Seo";
 import { site } from "@/data/site";
 
@@ -29,6 +30,7 @@ function Home() {
   return (
     <>
       <Seo />
+      <ScrollProgress />
       <a href="#main" className="skip-link">
         Skip to content
       </a>

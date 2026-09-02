@@ -6,7 +6,7 @@ const faqs = [
     id: 1,
     question: "What is your typical project timeline?",
     answer:
-      "Most custom websites and full stack web applications take between 2 to 4 weeks from discovery to final production deployment, depending on project scope and feature complexity.",
+      "I deliver high-converting custom websites and full stack web applications in just 6 to 7 days, maintaining enterprise-grade engineering, 99+ speed, and aesthetic standards.",
   },
   {
     id: 2,

@@ -1,12 +1,22 @@
 import { site } from "@/data/site";
 import { isFilled } from "@/data/projects";
 import { onHashLinkClick } from "@/lib/scroll";
+import { useToast, copyToClipboard } from "@/components/Toast";
 
 export function Footer() {
   const socials = site.socials.filter((social) => isFilled(social.href));
+  const { showToast, ToastComponent } = useToast();
+
+  function handleEmailClick(e: React.MouseEvent) {
+    e.preventDefault();
+    copyToClipboard(site.email, () => {
+      showToast(`Email copied: ${site.email}`);
+    });
+  }
 
   return (
     <footer className="border-t border-dark/10 bg-dark text-white">
+      <ToastComponent />
       <div className="page-shell py-16 md:py-20">
         {/* Main Grid */}
         <div className="grid gap-12 lg:grid-cols-12">
@@ -76,7 +86,8 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="text-white/70 transition-colors duration-300 hover:text-accent"
+                  onClick={handleEmailClick}
+                  className="text-white/70 transition-colors duration-300 hover:text-accent cursor-pointer"
                 >
                   Email
                 </a>

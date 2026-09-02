@@ -112,8 +112,8 @@ export function Process() {
         <Reveal delay={0.4}>
           <div className="mt-px flex items-center justify-between bg-white/5 px-8 py-5">
             <p className="text-sm text-white/40">
-              Typical project timeline:{" "}
-              <span className="text-white/70">2 – 6 weeks</span>
+              Typical project delivery:{" "}
+              <span className="font-semibold text-accent">6 – 7 Days</span>
             </p>
             <a
               href="#contact"
