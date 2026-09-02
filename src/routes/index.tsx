@@ -8,6 +8,7 @@ import { Process } from "@/components/Process";
 import { Testimonials } from "@/components/Testimonials";
 import { Services } from "@/components/Services";
 import { Skills } from "@/components/Skills";
+import { Faq } from "@/components/Faq";
 import { ContactCTA } from "@/components/ContactCTA";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
@@ -41,6 +42,7 @@ function Home() {
         <Testimonials />
         <Services />
         <Skills />
+        <Faq />
         <ContactCTA />
         <ContactForm />
       </main>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { projects, isFilled, type Project } from "@/data/projects";
 import { ArrowIcon, LineReveal, MediaReveal, Reveal, SectionLabel } from "@/components/ui";
+import { ProjectModal } from "@/components/ProjectModal";
 import { cn } from "@/lib/cn";
 import { usePointerFine, useReducedMotion } from "@/lib/motion";
 
@@ -52,7 +53,7 @@ function ProjectImage({
     <div
       ref={frameRef}
       className={cn(
-        "relative overflow-hidden rounded-xl shadow-xl",
+        "relative overflow-hidden rounded-xl shadow-xl cursor-pointer",
         isContain ? "bg-[#09090c]" : "bg-dark/10"
       )}
       onMouseMove={onMove}
@@ -81,15 +82,21 @@ function ProjectImage({
   );
 }
 
-function ProjectBlock({ project, index }: { project: Project; index: number }) {
+function ProjectBlock({
+  project,
+  index,
+  onOpenModal,
+}: {
+  project: Project;
+  index: number;
+  onOpenModal: (project: Project) => void;
+}) {
   const reverse = index % 2 === 1;
   const live = isFilled(project.liveUrl);
-  const study = isFilled(project.caseStudyUrl);
-  const href = live ? project.liveUrl : study ? project.caseStudyUrl : undefined;
 
   const image = (
     <MediaReveal delay={0.06}>
-      <ProjectImage project={project} interactive={Boolean(href)} />
+      <ProjectImage project={project} interactive={true} />
     </MediaReveal>
   );
 
@@ -125,36 +132,37 @@ function ProjectBlock({ project, index }: { project: Project; index: number }) {
               {project.description}
             </p>
           ) : null}
-          <div className="mt-6 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center gap-5">
             <ProjectMeta project={project} />
-            {href ? (
-              <a
-                href={href}
-                className="project-link group/link text-sm font-medium text-dark"
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={() => onOpenModal(project)}
+                className="inline-flex items-center gap-1.5 rounded-sm bg-dark/5 px-3 py-1.5 text-xs font-bold text-dark hover:bg-dark hover:text-white transition-colors uppercase"
               >
-                View project
-                <ArrowIcon className="cta-arrow" />
-              </a>
-            ) : null}
+                <span>Case Study</span>
+                <span aria-hidden>→</span>
+              </button>
+
+              {live ? (
+                <a
+                  href={project.liveUrl}
+                  className="project-link group/link text-xs font-semibold text-accent uppercase"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Live Demo
+                  <ArrowIcon className="cta-arrow" />
+                </a>
+              ) : null}
+            </div>
           </div>
         </Reveal>
 
-        <div className="lg:col-span-7">
-          {href ? (
-            <a
-              href={href}
-              target={href.startsWith("http") ? "_blank" : undefined}
-              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-              aria-label={`${project.title} project`}
-              data-view-cursor
-            >
-              {image}
-            </a>
-          ) : (
-            image
-          )}
+        <div className="lg:col-span-7" onClick={() => onOpenModal(project)}>
+          <div data-view-cursor className="cursor-pointer">
+            {image}
+          </div>
         </div>
       </div>
     </article>
@@ -197,6 +205,8 @@ function ViewHint() {
 }
 
 export function Work() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
   return (
     <section
       id="work"
@@ -204,6 +214,10 @@ export function Work() {
       aria-labelledby="work-heading"
     >
       <ViewHint />
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
       <div className="page-shell">
         <Reveal>
           <SectionLabel>Portfolio</SectionLabel>
@@ -217,10 +231,16 @@ export function Work() {
 
         <div className="mt-6 md:mt-8">
           {projects.map((project, index) => (
-            <ProjectBlock key={project.id} project={project} index={index} />
+            <ProjectBlock
+              key={project.id}
+              project={project}
+              index={index}
+              onOpenModal={setSelectedProject}
+            />
           ))}
         </div>
       </div>
     </section>
   );
 }
+

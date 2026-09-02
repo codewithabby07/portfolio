@@ -53,16 +53,11 @@ export function Hero() {
 
       <div className="page-shell relative z-10 flex flex-1 flex-col justify-between gap-10">
         {/* Top Status & Atelier Row */}
-        <div className="hero-stage flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4">
-          <div className="flex items-center gap-3 text-[11px] font-medium tracking-[0.22em] uppercase text-white/70">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-            <span>AVAILABLE FOR WORLDWIDE COMMISSIONS</span>
-          </div>
-
+        <div className="hero-stage flex flex-wrap items-center justify-end gap-4 border-b border-white/[0.08] pb-4">
           <div className="hidden items-center gap-4 text-[11px] font-medium tracking-[0.22em] uppercase text-white/50 md:flex">
             <span>Full Stack Architecture</span>
             <span className="h-1 w-1 rounded-full bg-accent/60" />
-            <span>Worldwide // Remote</span>
+            <span>Digital Atelier // 2026</span>
           </div>
         </div>
 
