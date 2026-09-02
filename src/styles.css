@@ -138,19 +138,11 @@
   }
 
   .hero-luxury-ambient {
-    background:
-      radial-gradient(ellipse 90% 60% at 50% -15%, rgba(228, 76, 31, 0.16), transparent 70%),
-      radial-gradient(circle at 85% 25%, rgba(212, 175, 55, 0.08), transparent 50%),
-      radial-gradient(circle at 15% 75%, rgba(255, 255, 255, 0.02), transparent 45%),
-      #07070a;
+    background: #09090c;
   }
 
   .hero-luxury-grid {
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-    background-size: 54px 54px;
-    mask-image: radial-gradient(ellipse 75% 75% at 50% 45%, #000 25%, transparent 85%);
+    display: none;
   }
 
   .hero-grid {

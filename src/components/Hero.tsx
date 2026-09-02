@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { site } from "@/data/site";
-import { featuredProject } from "@/data/projects";
 import { ArrowIcon, Portrait } from "@/components/ui";
 import { usePointerFine, useReducedMotion } from "@/lib/motion";
 import { onHashLinkClick } from "@/lib/scroll";
@@ -35,29 +34,19 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative isolate min-h-[100svh] overflow-hidden bg-hero hero-luxury-ambient text-white flex flex-col justify-between pt-24 pb-8 md:pt-28 md:pb-10"
+      className="relative isolate min-h-[100svh] overflow-hidden bg-[#09090c] text-white flex flex-col justify-between pt-24 pb-8 md:pt-28 md:pb-10"
       aria-labelledby="hero-heading"
     >
-      {/* Delicate Architectural Grid */}
+      {/* Ultra-subtle studio background gradient */}
       <div
-        className="hero-luxury-grid pointer-events-none absolute inset-0 z-0 opacity-60"
-        aria-hidden
-      />
-
-      {/* Atmospheric Ambient Glows */}
-      <div
-        className="pointer-events-none absolute top-[-10%] left-1/2 -translate-x-1/2 w-[70vw] h-[40vh] rounded-full bg-accent/15 blur-[120px] z-0"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute top-[30%] right-[-5%] w-[45vw] h-[50vh] rounded-full bg-gold/10 blur-[140px] z-0"
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.04),transparent)]"
         aria-hidden
       />
 
       {/* Subtle Editorial Background Watermark */}
       <div
         aria-hidden
-        className="hero-fade display pointer-events-none absolute top-[14%] left-1/2 z-0 -translate-x-1/2 text-[18vw] leading-none whitespace-nowrap text-white/[0.025] select-none uppercase tracking-widest"
+        className="hero-fade display pointer-events-none absolute top-[14%] left-1/2 z-0 -translate-x-1/2 text-[18vw] leading-none whitespace-nowrap text-white/[0.02] select-none uppercase tracking-widest"
       >
         {site.brand}
       </div>
@@ -73,9 +62,9 @@ export function Hero() {
           </div>
 
           <div className="hidden items-center gap-4 text-[11px] font-medium tracking-[0.22em] uppercase text-white/50 md:flex">
-            <span>Creative Web Architecture</span>
+            <span>Full Stack Architecture</span>
             <span className="h-1 w-1 rounded-full bg-accent/60" />
-            <span>Digital Atelier // World-Wide</span>
+            <span>Delhi, India // Worldwide</span>
           </div>
         </div>
 
@@ -160,7 +149,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Framed Luxury Centerpiece with Project Inset */}
+          {/* Right Column: Framed Luxury Centerpiece */}
           <div className="hero-stage relative flex justify-center lg:col-span-5 lg:justify-end">
             <div
               ref={cardRef}
@@ -180,56 +169,20 @@ export function Hero() {
                 <Portrait
                   priority
                   sizes="(min-width: 1024px) 380px, 90vw"
-                  className="h-full w-full object-cover object-[center_16%] transition-transform duration-1000 ease-out hover:scale-[1.03]"
+                  className="h-full w-full object-cover object-[center_20%] transition-transform duration-1000 ease-out hover:scale-[1.03]"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/15 to-transparent" />
 
                 {/* Bottom Portrait Caption */}
                 <div className="absolute inset-x-0 bottom-0 p-4">
-                  <span className="inline-block rounded-sm bg-white/10 px-2 py-0.5 text-[9px] font-semibold tracking-[0.18em] uppercase text-white backdrop-blur-md">
-                    Frontend Specialist
+                  <span className="inline-block rounded-sm bg-white/10 px-2.5 py-1 text-[9px] font-semibold tracking-[0.18em] uppercase text-white backdrop-blur-md">
+                    Full Stack Specialist
                   </span>
                   <p className="mt-1.5 text-xs font-medium text-white/90">
-                    Bespoke UI & Interaction Architecture
+                    Bespoke UI & Full Stack Architecture
                   </p>
                 </div>
               </div>
-
-              {/* Floating Featured Project Showcase Card */}
-              <aside className="absolute -bottom-5 -left-3 sm:-left-6 z-20 w-[230px] sm:w-[250px]">
-                <a
-                  href="#work"
-                  onClick={(event) => onHashLinkClick(event, "#work", reduce)}
-                  className="luxury-glass-card group block rounded-xl p-2.5 transition-all duration-300 hover:-translate-y-1 hover:border-white/30"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-dark">
-                      <img
-                        src={featuredProject.image}
-                        alt={`${featuredProject.title} project preview`}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        width={96}
-                        height={96}
-                        loading="eager"
-                      />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <span className="block text-[9px] font-semibold tracking-[0.16em] uppercase text-accent">
-                        Featured Work
-                      </span>
-                      <p className="truncate text-xs font-bold text-white group-hover:text-accent transition-colors">
-                        {featuredProject.title}
-                      </p>
-                      <p className="truncate text-[10px] text-white/50">
-                        {featuredProject.category}
-                      </p>
-                    </div>
-                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white/10 text-white group-hover:bg-white group-hover:text-dark transition-colors">
-                      <ArrowIcon className="h-3 w-3 cta-arrow" />
-                    </span>
-                  </div>
-                </a>
-              </aside>
             </div>
           </div>
         </div>
