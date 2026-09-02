@@ -82,6 +82,8 @@ export const site = {
     { label: "X", href: "" },
   ],
   footerNote: "Available for select international projects & commissions worldwide",
+  googleVerification: "",
+  bingVerification: "",
 } as const;
 
 export type NavItem = (typeof site.nav)[number];

@@ -16,6 +16,13 @@ export function Seo() {
       { name: "twitter:image", content: `${site.url}/images/og.jpg` },
     ];
 
+    if (site.googleVerification) {
+      metaTags.push({ name: "google-site-verification", content: site.googleVerification });
+    }
+    if (site.bingVerification) {
+      metaTags.push({ name: "msvalidate.01", content: site.bingVerification });
+    }
+
     const elements: HTMLMetaElement[] = [];
 
     metaTags.forEach((tag) => {

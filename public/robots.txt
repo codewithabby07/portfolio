@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://codewithabby.com/sitemap.xml
+Sitemap: https://portfolio-ten-psi-buhjstui2u.vercel.app/sitemap.xml
