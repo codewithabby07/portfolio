@@ -825,6 +825,7 @@
   html[data-motion="on"] .media-reveal:not(.is-in) {
     opacity: 1;
     transform: none;
+  }
 }
 
 @keyframes slide-arrow-right {
