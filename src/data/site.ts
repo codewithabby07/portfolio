@@ -82,7 +82,7 @@ export const site = {
     { label: "X", href: "" },
   ],
   footerNote: "Available for select international projects & commissions worldwide",
-  googleVerification: "",
+  googleVerification: "google06b6930185313ea1",
   bingVerification: "",
 } as const;
 
