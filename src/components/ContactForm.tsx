@@ -110,9 +110,42 @@ export function ContactForm() {
           </h2>
           <p className="mt-6 max-w-md text-white/75">
             Tell Abby about the website, product, or experience you want to
-            build. The form is ready on the frontend — email delivery can be
-            connected without changing this layout.
+            build. Get a response within 24 hours or reach out directly.
           </p>
+
+          <div className="mt-8 flex flex-col gap-3.5 max-w-md">
+            <a
+              href={site.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3.5 rounded-lg border border-emerald-500/40 bg-emerald-500/15 p-4 text-emerald-300 backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-emerald-500/25"
+            >
+              <span className="text-2xl">💬</span>
+              <div>
+                <span className="block text-[10px] font-semibold tracking-widest text-emerald-400 uppercase">
+                  Instant WhatsApp Chat
+                </span>
+                <span className="text-base font-extrabold text-white">
+                  +91 7055859219
+                </span>
+              </div>
+            </a>
+
+            <a
+              href={`tel:${site.phone.replace(/\s+/g, "")}`}
+              className="inline-flex items-center gap-3.5 rounded-lg border border-white/20 bg-white/10 p-4 text-white backdrop-blur-md transition-all hover:border-white/40 hover:bg-white/15"
+            >
+              <span className="text-2xl">📞</span>
+              <div>
+                <span className="block text-[10px] font-semibold tracking-widest text-white/60 uppercase">
+                  Direct Phone Call
+                </span>
+                <span className="text-base font-extrabold text-white">
+                  {site.phone}
+                </span>
+              </div>
+            </a>
+          </div>
         </Reveal>
 
         <Reveal className="lg:col-span-6" delay={0.1}>

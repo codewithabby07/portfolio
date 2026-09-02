@@ -53,7 +53,19 @@ export function Hero() {
 
       <div className="page-shell relative z-10 flex flex-1 flex-col justify-between gap-10">
         {/* Top Status & Atelier Row */}
-        <div className="hero-stage flex flex-wrap items-center justify-end gap-4 border-b border-white/[0.08] pb-4">
+        <div className="hero-stage flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4">
+          <div className="flex items-center gap-3">
+            <a
+              href={site.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-[11px] font-semibold tracking-wider text-emerald-400 uppercase transition-all hover:border-emerald-500/60 hover:bg-emerald-500/20"
+            >
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Direct WhatsApp: +91 7055859219</span>
+            </a>
+          </div>
+
           <div className="hidden items-center gap-4 text-[11px] font-medium tracking-[0.22em] uppercase text-white/50 md:flex">
             <span>Full Stack Architecture</span>
             <span className="h-1 w-1 rounded-full bg-accent/60" />
@@ -102,14 +114,13 @@ export function Hero() {
               </a>
 
               <a
-                href="#contact"
-                onClick={(event) => onHashLinkClick(event, "#contact", reduce)}
-                className="luxury-btn-secondary group"
+                href={site.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="luxury-btn-secondary group flex items-center gap-2 border-emerald-500/40 text-emerald-300 hover:border-emerald-500 hover:bg-emerald-500/10"
               >
-                <span>Initiate Commission</span>
-                <span className="text-accent transition-transform duration-300 group-hover:translate-x-1" aria-hidden>
-                  →
-                </span>
+                <span className="text-base">💬</span>
+                <span>Chat on WhatsApp</span>
               </a>
             </div>
 

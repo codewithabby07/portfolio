@@ -9,12 +9,13 @@ export const site = {
   name: "Abby",
   url: "https://codewithabby.com",
   email: "codewithabby07@gmail.com",
-  jobTitle: "Full Stack Developer",
+  phone: "+91 7055859219",
+  whatsapp: "https://wa.me/917055859219",
+  jobTitle: "Full Stack Developer & Web Architect",
   locale: "en_US",
-  title: "CODEWITHABBY — Abby | Full Stack Developer · Delhi",
+  title: "CODEWITHABBY — Abby | High-Ticket Full Stack Developer & Web Architect",
   description:
-    "CODEWITHABBY is the portfolio of Abby — a Delhi-based Full Stack Developer with 3 years of experience building premium websites, scalable web apps, and bespoke digital experiences.",
-  ogImage: "/images/og.jpg",
+    "CODEWITHABBY is the portfolio of Abby — a Delhi-based Full Stack Developer & Web Architect with 3 years of experience engineering high-converting websites, web apps, and bespoke digital experiences.",
   portrait: {
     src: "/images/portrait.jpg",
     alt: "Portrait of Abby, Full Stack Developer based in Delhi.",
@@ -31,13 +32,20 @@ export const site = {
   hero: {
     year: "2026",
     tagline:
-      "I BUILD PREMIUM FULL STACK EXPERIENCES THAT ARE SHARP, SCALABLE AND BUILT TO LAST",
+      "ENGINEERING HIGH-CONVERTING DIGITAL EXPERIENCES FOR AMBITIOUS BRANDS WORLDWIDE",
     featuredLabel: "Featured",
   },
+  industries: [
+    "Real Estate & Construction",
+    "Healthcare & Clinics",
+    "SaaS & Tech Products",
+    "Creative Agencies",
+    "E-Commerce & Brands",
+  ],
   about: {
     label: "Introduction.",
-    headline: ["FULL STACK", "BUILT IN DELHI,", "BUILT FOR THE WORLD."],
-    body: "Abby is a Delhi-based Full Stack Developer with 3 years of experience crafting premium websites, scalable web applications, and technically refined digital products. Every project is approached with precision, a sharp eye for design, and a commitment to clean, production-ready code.",
+    headline: ["HIGH-TICKETS WEBSITES", "BUILT FOR SPEED,", "DESIGNED TO CONVERT."],
+    body: "Abby is a Delhi-based Full Stack Developer & Web Architect with 3 years of experience crafting premium websites, scalable web applications, and conversion-focused digital systems. Every project is engineered for speed, high conversion, and flawless aesthetics.",
     still: {
       src: "/images/about-still.jpg",
       alt: "Sunlit terracotta wall with a sharp geometric shadow.",
@@ -45,15 +53,15 @@ export const site = {
   },
   marquee: [
     "Full Stack Development",
+    "High-Converting UI/UX",
     "React & Next.js",
-    "UI/UX Implementation",
-    "Node.js & APIs",
-    "Creative Web Experiences",
-    "Performance Optimization",
+    "Node.js & Custom APIs",
+    "Performance Optimization (99+)",
+    "Bespoke Web Architecture",
   ],
   cta: {
     label: "Next.",
-    lines: ["LET'S BUILD", "SOMETHING", "WORTH SEEING."],
+    lines: ["LET'S BUILD", "YOUR NEXT", "BIG PROJECT."],
     button: "Get in touch",
   },
   contact: {
@@ -62,16 +70,17 @@ export const site = {
     kicker: "Start a project",
     background: "/images/contact-bg.jpg",
     success:
-      "Thanks for reaching out! I'll get back to you within 24 hours.",
+      "Thanks for reaching out! I'll reply to your message within 24 hours.",
     error: "Something went wrong. Please check the form and try again.",
   },
   socials: [
     { label: "GitHub", href: "https://github.com/codewithabby07" },
+    { label: "WhatsApp", href: "https://wa.me/917055859219" },
     { label: "LinkedIn", href: "" },
     { label: "Instagram", href: "" },
     { label: "X", href: "" },
   ],
-  footerNote: "Available for selected projects · Delhi, India",
+  footerNote: "Available for select projects · Delhi, India · +91 7055859219",
 } as const;
 
 export type NavItem = (typeof site.nav)[number];

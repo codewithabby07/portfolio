@@ -94,9 +94,18 @@ function ProjectBlock({ project, index }: { project: Project; index: number }) {
         )}
       >
         <Reveal className="lg:col-span-5">
-          <p className="font-display text-sm font-semibold tracking-[0.2em] text-accent">
-            {project.number}
-          </p>
+          <div className="flex items-center gap-3">
+            <p className="font-display text-sm font-semibold tracking-[0.2em] text-accent">
+              {project.number}
+            </p>
+            {project.impact ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 text-[10px] font-semibold tracking-wider text-accent uppercase">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                {project.impact}
+              </span>
+            ) : null}
+          </div>
+
           <h3 className="display mt-3 text-4xl text-dark transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/project:translate-x-1 md:text-6xl lg:text-[4.4rem]">
             {project.title}
           </h3>

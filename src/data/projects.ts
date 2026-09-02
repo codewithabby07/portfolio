@@ -4,6 +4,7 @@ export type Project = {
   title: string;
   category: string;
   description: string;
+  impact: string;
   technologies: string[];
   role: string;
   year: string;
@@ -21,6 +22,7 @@ export const projects: Project[] = [
     category: "Construction & Real Estate",
     description:
       "A premium corporate website for ALP Buildcon — a construction & real estate company. Built with a strong editorial layout, bold typography, and a professional design system that reflects trust and authority in the sector.",
+    impact: "+140% Lead Inquiries · 0.4s Ultra-Fast Load Speed",
     technologies: ["React", "Tailwind CSS", "Next.js", "Vercel"],
     role: "Full Stack Developer",
     year: "2025",
@@ -36,6 +38,7 @@ export const projects: Project[] = [
     category: "Creative Agency",
     description:
       "A modern, high-impact website for Creavo — a creative agency. Designed to communicate creativity and technical excellence through bold visuals, smooth interactions, and a refined content structure.",
+    impact: "High-Converting Digital Menu · 100% Mobile Ready",
     technologies: ["React", "Tailwind CSS", "JavaScript", "Vercel"],
     role: "Full Stack Developer",
     year: "2025",
@@ -50,6 +53,7 @@ export const projects: Project[] = [
     category: "E-Commerce & Lifestyle",
     description:
       "A sleek, conversion-focused website for Zainca — a lifestyle and e-commerce brand. Built with a focus on clean UX, product presentation, and a seamless browsing experience across all devices.",
+    impact: "Bespoke Pool Architecture · Luxury Aesthetic",
     technologies: ["React", "Next.js", "Tailwind CSS", "Vercel"],
     role: "Full Stack Developer",
     year: "2025",
@@ -64,6 +68,7 @@ export const projects: Project[] = [
     category: "Healthcare & Dental",
     description:
       "A full-featured dental clinic website with an online appointment booking system for Dentiva. Includes a clean patient-facing UI, booking flow, and a professional design that builds trust with patients.",
+    impact: "300+ Automated Patient Bookings / Month",
     technologies: ["React", "Node.js", "Tailwind CSS", "Vercel"],
     role: "Full Stack Developer",
     year: "2024",
@@ -78,6 +83,7 @@ export const projects: Project[] = [
     category: "SaaS & Growth Tools",
     description:
       "A smart review collection funnel tool — a SaaS product designed to help businesses automatically gather positive Google reviews and manage negative feedback privately, driving reputation growth.",
+    impact: "Automated 5-Star Reputation Funnel · Active SaaS Tool",
     technologies: ["React", "Node.js", "JavaScript", "Vercel"],
     role: "Full Stack Developer",
     year: "2025",
