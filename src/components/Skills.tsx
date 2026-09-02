@@ -1,5 +1,6 @@
 import { skills } from "@/data/services";
 import { LineReveal, Reveal, SectionLabel } from "@/components/ui";
+import { Terminal } from "@/components/Terminal";
 
 export function Skills() {
   return (
@@ -30,6 +31,11 @@ export function Skills() {
               </li>
             ))}
           </ul>
+        </Reveal>
+
+        {/* Live Developer Shell Terminal */}
+        <Reveal className="mt-16" delay={0.14}>
+          <Terminal />
         </Reveal>
       </div>
     </section>
