@@ -34,7 +34,7 @@ function validate(values: Fields): Errors {
 // ─── Formspree form ID ────────────────────────────────────────────────────────
 // 1. Go to https://formspree.io  →  New form  →  link to codewithabby07@gmail.com
 // 2. Copy the form ID (e.g. "xpwzabcd") and paste it below.
-const FORMSPREE_ID = "YOUR_FORM_ID"; // ← replace this once
+const FORMSPREE_ID = "xqpkbabk";
 
 export function ContactForm() {
   const [values, setValues] = useState<Fields>(initial);
