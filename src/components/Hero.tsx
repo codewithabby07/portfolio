@@ -54,11 +54,9 @@ export function Hero() {
       <div className="page-shell relative z-10 flex flex-1 flex-col justify-between gap-10">
         {/* Top Status & Atelier Row */}
         <div className="hero-stage flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4">
-          <div className="luxury-badge">
-            <span className="pulse-dot" />
-            <span className="text-[11px] font-medium tracking-[0.18em]">
-              Available For Select Commissions — {site.hero.year}
-            </span>
+          <div className="flex items-center gap-3 text-[11px] font-medium tracking-[0.22em] uppercase text-white/70">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            <span>CODEWITHABBY // 2026</span>
           </div>
 
           <div className="hidden items-center gap-4 text-[11px] font-medium tracking-[0.22em] uppercase text-white/50 md:flex">

@@ -49,21 +49,21 @@ function ProjectImage({
   return (
     <div
       ref={frameRef}
-      className="relative overflow-hidden bg-dark"
+      className="relative overflow-hidden rounded-xl border border-white/10 bg-[#09090c] p-1.5 md:p-3 shadow-lg"
       onMouseMove={onMove}
       onMouseLeave={onLeave}
     >
       <img
         data-img
         src={project.image}
-        alt={`${project.title} project still`}
+        alt={`${project.title} project preview`}
         width={1600}
         height={1000}
         loading="lazy"
-        className="project-img aspect-[16/10] h-full w-full object-cover"
+        className="project-img aspect-[16/10] h-full w-full object-contain rounded-lg transition-transform duration-500"
       />
-      <div className="project-shade pointer-events-none absolute inset-0" />
-      <span className="project-index display pointer-events-none absolute right-5 bottom-3 text-6xl text-white/35 md:text-8xl">
+      <div className="project-shade pointer-events-none absolute inset-0 rounded-xl" />
+      <span className="project-index display pointer-events-none absolute right-6 bottom-4 text-5xl text-white/25 md:text-7xl">
         {project.number}
       </span>
       {interactive ? (

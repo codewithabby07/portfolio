@@ -5,28 +5,28 @@ const testimonials = [
     id: 1,
     quote:
       "Abby delivered our website in record time without compromising on quality. The attention to detail was exceptional — every pixel was perfect. Our clients noticed the difference immediately.",
-    name: "Client Name",
-    title: "Founder",
+    name: "Syed Mujahid Ali",
+    title: "CEO",
     company: "ALP Buildcon",
-    initial: "A",
+    initial: "S",
   },
   {
     id: 2,
     quote:
       "Working with Abby was seamless. He understood our brand identity from the first call and translated it into a website that perfectly represents who we are. Highly recommended.",
-    name: "Client Name",
-    title: "CEO",
+    name: "Mr Zain",
+    title: "Client",
     company: "Creavo",
-    initial: "C",
+    initial: "Z",
   },
   {
     id: 3,
     quote:
       "The appointment booking system Abby built for us has streamlined our entire patient intake process. Clean, fast, and our patients love it. Worth every rupee.",
-    name: "Client Name",
-    title: "Director",
+    name: "Miss Leona",
+    title: "CEO",
     company: "Dentiva",
-    initial: "D",
+    initial: "L",
   },
 ];
 
