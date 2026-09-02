@@ -54,29 +54,15 @@ export function Hero() {
       <div className="page-shell relative z-10 flex flex-1 flex-col justify-between gap-10">
         {/* Top Status & Atelier Row */}
         <div className="hero-stage flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4">
-          <div className="flex items-center gap-3">
-            <a
-              href={site.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-emerald-500/50 bg-emerald-500/15 px-4 py-1.5 text-[11px] font-bold tracking-wider text-emerald-300 uppercase shadow-[0_0_15px_rgba(16,185,129,0.25)] transition-all hover:scale-105 hover:bg-emerald-500/30 active:scale-95"
-            >
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>WhatsApp</span>
-            </a>
-            <a
-              href={`tel:${site.phone.replace(/\s+/g, "")}`}
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-accent/50 bg-accent/15 px-4 py-1.5 text-[11px] font-bold tracking-wider text-white uppercase shadow-[0_0_15px_rgba(228,76,31,0.25)] transition-all hover:scale-105 hover:bg-accent/30 active:scale-95"
-            >
-              <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-              <span>Call Now</span>
-            </a>
+          <div className="flex items-center gap-3 text-[11px] font-medium tracking-[0.22em] uppercase text-white/70">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            <span>AVAILABLE FOR WORLDWIDE COMMISSIONS</span>
           </div>
 
           <div className="hidden items-center gap-4 text-[11px] font-medium tracking-[0.22em] uppercase text-white/50 md:flex">
             <span>Full Stack Architecture</span>
             <span className="h-1 w-1 rounded-full bg-accent/60" />
-            <span>Delhi, India // Worldwide</span>
+            <span>Worldwide // Remote</span>
           </div>
         </div>
 

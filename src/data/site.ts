@@ -80,7 +80,7 @@ export const site = {
     { label: "Instagram", href: "" },
     { label: "X", href: "" },
   ],
-  footerNote: "Available for select projects · Delhi, India · +91 7055859219",
+  footerNote: "Available for select international projects & commissions worldwide",
 } as const;
 
 export type NavItem = (typeof site.nav)[number];

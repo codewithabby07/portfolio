@@ -12,7 +12,12 @@ export function Footer() {
           <p className="font-display text-sm font-extrabold tracking-[0.16em] uppercase">
             {site.brand}
           </p>
-          <p className="mt-4 max-w-xs text-sm text-muted">{site.footerNote}</p>
+          <p className="mt-3 max-w-xs text-sm font-medium text-dark/80">
+            {site.footerNote}
+          </p>
+          <p className="mt-2 text-xs text-muted">
+            HQ: Delhi, India · Serving Clients Worldwide
+          </p>
         </div>
 
         <nav className="md:col-span-4" aria-label="Footer">
