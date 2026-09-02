@@ -1,7 +1,37 @@
+import { useEffect } from "react";
 import { site } from "@/data/site";
 import { projects, isFilled } from "@/data/projects";
 
 export function Seo() {
+  useEffect(() => {
+    const metaTags = [
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: site.url },
+      { property: "og:title", content: site.title },
+      { property: "og:description", content: site.description },
+      { property: "og:image", content: `${site.url}/images/og.jpg` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: site.title },
+      { name: "twitter:description", content: site.description },
+      { name: "twitter:image", content: `${site.url}/images/og.jpg` },
+    ];
+
+    const elements: HTMLMetaElement[] = [];
+
+    metaTags.forEach((tag) => {
+      const meta = document.createElement("meta");
+      if (tag.property) meta.setAttribute("property", tag.property);
+      if (tag.name) meta.setAttribute("name", tag.name);
+      meta.setAttribute("content", tag.content);
+      document.head.appendChild(meta);
+      elements.push(meta);
+    });
+
+    return () => {
+      elements.forEach((el) => el.remove());
+    };
+  }, []);
+
   const person = {
     "@context": "https://schema.org",
     "@type": "Person",
