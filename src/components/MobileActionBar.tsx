@@ -83,26 +83,28 @@ export function MobileActionBar() {
       >
         {/* Fill Background */}
         <div
-          className="absolute left-0 top-0 bottom-0 bg-accent/40 transition-all duration-75"
+          className="absolute left-0 top-0 bottom-0 bg-[#25D366]/40 transition-all duration-75"
           style={{ width: `${fillPercent + 12}%` }}
         />
 
-        {/* Shimmer Text */}
-        <div className="pointer-events-none flex items-center gap-2 text-xs font-black tracking-[0.24em] uppercase text-white">
-          <span className="animate-pulse text-white/90">SLIDE TO CALL</span>
-          <span className="text-accent font-bold text-sm">»»</span>
+        {/* Shimmer Text & Animated Horizontal Arrows */}
+        <div className="pointer-events-none flex items-center gap-2.5 text-xs font-black tracking-[0.24em] uppercase text-white">
+          <span className="text-white/90">SLIDE TO CALL</span>
+          <span className="animate-arrow-slide text-[#25D366] font-extrabold text-sm">
+            ➔ ➔
+          </span>
         </div>
 
-        {/* Sliding Knob */}
+        {/* Sliding Knob (Green Color, No Jump Animation) */}
         <div
-          className="absolute left-1 flex h-12 w-12 cursor-grab items-center justify-center rounded-full bg-accent text-white shadow-xl active:cursor-grabbing"
+          className="absolute left-1 flex h-12 w-12 cursor-grab items-center justify-center rounded-full bg-[#25D366] text-black shadow-[0_0_15px_rgba(37,211,102,0.5)] active:cursor-grabbing"
           style={{
             transform: `translate3d(${dragX}px, 0, 0)`,
             transition: isDragging ? "none" : "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
           onClick={triggerCall}
         >
-          <span className="text-lg animate-bounce">📞</span>
+          <span className="text-xl font-bold">📞</span>
         </div>
       </div>
     </aside>

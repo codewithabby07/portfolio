@@ -825,6 +825,23 @@
   html[data-motion="on"] .media-reveal:not(.is-in) {
     opacity: 1;
     transform: none;
-    clip-path: none;
+}
+
+@keyframes slide-arrow-right {
+  0% {
+    transform: translateX(0);
+    opacity: 0.3;
   }
+  50% {
+    transform: translateX(6px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(12px);
+    opacity: 0.3;
+  }
+}
+
+.animate-arrow-slide {
+  animation: slide-arrow-right 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
