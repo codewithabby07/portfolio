@@ -59,10 +59,17 @@ export function Hero() {
               href={site.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-[11px] font-semibold tracking-wider text-emerald-400 uppercase transition-all hover:border-emerald-500/60 hover:bg-emerald-500/20"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-emerald-500/50 bg-emerald-500/15 px-4 py-1.5 text-[11px] font-bold tracking-wider text-emerald-300 uppercase shadow-[0_0_15px_rgba(16,185,129,0.25)] transition-all hover:scale-105 hover:bg-emerald-500/30 active:scale-95"
             >
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Direct WhatsApp: +91 7055859219</span>
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+              <span>WhatsApp</span>
+            </a>
+            <a
+              href={`tel:${site.phone.replace(/\s+/g, "")}`}
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-accent/50 bg-accent/15 px-4 py-1.5 text-[11px] font-bold tracking-wider text-white uppercase shadow-[0_0_15px_rgba(228,76,31,0.25)] transition-all hover:scale-105 hover:bg-accent/30 active:scale-95"
+            >
+              <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+              <span>Call Now</span>
             </a>
           </div>
 
@@ -117,10 +124,18 @@ export function Hero() {
                 href={site.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="luxury-btn-secondary group flex items-center gap-2 border-emerald-500/40 text-emerald-300 hover:border-emerald-500 hover:bg-emerald-500/10"
+                className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-md bg-[#25D366] px-6 py-3.5 text-[12px] font-extrabold tracking-[0.16em] text-black uppercase shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-105 hover:bg-[#20bd5a] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] active:scale-95"
               >
-                <span className="text-base">💬</span>
+                <span className="text-base animate-bounce">💬</span>
                 <span>Chat on WhatsApp</span>
+              </a>
+
+              <a
+                href={`tel:${site.phone.replace(/\s+/g, "")}`}
+                className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-md border border-white/30 bg-white/10 px-6 py-3.5 text-[12px] font-extrabold tracking-[0.16em] text-white uppercase shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-white/70 hover:bg-white/20 active:scale-95"
+              >
+                <span className="text-base">📞</span>
+                <span>Call Now</span>
               </a>
             </div>
 

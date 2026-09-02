@@ -46,10 +46,15 @@ function ProjectImage({
     if (img) img.style.transform = "";
   }
 
+  const isContain = project.id === "alp-buildcon" || project.id === "creavo";
+
   return (
     <div
       ref={frameRef}
-      className="relative overflow-hidden rounded-xl shadow-xl bg-dark/10"
+      className={cn(
+        "relative overflow-hidden rounded-xl shadow-xl",
+        isContain ? "bg-[#09090c]" : "bg-dark/10"
+      )}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
     >
@@ -60,7 +65,10 @@ function ProjectImage({
         width={1600}
         height={1000}
         loading="lazy"
-        className="project-img aspect-[16/10] h-full w-full object-cover object-top rounded-xl transition-transform duration-500"
+        className={cn(
+          "project-img aspect-[16/10] h-full w-full rounded-xl transition-transform duration-500",
+          isContain ? "object-contain p-1.5 md:p-2" : "object-cover object-top"
+        )}
       />
       <div className="project-shade pointer-events-none absolute inset-0 rounded-xl" />
       <span className="project-index display pointer-events-none absolute right-6 bottom-4 text-5xl text-white/35 md:text-7xl">
