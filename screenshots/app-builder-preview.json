@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "CODEWITHABBY — Abby | Premium Websites & Frontend Experiences",
+      "hasCanvas": false,
+      "bodyTextLen": 2326,
+      "bodyTextHash": "fd55f690306aac2d2b9f2f4d40431c77807df5aff6a651576aa08e7c8fea354a",
+      "bodyTextPrefix": "Skip to content CODEWITHABBY HOME → ABOUT → WORK → SERVICES → CO",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "CODEWITHABBY — Abby | Premium Websites & Frontend Experiences",
+      "hasCanvas": false,
+      "bodyTextLen": 2242,
+      "bodyTextHash": "e041652d7d68f96910d0de576e801462d72e3e320c31021b46146ffba9fd0d09",
+      "bodyTextPrefix": "Skip to content CODEWITHABBY ABBY I BUILD PREMIUM DIGITAL EXPERI",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

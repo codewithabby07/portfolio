@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://codewithabby.com/sitemap.xml
