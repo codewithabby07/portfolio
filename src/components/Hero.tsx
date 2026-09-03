@@ -68,7 +68,7 @@ export function Hero() {
             <div className="mb-4 inline-flex items-center gap-3">
               <span className="h-px w-8 bg-accent" />
               <span className="text-[11px] font-semibold tracking-[0.24em] uppercase text-white/70">
-                {site.name} — {site.jobTitle}
+                {site.name} · {site.jobTitle}
               </span>
             </div>
 
@@ -120,7 +120,7 @@ export function Hero() {
               </a>
             </div>
 
-            {/* Stats strip — real numbers only */}
+            {/* Stats strip: real numbers only */}
             <div className="mt-8 grid grid-cols-3 gap-6 border-t border-white/[0.08] pt-5 max-w-lg">
               <div>
                 <span className="block font-display text-2xl font-bold tracking-tight text-white md:text-3xl">

@@ -9,7 +9,7 @@ export const services: Service[] = [
     number: "01",
     title: "WEB DEVELOPMENT",
     description:
-      "Complete websites from scratch — architecture, frontend, backend, and deployment.",
+      "Complete websites from scratch: architecture, frontend, backend, and deployment.",
   },
   {
     number: "02",
@@ -21,7 +21,7 @@ export const services: Service[] = [
     number: "03",
     title: "UI/UX IMPLEMENTATION",
     description:
-      "Design translated to code — layout, typography, spacing, motion, and interactive states.",
+      "Design translated to code: layout, typography, spacing, motion, and interactive states.",
   },
   {
     number: "04",
@@ -39,7 +39,7 @@ export const services: Service[] = [
     number: "06",
     title: "PERFORMANCE OPTIMIZATION",
     description:
-      "Faster load times, stable layout shifts, and leaner assets — without breaking the design.",
+      "Faster load times, stable layout shifts, and leaner assets, without breaking the design.",
   },
 ];
 

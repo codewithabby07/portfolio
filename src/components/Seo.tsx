@@ -40,7 +40,7 @@ export function Seo() {
         name: project.title,
         description: isFilled(project.description)
           ? project.description
-          : `${project.title} — ${project.category} project by ${site.brand}.`,
+          : `${project.title} · ${project.category} project by ${site.brand}.`,
         image: `${site.url}${project.image}`,
         creator: {
           "@type": "Person",

@@ -117,7 +117,7 @@ export function ContactForm() {
             {site.contact.title.toUpperCase()}
           </h2>
           <p className="mt-6 max-w-md text-white/75">
-            Have a project in mind? Tell me what you're looking to build. I'll get back to you within 24 hours — or reach out directly below.
+            Have a project in mind? Tell me what you're looking to build. I'll get back to you within 24 hours, or reach out directly below.
           </p>
 
           <div className="mt-8 flex flex-col gap-3.5 max-w-md">

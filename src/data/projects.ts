@@ -37,7 +37,7 @@ export const projects: Project[] = [
     title: "CREAVO",
     category: "Creative Agency",
     description:
-      "Website for Creavo, a creative agency. Designed around their brand identity — bold visuals, smooth transitions, and a content structure that reflects what they do.",
+      "Website for Creavo, a creative agency. Designed around their brand identity with bold visuals, smooth transitions, and a content structure that reflects what they do.",
     impact: "",
     technologies: ["React", "Tailwind CSS", "JavaScript", "Vercel"],
     role: "Full Stack Developer",

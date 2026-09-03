@@ -13,7 +13,7 @@ const steps = [
     title: "DESIGN",
     emoji: "🎨",
     description:
-      "Wireframes and high-fidelity mockups. Every layout decision — typography, spacing, colour, motion — is deliberate before development starts.",
+      "Wireframes and high-fidelity mockups. Every layout decision across typography, spacing, colour, and motion is deliberate before development starts.",
   },
   {
     number: "03",

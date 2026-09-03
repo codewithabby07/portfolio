@@ -20,7 +20,7 @@ export function Services() {
             </h2>
           </div>
           <p className="max-w-sm text-muted">
-            A focused set of ways to plan, build, and refine a website — from
+            A focused set of ways to plan, build, and refine a website, from
             structure to the last interaction.
           </p>
         </Reveal>

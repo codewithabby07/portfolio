@@ -4,7 +4,7 @@ const testimonials = [
   {
     id: 1,
     quote:
-      "Abby delivered our website in record time without compromising on quality. The attention to detail was exceptional — every pixel was perfect. Our clients noticed the difference immediately.",
+      "Abby delivered our website in record time without compromising on quality. The attention to detail was exceptional, every pixel was perfect. Our clients noticed the difference immediately.",
     name: "Syed Mujahid Ali",
     title: "CEO",
     company: "ALP Buildcon",

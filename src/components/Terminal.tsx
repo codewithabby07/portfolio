@@ -58,7 +58,7 @@ export function Terminal() {
           <span className="h-3 w-3 rounded-full bg-[#27C93F]" />
         </div>
         <div className="text-[11px] font-medium tracking-wider text-white/50">
-          codewithabby — zsh
+          codewithabby (zsh)
         </div>
       </div>
 

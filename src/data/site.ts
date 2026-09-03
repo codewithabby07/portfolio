@@ -13,9 +13,9 @@ export const site = {
   whatsapp: "https://wa.me/917055859219",
   jobTitle: "Full Stack Developer & Web Architect",
   locale: "en_US",
-  title: "CODEWITHABBY — Full Stack Developer & Web Architect",
+  title: "CODEWITHABBY · Full Stack Developer & Web Architect",
   description:
-    "CODEWITHABBY is the portfolio of Abby — a Delhi-based Full Stack Developer with 3+ years building websites, web apps, and custom digital products.",
+    "CODEWITHABBY is the portfolio of Abby, a Delhi-based Full Stack Developer with 3+ years building websites, web apps, and custom digital products.",
   portrait: {
     src: "/images/portrait.jpg",
     alt: "Portrait of Abby, Full Stack Developer based in Delhi.",
@@ -45,7 +45,7 @@ export const site = {
   about: {
     label: "About.",
     headline: ["WEBSITES THAT WORK.", "FAST TO BUILD,", "BUILT TO LAST."],
-    body: "Abby is a Delhi-based Full Stack Developer with 3+ years building websites and web applications for founders, startups, and small businesses. I handle the full stack — design, frontend, backend, and deployment. Delivered in 6–7 days.",
+    body: "Abby is a Delhi-based Full Stack Developer with 3+ years building websites and web applications for founders, startups, and small businesses. I handle the full stack: design, frontend, backend, and deployment. Delivered in 6–7 days.",
     still: {
       src: "/images/about-still.jpg",
       alt: "Sunlit terracotta wall with a sharp geometric shadow.",
