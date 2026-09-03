@@ -210,26 +210,17 @@ export function Hero() {
 
           {/* Social Links */}
           <div className="flex items-center gap-5">
-            {site.socials.map((social) =>
-              social.href ? (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  {social.label}
-                </a>
-              ) : (
-                <span
-                  key={social.label}
-                  className="text-white/40 hover:text-white/80 transition-colors cursor-default"
-                >
-                  {social.label}
-                </span>
-              )
-            )}
+            {site.socials.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                {social.label}
+              </a>
+            ))}
           </div>
         </div>
       </div>
