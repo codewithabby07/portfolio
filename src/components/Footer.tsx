@@ -1,11 +1,10 @@
 import { site } from "@/data/site";
-import { isFilled } from "@/data/projects";
 import { onHashLinkClick } from "@/lib/scroll";
-import { useToast, copyToClipboard } from "@/components/Toast";
+import { useToast, ToastMessage, copyToClipboard } from "@/components/Toast";
 
 export function Footer() {
-  const socials = site.socials.filter((social) => isFilled(social.href));
-  const { showToast, ToastComponent } = useToast();
+  const socials = site.socials.filter((s) => Boolean(s.href));
+  const { showToast, toast } = useToast();
 
   function handleEmailClick(e: React.MouseEvent) {
     e.preventDefault();
@@ -16,7 +15,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-dark/10 bg-dark text-white">
-      <ToastComponent />
+      <ToastMessage message={toast} />
       <div className="page-shell py-16 md:py-20">
         {/* Main Grid */}
         <div className="grid gap-12 lg:grid-cols-12">

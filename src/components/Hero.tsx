@@ -107,7 +107,7 @@ export function Hero() {
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-md bg-[#25D366] px-6 py-3.5 text-[12px] font-extrabold tracking-[0.16em] text-black uppercase shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-105 hover:bg-[#20bd5a] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] active:scale-95"
               >
-                <span className="text-base animate-bounce">💬</span>
+                <span className="text-base" aria-hidden>💬</span>
                 <span>Chat on WhatsApp</span>
               </a>
 

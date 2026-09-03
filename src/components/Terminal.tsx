@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { cn } from "@/lib/cn";
 
 const COMMAND_LOGS = {
   audit: [
@@ -70,33 +71,36 @@ export function Terminal() {
         <button
           type="button"
           onClick={() => setActiveTab("audit")}
-          className={`rounded-md px-3 py-1.5 text-[11px] font-bold transition-all ${
+          className={cn(
+            "rounded-md px-3 py-1.5 text-[11px] font-bold transition-all",
             activeTab === "audit"
               ? "bg-accent text-white shadow-md"
-              : "bg-white/5 text-white/70 hover:bg-white/10"
-          }`}
+              : "bg-white/5 text-white/70 hover:bg-white/10",
+          )}
         >
           $ --audit
         </button>
         <button
           type="button"
           onClick={() => setActiveTab("stack")}
-          className={`rounded-md px-3 py-1.5 text-[11px] font-bold transition-all ${
+          className={cn(
+            "rounded-md px-3 py-1.5 text-[11px] font-bold transition-all",
             activeTab === "stack"
               ? "bg-accent text-white shadow-md"
-              : "bg-white/5 text-white/70 hover:bg-white/10"
-          }`}
+              : "bg-white/5 text-white/70 hover:bg-white/10",
+          )}
         >
           $ --stack
         </button>
         <button
           type="button"
           onClick={() => setActiveTab("delivery")}
-          className={`rounded-md px-3 py-1.5 text-[11px] font-bold transition-all ${
+          className={cn(
+            "rounded-md px-3 py-1.5 text-[11px] font-bold transition-all",
             activeTab === "delivery"
               ? "bg-accent text-white shadow-md"
-              : "bg-white/5 text-white/70 hover:bg-white/10"
-          }`}
+              : "bg-white/5 text-white/70 hover:bg-white/10",
+          )}
         >
           $ --timeline
         </button>
@@ -111,13 +115,14 @@ export function Terminal() {
           return (
             <div
               key={index}
-              className={`leading-relaxed ${
+              className={cn(
+                "leading-relaxed",
                 isCommand
                   ? "font-bold text-accent"
                   : isSuccess
-                  ? "text-emerald-400 font-semibold"
-                  : "text-white/80"
-              }`}
+                    ? "text-emerald-400 font-semibold"
+                    : "text-white/80",
+              )}
             >
               {log}
             </div>

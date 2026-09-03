@@ -13,17 +13,17 @@ export function useToast() {
     return () => clearTimeout(timer);
   }, [toast]);
 
-  function ToastComponent() {
-    if (!toast) return null;
-    return (
-      <div className="fixed bottom-6 right-6 z-[120] flex items-center gap-2 rounded-lg bg-dark px-5 py-3 text-sm font-bold text-white shadow-2xl border border-white/20 animate-fade-in">
-        <span>📋</span>
-        <span>{toast}</span>
-      </div>
-    );
-  }
+  return { showToast, toast };
+}
 
-  return { showToast, ToastComponent };
+export function ToastMessage({ message }: { message: string | null }) {
+  if (!message) return null;
+  return (
+    <div className="fixed bottom-6 right-6 z-[120] flex items-center gap-2 rounded-lg bg-dark px-5 py-3 text-sm font-bold text-white shadow-2xl border border-white/20 animate-fade-in">
+      <span aria-hidden>📋</span>
+      <span>{message}</span>
+    </div>
+  );
 }
 
 export function copyToClipboard(text: string, callback?: () => void) {
