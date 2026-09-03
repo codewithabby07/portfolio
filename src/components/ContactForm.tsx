@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { site } from "@/data/site";
 import { cn } from "@/lib/cn";
 import { Reveal, SectionLabel } from "@/components/ui";
+import { useToast, ToastMessage } from "@/components/Toast";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -40,13 +41,15 @@ export function ContactForm() {
   const [values, setValues] = useState<Fields>(initial);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const { showToast, toast } = useToast();
 
-  const disabled = status === "loading" || status === "success";
+  const disabled = status === "loading";
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (values.company) {
       setStatus("success");
+      showToast("Message sent successfully! I'll reply within 24 hours.");
       return;
     }
     const nextErrors = validate(values);
@@ -72,11 +75,15 @@ export function ContactForm() {
       if (res.ok) {
         setStatus("success");
         setValues(initial);
+        setErrors({});
+        showToast("Message sent successfully! I'll reply within 24 hours.");
       } else {
         setStatus("error");
+        showToast("Could not send. Please message on WhatsApp instead.");
       }
     } catch {
       setStatus("error");
+      showToast("Network error. Please try again or WhatsApp directly.");
     }
   }
 
@@ -86,6 +93,7 @@ export function ContactForm() {
       className="relative scroll-mt-32 overflow-hidden py-20 md:py-28"
       aria-labelledby="contact-heading"
     >
+      <ToastMessage message={toast} icon="✓" />
       <img
         src={site.contact.background}
         alt=""
@@ -156,105 +164,144 @@ export function ContactForm() {
               <span className="h-2 w-2 rounded-full bg-accent" aria-hidden />
             </div>
             <div className="p-6 md:p-8">
-              <div className="mb-6 border-b border-border pb-5">
-                <p className="text-2xl font-semibold tracking-tight text-dark">
-                  {site.contact.kicker}
-                </p>
-              </div>
+              {status === "success" ? (
+                <div className="py-8 text-center animate-fade-in" role="alert" aria-live="polite">
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-600 border border-emerald-500/30 shadow-inner">
+                    <svg className="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </div>
+                  <h3 className="mt-5 font-display text-2xl font-bold text-dark uppercase tracking-tight">
+                    Message Delivered!
+                  </h3>
+                  <p className="mt-2 text-sm text-muted max-w-sm mx-auto leading-relaxed">
+                    Thank you! Your message has been sent directly to Abby. I'll get back to you within 24 hours.
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-border flex flex-col items-center gap-3">
+                    <p className="text-xs text-muted">
+                      Need a quicker response?
+                    </p>
+                    <a
+                      href={site.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-4 py-2.5 text-xs font-extrabold text-black uppercase tracking-wider transition-transform duration-200 hover:scale-105"
+                    >
+                      <span>💬</span>
+                      <span>Chat on WhatsApp</span>
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setStatus("idle");
+                        setValues(initial);
+                      }}
+                      className="mt-2 text-xs font-bold text-accent hover:underline uppercase tracking-widest transition-colors cursor-pointer"
+                    >
+                      ← Send another message
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className="mb-6 border-b border-border pb-5">
+                    <p className="text-2xl font-semibold tracking-tight text-dark">
+                      {site.contact.kicker}
+                    </p>
+                  </div>
 
-              <form onSubmit={onSubmit} noValidate>
-                <div className="sr-only" aria-hidden="true">
-                  <label>
-                    Company
-                    <input
-                      name="company"
-                      tabIndex={-1}
-                      autoComplete="off"
-                      value={values.company}
-                      onChange={(event) =>
-                        setValues((current) => ({
-                          ...current,
-                          company: event.target.value,
-                        }))
+                  <form onSubmit={onSubmit} noValidate>
+                    <div className="sr-only" aria-hidden="true">
+                      <label>
+                        Company
+                        <input
+                          name="company"
+                          tabIndex={-1}
+                          autoComplete="off"
+                          value={values.company}
+                          onChange={(event) =>
+                            setValues((current) => ({
+                              ...current,
+                              company: event.target.value,
+                            }))
+                          }
+                        />
+                      </label>
+                    </div>
+
+                    <Field
+                      id="name"
+                      label="Full name"
+                      required
+                      value={values.name}
+                      error={errors.name}
+                      disabled={disabled}
+                      autoComplete="name"
+                      onChange={(value) =>
+                        setValues((current) => ({ ...current, name: value }))
                       }
                     />
-                  </label>
-                </div>
+                    <Field
+                      id="email"
+                      label="Email"
+                      type="email"
+                      required
+                      value={values.email}
+                      error={errors.email}
+                      disabled={disabled}
+                      autoComplete="email"
+                      onChange={(value) =>
+                        setValues((current) => ({ ...current, email: value }))
+                      }
+                    />
+                    <Field
+                      id="message"
+                      label="Project / message"
+                      required
+                      textarea
+                      value={values.message}
+                      error={errors.message}
+                      disabled={disabled}
+                      onChange={(value) =>
+                        setValues((current) => ({ ...current, message: value }))
+                      }
+                    />
 
-                <Field
-                  id="name"
-                  label="Full name"
-                  required
-                  value={values.name}
-                  error={errors.name}
-                  disabled={disabled}
-                  autoComplete="name"
-                  onChange={(value) =>
-                    setValues((current) => ({ ...current, name: value }))
-                  }
-                />
-                <Field
-                  id="email"
-                  label="Email"
-                  type="email"
-                  required
-                  value={values.email}
-                  error={errors.email}
-                  disabled={disabled}
-                  autoComplete="email"
-                  onChange={(value) =>
-                    setValues((current) => ({ ...current, email: value }))
-                  }
-                />
-                <Field
-                  id="message"
-                  label="Project / message"
-                  required
-                  textarea
-                  value={values.message}
-                  error={errors.message}
-                  disabled={disabled}
-                  onChange={(value) =>
-                    setValues((current) => ({ ...current, message: value }))
-                  }
-                />
+                    {status === "error" && !Object.keys(errors).length ? (
+                      <div className="mb-4 rounded-md border border-danger/30 bg-danger/10 p-3 text-xs text-danger">
+                        Could not send your message. Please try again or reach out on{" "}
+                        <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="font-bold underline">
+                          WhatsApp
+                        </a>
+                        .
+                      </div>
+                    ) : null}
 
-                <button
-                  type="submit"
-                  disabled={disabled}
-                  aria-busy={status === "loading"}
-                  className={cn(
-                    "group/cta mt-2 inline-flex w-full items-center justify-center gap-2 bg-dark px-6 py-4 text-[12px] font-semibold tracking-[0.18em] text-white uppercase transition-colors duration-300",
-                    "hover:bg-accent",
-                    "active:scale-[0.98]",
-                    "disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-dark disabled:active:scale-100",
-                    status === "loading" && "cursor-wait",
-                  )}
-                >
-                  {status === "loading"
-                    ? "Sending"
-                    : status === "success"
-                      ? "Received"
-                      : "Send message"}
-                </button>
+                    <button
+                      type="submit"
+                      disabled={disabled}
+                      aria-busy={status === "loading"}
+                      className={cn(
+                        "group/cta mt-2 inline-flex w-full items-center justify-center gap-2 bg-dark px-6 py-4 text-[12px] font-semibold tracking-[0.18em] text-white uppercase transition-colors duration-300",
+                        "hover:bg-accent",
+                        "active:scale-[0.98]",
+                        "disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-dark disabled:active:scale-100",
+                        status === "loading" && "cursor-wait",
+                      )}
+                    >
+                      {status === "loading" ? "Sending..." : "Send message"}
+                    </button>
 
-                <p
-                  className={cn(
-                    "mt-4 min-h-6 text-sm",
-                    status === "success" && "text-dark",
-                    status === "error" && "text-danger",
-                    status === "idle" && "text-muted",
-                  )}
-                  role="status"
-                  aria-live="polite"
-                >
-                  {status === "success"
-                    ? site.contact.success
-                    : status === "error"
-                      ? (Object.values(errors)[0] ?? site.contact.error)
-                      : "I'll reply to your message within 24 hours."}
-                </p>
-              </form>
+                    <p
+                      className="mt-4 min-h-6 text-sm text-muted"
+                      role="status"
+                      aria-live="polite"
+                    >
+                      I'll reply to your message within 24 hours.
+                    </p>
+                  </form>
+                </>
+              )}
             </div>
           </div>
         </Reveal>
