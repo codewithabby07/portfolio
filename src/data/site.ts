@@ -77,9 +77,9 @@ export const site = {
   socials: [
     { label: "GitHub", href: "https://github.com/codewithabby07" },
     { label: "WhatsApp", href: "https://wa.me/917055859219" },
-    { label: "LinkedIn", href: "" },
-    { label: "Instagram", href: "" },
-    { label: "X", href: "" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/abby-undefined-436951433/" },
+    { label: "Instagram", href: "https://www.instagram.com/codewithabby07/" },
+    { label: "X", href: "https://x.com/codewithabby07" },
   ],
   footerNote: "Available for select international projects & commissions worldwide",
   googleVerification: "google06b6930185313ea1",
