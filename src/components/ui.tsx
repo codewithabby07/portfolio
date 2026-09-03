@@ -7,10 +7,12 @@ export function SectionLabel({
   children,
   className,
   light = false,
+  symbol = false,
 }: {
   children: ReactNode;
   className?: string;
   light?: boolean;
+  symbol?: boolean;
 }) {
   return (
     <p
@@ -20,9 +22,11 @@ export function SectionLabel({
         className,
       )}
     >
-      <span className="text-[10px] text-accent" aria-hidden>
-        ✱
-      </span>
+      {symbol ? (
+        <span className="text-[10px] text-accent" aria-hidden>
+          ✱
+        </span>
+      ) : null}
       {children}
     </p>
   );

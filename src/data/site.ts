@@ -13,9 +13,9 @@ export const site = {
   whatsapp: "https://wa.me/917055859219",
   jobTitle: "Full Stack Developer & Web Architect",
   locale: "en_US",
-  title: "CODEWITHABBY — Abby | High-Ticket Full Stack Developer & Web Architect",
+  title: "CODEWITHABBY — Full Stack Developer & Web Architect",
   description:
-    "CODEWITHABBY is the portfolio of Abby — a Delhi-based Full Stack Developer & Web Architect with 3 years of experience engineering high-converting websites, web apps, and bespoke digital experiences.",
+    "CODEWITHABBY is the portfolio of Abby — a Delhi-based Full Stack Developer with 3+ years building websites, web apps, and custom digital products.",
   portrait: {
     src: "/images/portrait.jpg",
     alt: "Portrait of Abby, Full Stack Developer based in Delhi.",
@@ -32,8 +32,7 @@ export const site = {
   ],
   hero: {
     year: "2026",
-    tagline:
-      "ENGINEERING HIGH-CONVERTING DIGITAL EXPERIENCES FOR AMBITIOUS BRANDS WORLDWIDE",
+    tagline: "Full Stack Developer building fast, functional websites for founders and brands",
     featuredLabel: "Featured",
   },
   industries: [
@@ -44,9 +43,9 @@ export const site = {
     "E-Commerce & Brands",
   ],
   about: {
-    label: "Introduction.",
-    headline: ["HIGH-TICKETS WEBSITES", "BUILT FOR SPEED,", "DESIGNED TO CONVERT."],
-    body: "Abby is a Delhi-based Full Stack Developer & Web Architect with 3 years of experience crafting premium websites, scalable web applications, and conversion-focused digital systems. Every project is engineered for speed, high conversion, and flawless aesthetics.",
+    label: "About.",
+    headline: ["WEBSITES THAT WORK.", "FAST TO BUILD,", "BUILT TO LAST."],
+    body: "Abby is a Delhi-based Full Stack Developer with 3+ years building websites and web applications for founders, startups, and small businesses. I handle the full stack — design, frontend, backend, and deployment. Delivered in 6–7 days.",
     still: {
       src: "/images/about-still.jpg",
       alt: "Sunlit terracotta wall with a sharp geometric shadow.",
@@ -54,14 +53,14 @@ export const site = {
   },
   marquee: [
     "Full Stack Development",
-    "High-Converting UI/UX",
+    "UI/UX Implementation",
     "React & Next.js",
-    "Node.js & Custom APIs",
-    "Performance Optimization (99+)",
-    "Bespoke Web Architecture",
+    "Node.js & APIs",
+    "Performance Optimization",
+    "Web Architecture",
   ],
   cta: {
-    label: "Next.",
+    label: "Let's talk.",
     lines: ["LET'S BUILD", "YOUR NEXT", "BIG PROJECT."],
     button: "Get in touch",
   },
@@ -71,7 +70,7 @@ export const site = {
     kicker: "Start a project",
     background: "/images/contact-bg.jpg",
     success:
-      "Thanks for reaching out! I'll reply to your message within 24 hours.",
+      "Thanks for reaching out! I'll reply within 24 hours.",
     error: "Something went wrong. Please check the form and try again.",
   },
   socials: [
@@ -81,11 +80,10 @@ export const site = {
     { label: "Instagram", href: "https://www.instagram.com/codewithabby07/" },
     { label: "X", href: "https://x.com/codewithabby07" },
   ],
-  footerNote: "Available for select international projects & commissions worldwide",
+  footerNote: "Open to remote projects worldwide",
   googleVerification: "google06b6930185313ea1",
   bingVerification: "",
 } as const;
 
 export type NavItem = (typeof site.nav)[number];
 export type SocialLink = (typeof site.socials)[number];
-

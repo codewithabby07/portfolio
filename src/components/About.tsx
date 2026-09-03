@@ -1,5 +1,5 @@
 import { site } from "@/data/site";
-import { Asterisk, LineReveal, MediaReveal, Reveal, SectionLabel } from "@/components/ui";
+import { LineReveal, MediaReveal, Reveal, SectionLabel } from "@/components/ui";
 
 export function About() {
   return (
@@ -22,10 +22,9 @@ export function About() {
           </h2>
 
           <Reveal
-            className="flex items-end justify-between gap-6 lg:col-span-4 lg:justify-end"
+            className="flex items-end justify-end gap-6 lg:col-span-4"
             delay={0.15}
           >
-            <Asterisk className="hidden h-16 w-16 text-border md:block lg:h-20 lg:w-20" />
             <MediaReveal className="relative h-28 w-28 md:h-32 md:w-32" delay={0.08}>
               <img
                 src={site.about.still.src}
@@ -45,7 +44,6 @@ export function About() {
           </p>
         </Reveal>
 
-        {/* High-Impact Agency Stats Strip */}
         <Reveal className="mt-12 border-t border-border pt-8" delay={0.18}>
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
             <div className="border-l-2 border-accent pl-4">
@@ -62,7 +60,7 @@ export function About() {
                 15+
               </span>
               <span className="mt-1 block text-[11px] font-semibold tracking-wider text-muted uppercase">
-                Web Apps Delivered
+                Projects Delivered
               </span>
             </div>
 
@@ -71,7 +69,7 @@ export function About() {
                 6–7 Days
               </span>
               <span className="mt-1 block text-[11px] font-semibold tracking-wider text-muted uppercase">
-                Average Delivery Time
+                Delivery Time
               </span>
             </div>
 
@@ -80,7 +78,7 @@ export function About() {
                 99+
               </span>
               <span className="mt-1 block text-[11px] font-semibold tracking-wider text-muted uppercase">
-                Performance Score
+                Lighthouse Score
               </span>
             </div>
           </div>

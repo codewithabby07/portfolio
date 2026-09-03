@@ -34,6 +34,7 @@ export const Route = createRootRoute({
       { name: "theme-color", content: "#E44C1F" },
       { name: "author", content: site.name },
       { name: "robots", content: "index, follow" },
+      { name: "google-site-verification", content: site.googleVerification },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },

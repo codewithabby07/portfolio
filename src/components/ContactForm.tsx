@@ -109,8 +109,7 @@ export function ContactForm() {
             {site.contact.title.toUpperCase()}
           </h2>
           <p className="mt-6 max-w-md text-white/75">
-            Tell Abby about the website, product, or experience you want to
-            build. Get a response within 24 hours or reach out directly.
+            Have a project in mind? Tell me what you're looking to build. I'll get back to you within 24 hours — or reach out directly below.
           </p>
 
           <div className="mt-8 flex flex-col gap-3.5 max-w-md">
@@ -120,10 +119,10 @@ export function ContactForm() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3.5 rounded-lg border border-emerald-500/40 bg-emerald-500/15 p-4 text-emerald-300 backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-emerald-500/25"
             >
-              <span className="text-2xl">💬</span>
+              <span className="text-2xl" aria-hidden>💬</span>
               <div>
                 <span className="block text-[10px] font-semibold tracking-widest text-emerald-400 uppercase">
-                  Instant WhatsApp Chat
+                  WhatsApp
                 </span>
                 <span className="text-base font-extrabold text-white">
                   +91 7055859219
@@ -135,10 +134,10 @@ export function ContactForm() {
               href={`tel:${site.phone.replace(/\s+/g, "")}`}
               className="inline-flex items-center gap-3.5 rounded-lg border border-white/20 bg-white/10 p-4 text-white backdrop-blur-md transition-all hover:border-white/40 hover:bg-white/15"
             >
-              <span className="text-2xl">📞</span>
+              <span className="text-2xl" aria-hidden>📞</span>
               <div>
                 <span className="block text-[10px] font-semibold tracking-widest text-white/60 uppercase">
-                  Direct Phone Call
+                  Phone
                 </span>
                 <span className="text-base font-extrabold text-white">
                   {site.phone}
@@ -253,7 +252,7 @@ export function ContactForm() {
                     ? site.contact.success
                     : status === "error"
                       ? (Object.values(errors)[0] ?? site.contact.error)
-                      : `I'll reply to ${site.email} within 24 hours.`}
+                      : "I'll reply to your message within 24 hours."}
                 </p>
               </form>
             </div>

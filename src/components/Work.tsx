@@ -114,8 +114,7 @@ function ProjectBlock({
               {project.number}
             </p>
             {project.impact ? (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 text-[10px] font-semibold tracking-wider text-accent uppercase">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="inline-flex items-center rounded-full border border-accent/25 bg-accent/10 px-2.5 py-0.5 text-[10px] font-semibold tracking-wider text-accent uppercase">
                 {project.impact}
               </span>
             ) : null}

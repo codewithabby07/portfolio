@@ -3,28 +3,28 @@ import { cn } from "@/lib/cn";
 
 const COMMAND_LOGS = {
   audit: [
-    "$ codewithabby --audit-performance",
-    "[INFO] Connecting to Google Lighthouse Vitals Agent...",
-    "✔ First Contentful Paint (FCP): 0.4s",
-    "✔ Largest Contentful Paint (LCP): 0.7s",
-    "✔ Cumulative Layout Shift (CLS): 0.00",
-    "✔ Final Performance Score: 99 / 100 ⚡",
+    "$ lighthouse https://alp-buildcon-1.vercel.app",
+    "Running Lighthouse audit...",
+    "✔ Performance: 99 / 100",
+    "✔ Accessibility: 97 / 100",
+    "✔ Best Practices: 100 / 100",
+    "✔ SEO: 100 / 100",
   ],
   stack: [
-    "$ codewithabby --list-capabilities",
-    "[INFO] Inspecting enterprise tech stack...",
-    "▸ Frontend: React 19, Next.js 15, TypeScript, Tailwind CSS v4",
-    "▸ Backend: Node.js, REST APIs, PostgreSQL, MongoDB",
-    "▸ Infrastructure: Vercel, Serverless Edge, Nitro Engine",
-    "✔ Architecture Status: 100% Production-Ready 🚀",
+    "$ cat package.json | grep dependencies",
+    "Parsing dependencies...",
+    "▸ react ^19.0.0",
+    "▸ next ^15.0.0 · typescript ^5.0.0",
+    "▸ tailwindcss ^4.0.0 · node.js 22",
+    "▸ mongodb · vercel · REST APIs",
   ],
   delivery: [
-    "$ codewithabby --check-timeline",
-    "[INFO] Querying standard delivery protocol...",
-    "▸ Discovery & Architecture: Day 1 - Day 2",
-    "▸ High-Fidelity UI & Frontend: Day 3 - Day 4",
-    "▸ Backend & Testing: Day 5 - Day 6",
-    "✔ Production Handover & Deployment: Day 6 - 7 ⏱️",
+    "$ cat timeline.txt",
+    "Day 1–2  →  Discovery & planning",
+    "Day 3–4  →  Design & frontend",
+    "Day 5–6  →  Backend & testing",
+    "Day 6–7  →  Deploy & handover",
+    "✔ 30-day support included after launch",
   ],
 };
 
@@ -50,23 +50,22 @@ export function Terminal() {
 
   return (
     <div className="mt-12 rounded-2xl bg-[#09090c] border border-white/15 p-4 sm:p-6 shadow-2xl overflow-hidden font-mono text-xs text-white/90">
-      {/* macOS Terminal Window Header */}
+      {/* Terminal header */}
       <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
         <div className="flex items-center gap-2">
           <span className="h-3 w-3 rounded-full bg-[#FF5F56]" />
           <span className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
           <span className="h-3 w-3 rounded-full bg-[#27C93F]" />
         </div>
-        <div className="text-[11px] font-medium tracking-wider text-white/50 uppercase">
-          codewithabby@atelier — zsh
+        <div className="text-[11px] font-medium tracking-wider text-white/50">
+          codewithabby — zsh
         </div>
-        <div className="text-[10px] text-accent font-bold">LIVE SHELL</div>
       </div>
 
-      {/* Preset Command Buttons */}
+      {/* Tab buttons */}
       <div className="flex flex-wrap items-center gap-2 mb-6 border-b border-white/10 pb-4">
         <span className="text-white/40 text-[10px] tracking-wider uppercase mr-2">
-          Run Commands:
+          Run:
         </span>
         <button
           type="button"
@@ -78,7 +77,7 @@ export function Terminal() {
               : "bg-white/5 text-white/70 hover:bg-white/10",
           )}
         >
-          $ --audit
+          $ lighthouse
         </button>
         <button
           type="button"
@@ -90,7 +89,7 @@ export function Terminal() {
               : "bg-white/5 text-white/70 hover:bg-white/10",
           )}
         >
-          $ --stack
+          $ stack
         </button>
         <button
           type="button"
@@ -102,16 +101,16 @@ export function Terminal() {
               : "bg-white/5 text-white/70 hover:bg-white/10",
           )}
         >
-          $ --timeline
+          $ timeline
         </button>
       </div>
 
-      {/* Terminal Content Screen */}
+      {/* Output */}
       <div className="space-y-2.5 min-h-[140px]">
         {displayedLogs.map((log, index) => {
           if (!log || typeof log !== "string") return null;
           const isCommand = log.startsWith("$");
-          const isSuccess = log.includes("✔") || log.includes("99 / 100");
+          const isSuccess = log.includes("✔");
           return (
             <div
               key={index}
@@ -129,7 +128,7 @@ export function Terminal() {
           );
         })}
         <div className="flex items-center gap-1 text-accent animate-pulse font-bold">
-          <span>codewithabby@architect:~$</span>
+          <span>codewithabby:~$</span>
           <span className="h-4 w-2 bg-accent inline-block" />
         </div>
       </div>

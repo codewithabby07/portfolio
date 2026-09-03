@@ -6,31 +6,31 @@ const faqs = [
     id: 1,
     question: "What is your typical project timeline?",
     answer:
-      "I deliver high-converting custom websites and full stack web applications in just 6 to 7 days, maintaining enterprise-grade engineering, 99+ speed, and aesthetic standards.",
+      "Most website projects take 6 to 7 days from our initial conversation to final deployment. Full-stack applications with custom backends may take slightly longer depending on requirements.",
   },
   {
     id: 2,
     question: "How does the engagement & payment process work?",
     answer:
-      "Projects are structured in transparent, milestone-based phases: Discovery & Architecture → Design Approval → Full Development & Testing → Final Handover & Deployment.",
+      "Projects follow four clear phases: Discovery → Design → Development & Testing → Final Handover. Payment is split into milestones so expectations are clear from day one.",
   },
   {
     id: 3,
     question: "Do you work with international clients worldwide?",
     answer:
-      "Yes, absolutely. I collaborate seamlessly with founders, businesses, and agency partners across the US, UK, UAE, Europe, and India via asynchronous updates, email, and direct calls.",
+      "Yes. I work with founders and businesses across the US, UK, UAE, Europe, and India through async updates, WhatsApp, email, and scheduled video calls.",
   },
   {
     id: 4,
     question: "Is post-launch support and maintenance included?",
     answer:
-      "Every project includes 30 days of complimentary post-launch technical support, bug resolution, and performance monitoring to ensure zero downtime and total peace of mind.",
+      "Every project includes 30 days of post-launch technical support to fix any issues, handle adjustments, and make sure everything runs smoothly in production.",
   },
   {
     id: 5,
     question: "Can you optimize my existing website for 99+ speed & SEO?",
     answer:
-      "Yes. I specialize in transforming slow, legacy codebases into modern Next.js/React applications with 99+ Lighthouse scores, instant page loads, and search engine accessibility.",
+      "Yes. I can audit and rebuild existing websites into fast React/Next.js applications with 99+ Lighthouse scores, clean semantic SEO, and quick page load times.",
   },
 ];
 
@@ -49,7 +49,7 @@ export function Faq() {
     >
       <div className="page-shell">
         <Reveal>
-          <SectionLabel light>Clarity & Trust.</SectionLabel>
+          <SectionLabel light>FAQ.</SectionLabel>
           <div className="mt-4 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
             <h2
               id="faq-heading"

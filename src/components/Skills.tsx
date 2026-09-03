@@ -7,12 +7,12 @@ export function Skills() {
     <section className="section-pad bg-background" aria-labelledby="skills-heading">
       <div className="page-shell">
         <Reveal>
-          <SectionLabel>Toolkit</SectionLabel>
+          <SectionLabel>Stack.</SectionLabel>
           <h2
             id="skills-heading"
             className="display mt-4 max-w-3xl text-5xl text-dark md:text-7xl"
           >
-            <LineReveal lines={["A FOCUSED STACK."]} />
+            <LineReveal lines={["WHAT I BUILD WITH."]} />
           </h2>
         </Reveal>
 

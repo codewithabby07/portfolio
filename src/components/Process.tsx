@@ -6,28 +6,28 @@ const steps = [
     title: "DISCOVERY",
     emoji: "🔍",
     description:
-      "Deep dive into your goals, audience, and competition. I ask the questions most developers skip — so the strategy is airtight before a single line of code is written.",
+      "We talk through your goals, audience, and what you need the site to do. I ask the questions that shape the build before writing a single line of code.",
   },
   {
     number: "02",
     title: "DESIGN",
     emoji: "🎨",
     description:
-      "Wireframes → high-fidelity mockups. Every layout decision is intentional — typography, spacing, colour, motion. Design that converts, not just impresses.",
+      "Wireframes and high-fidelity mockups. Every layout decision — typography, spacing, colour, motion — is deliberate before development starts.",
   },
   {
     number: "03",
     title: "DEVELOPMENT",
     emoji: "⚡",
     description:
-      "Clean, production-ready code. React, Next.js, Node.js — built fast, built right. Mobile-first, accessible, and optimised from day one.",
+      "Clean code in React, Next.js, and Node.js. Mobile-first, accessible, and performance-tuned from the start.",
   },
   {
     number: "04",
     title: "DELIVERY",
     emoji: "🚀",
     description:
-      "Deployed, tested, and handed over with full documentation. Post-launch support included. You get a partner, not just a freelancer.",
+      "Deployed, tested, and handed over with documentation. 30 days of support included after launch.",
   },
 ];
 
@@ -67,7 +67,7 @@ export function Process() {
               </em>
             </h2>
             <p className="max-w-xs text-sm text-white/50 md:text-right">
-              Four steps. Zero surprises. Results that speak for themselves.
+              Four stages, from first call to final deployment.
             </p>
           </div>
         </Reveal>
@@ -112,7 +112,7 @@ export function Process() {
         <Reveal delay={0.4}>
           <div className="mt-px flex items-center justify-between bg-white/5 px-8 py-5">
             <p className="text-sm text-white/40">
-              Typical project delivery:{" "}
+              Typical delivery:{" "}
               <span className="font-semibold text-accent">6 – 7 Days</span>
             </p>
             <a

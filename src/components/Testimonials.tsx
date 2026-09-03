@@ -1,4 +1,4 @@
-import { Reveal, SectionLabel } from "@/components/ui";
+import { Reveal } from "@/components/ui";
 
 const testimonials = [
   {
@@ -40,7 +40,6 @@ export function Testimonials() {
       <div className="page-shell">
         {/* Header */}
         <Reveal>
-          <SectionLabel>Social Proof.</SectionLabel>
           <div className="mt-4 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
             <h2
               id="testimonials-heading"
@@ -54,9 +53,6 @@ export function Testimonials() {
                 Say.
               </em>
             </h2>
-            <p className="max-w-xs text-sm text-dark/50 md:text-right">
-              Real words from real clients — no fluff.
-            </p>
           </div>
         </Reveal>
 
@@ -103,20 +99,6 @@ export function Testimonials() {
             </Reveal>
           ))}
         </div>
-
-        {/* Note to self — hidden from users, visible in code */}
-        {/* TODO: Replace placeholder quotes with real client testimonials */}
-
-        {/* Bottom strip */}
-        <Reveal delay={0.4}>
-          <div className="mt-12 flex items-center justify-center gap-3">
-            <div className="h-px flex-1 bg-dark/10" />
-            <p className="text-[11px] font-semibold tracking-[0.2em] text-dark/40 uppercase">
-              Trusted by founders & businesses
-            </p>
-            <div className="h-px flex-1 bg-dark/10" />
-          </div>
-        </Reveal>
       </div>
     </section>
   );

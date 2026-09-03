@@ -10,10 +10,7 @@ export function ContactCTA() {
     >
       <div className="page-shell section-pad relative">
         <Reveal>
-          <p className="label-meta flex items-center gap-2 text-white/55">
-            <span className="text-accent" aria-hidden>
-              ✱
-            </span>
+          <p className="label-meta text-white/55">
             {site.cta.label}
           </p>
         </Reveal>

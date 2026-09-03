@@ -21,8 +21,8 @@ export const projects: Project[] = [
     title: "ALP BUILDCON",
     category: "Construction & Real Estate",
     description:
-      "A premium corporate website for ALP Buildcon — a construction & real estate company. Built with a strong editorial layout, bold typography, and a professional design system that reflects trust and authority in the sector.",
-    impact: "+140% Lead Inquiries · 0.4s Ultra-Fast Load Speed",
+      "Corporate website for ALP Buildcon, a construction and real estate company. Built with editorial layout, bold typography, and lead-capture integration.",
+    impact: "+140% Lead Inquiries",
     technologies: ["React", "Tailwind CSS", "Next.js", "Vercel"],
     role: "Full Stack Developer",
     year: "2025",
@@ -37,8 +37,8 @@ export const projects: Project[] = [
     title: "CREAVO",
     category: "Creative Agency",
     description:
-      "A modern, high-impact website for Creavo — a creative agency. Designed to communicate creativity and technical excellence through bold visuals, smooth interactions, and a refined content structure.",
-    impact: "High-Converting Digital Menu · 100% Mobile Ready",
+      "Website for Creavo, a creative agency. Designed around their brand identity — bold visuals, smooth transitions, and a content structure that reflects what they do.",
+    impact: "",
     technologies: ["React", "Tailwind CSS", "JavaScript", "Vercel"],
     role: "Full Stack Developer",
     year: "2025",
@@ -52,8 +52,8 @@ export const projects: Project[] = [
     title: "ZAINCA",
     category: "E-Commerce & Lifestyle",
     description:
-      "A sleek, conversion-focused website for Zainca — a lifestyle and e-commerce brand. Built with a focus on clean UX, product presentation, and a seamless browsing experience across all devices.",
-    impact: "Bespoke Pool Architecture · Luxury Aesthetic",
+      "E-commerce and lifestyle brand website for Zainca. Focused on product presentation, clean navigation, and a consistent browsing experience across devices.",
+    impact: "",
     technologies: ["React", "Next.js", "Tailwind CSS", "Vercel"],
     role: "Full Stack Developer",
     year: "2025",
@@ -67,8 +67,8 @@ export const projects: Project[] = [
     title: "DENTIVA",
     category: "Healthcare & Dental",
     description:
-      "A full-featured dental clinic website with an online appointment booking system for Dentiva. Includes a clean patient-facing UI, booking flow, and a professional design that builds trust with patients.",
-    impact: "300+ Automated Patient Bookings / Month",
+      "Full-featured dental clinic website with an online appointment booking system. Includes patient-facing UI, booking flow, and confirmation emails.",
+    impact: "300+ Patient Bookings / Month",
     technologies: ["React", "Node.js", "Tailwind CSS", "Vercel"],
     role: "Full Stack Developer",
     year: "2024",
@@ -82,8 +82,8 @@ export const projects: Project[] = [
     title: "REVIEW FUNNEL",
     category: "SaaS & Growth Tools",
     description:
-      "A smart review collection funnel tool — a SaaS product designed to help businesses automatically gather positive Google reviews and manage negative feedback privately, driving reputation growth.",
-    impact: "Automated 5-Star Reputation Funnel · Active SaaS Tool",
+      "A review collection tool that routes happy customers to Google and handles negative feedback privately. Built as a standalone SaaS product with a simple shareable link.",
+    impact: "",
     technologies: ["React", "Node.js", "JavaScript", "Vercel"],
     role: "Full Stack Developer",
     year: "2025",
@@ -99,4 +99,3 @@ export const featuredProject =
 export function isFilled(value: string) {
   return Boolean(value) && value !== "[PLACEHOLDER]";
 }
-

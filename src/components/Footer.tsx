@@ -34,11 +34,11 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
-              Bespoke Full Stack Web Architecture & High-Performance Digital Products. Engineering modern web solutions with precision, speed, and aesthetic rigor.
+              Full Stack Developer building websites and web apps for founders, startups, and businesses. Delhi, India.
             </p>
             <div className="mt-6 flex items-center gap-2 text-xs tracking-wider text-white/40 uppercase">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              <span>HQ: Delhi, India · Global Remote Delivery</span>
+              <span>Delhi, India · Remote</span>
             </div>
           </div>
 
@@ -120,7 +120,7 @@ export function Footer() {
         {/* Bottom Legal & Copyright Bar */}
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
           <p>© {site.hero.year} {site.brand}. All rights reserved.</p>
-          <p>Designed & Engineered by {site.name} · Full Stack Web Architect</p>
+          <p>Built by {site.name}</p>
         </div>
       </div>
     </footer>
