@@ -7,7 +7,7 @@ import { onHashLinkClick } from "@/lib/scroll";
 export function Hero() {
   const reduce = useReducedMotion();
   const fine = usePointerFine();
-  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -67,15 +67,17 @@ export function Hero() {
           <div className="hero-stage lg:col-span-7 flex flex-col justify-center">
             <div className="mb-4 inline-flex items-center gap-3">
               <span className="h-px w-8 bg-accent" />
-              <span className="text-[11px] font-semibold tracking-[0.24em] uppercase text-white/70">
-                {site.name} · {site.jobTitle}
-              </span>
+              <h1 className="text-[11px] font-semibold tracking-[0.24em] uppercase text-white/75">
+                Full Stack Developer &amp; Web Developer in Delhi
+              </h1>
             </div>
 
-            <h1
+            <div
               ref={headlineRef}
               id="hero-heading"
               className="display text-[clamp(2.5rem,6.5vw,5.4rem)] leading-[0.94] tracking-[-0.035em] text-white transition-transform duration-200 will-change-transform"
+              role="text"
+              aria-label="Building websites that actually work."
             >
               <span className="block font-light text-white/80">BUILDING</span>
               <span className="block bg-gradient-to-r from-white via-white/95 to-white/75 bg-clip-text text-transparent">
@@ -84,7 +86,7 @@ export function Hero() {
               <span className="block italic font-light text-white/90">
                 ACTUALLY WORK.
               </span>
-            </h1>
+            </div>
 
             <p className="mt-5 max-w-xl text-base font-light leading-relaxed text-white/70 md:text-lg">
               {site.description} Fast delivery, clean code, and a design that fits your brand.

@@ -5,26 +5,59 @@ export function Seo() {
   const person = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: site.name,
-    url: site.url,
-    jobTitle: site.jobTitle,
+    name: "Syed Abbas Ali",
+    alternateName: "CodeWithAbby",
+    jobTitle: "Full Stack Developer",
+    url: `${site.url}/`,
     image: `${site.url}${site.portrait.src}`,
-    brand: {
-      "@type": "Brand",
-      name: site.brand,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Delhi",
+      addressCountry: "IN",
     },
+    sameAs: site.socials.map((s) => s.href),
   };
 
   const website = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: site.brand,
-    url: site.url,
+    name: "CodeWithAbby",
+    alternateName: site.brand,
+    url: `${site.url}/`,
     description: site.description,
-    inLanguage: "en",
+    inLanguage: "en-US",
     publisher: {
       "@type": "Person",
-      name: site.name,
+      name: "Syed Abbas Ali",
+    },
+  };
+
+  const professionalService = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "CodeWithAbby",
+    image: `${site.url}${site.portrait.src}`,
+    url: `${site.url}/`,
+    telephone: site.phone.replace(/\s+/g, ""),
+    email: site.email,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Delhi",
+      addressCountry: "IN",
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Delhi",
+      },
+      {
+        "@type": "Country",
+        name: "India",
+      },
+    ],
+    founder: {
+      "@type": "Person",
+      name: "Syed Abbas Ali",
     },
   };
 
@@ -44,7 +77,7 @@ export function Seo() {
         image: `${site.url}${project.image}`,
         creator: {
           "@type": "Person",
-          name: site.name,
+          name: "Syed Abbas Ali",
         },
         url: isFilled(project.liveUrl) ? project.liveUrl : `${site.url}/#work`,
       },
@@ -60,6 +93,10 @@ export function Seo() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(website) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalService) }}
       />
       <script
         type="application/ld+json"

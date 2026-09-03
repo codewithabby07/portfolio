@@ -7,15 +7,16 @@
 export const site = {
   brand: "CODEWITHABBY",
   name: "Abby",
-  url: "https://portfolio-ten-psi-buhjstui2u.vercel.app",
+  fullName: "Syed Abbas Ali",
+  url: "https://codwithabby.vercel.app",
   email: "codewithabby07@gmail.com",
   phone: "+91 7055859219",
   whatsapp: "https://wa.me/917055859219",
-  jobTitle: "Full Stack Developer & Web Architect",
+  jobTitle: "Full Stack Developer & Web Developer in Delhi",
   locale: "en_US",
-  title: "CODEWITHABBY · Full Stack Developer & Web Architect",
+  title: "Full Stack Developer & Web Developer in Delhi | CodeWithAbby",
   description:
-    "CODEWITHABBY is the portfolio of Abby, a Delhi-based Full Stack Developer with 3+ years building websites, web apps, and custom digital products.",
+    "Abby (CodeWithAbby) is a Full Stack Developer & Web Developer in Delhi, India. Building fast, responsive business websites and modern web applications with React, Next.js, and Node.js.",
   portrait: {
     src: "/images/portrait.jpg",
     alt: "Portrait of Abby, Full Stack Developer based in Delhi.",
