@@ -79,23 +79,8 @@ function BlogPostPage() {
       />
       <Navigation />
 
-      {/* Cover image hero */}
-      <div className="relative h-[52vh] min-h-[320px] w-full overflow-hidden bg-hero md:h-[64vh]">
-        <img
-          src={post.coverImage.src}
-          alt={post.coverImage.alt}
-          className="h-full w-full object-cover object-center opacity-60"
-          loading="eager"
-        />
-        {/* Dark gradient overlay */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(9,9,14,0.25) 0%, rgba(9,9,14,0.55) 50%, rgba(9,9,14,0.95) 100%)",
-          }}
-          aria-hidden
-        />
+      {/* Article hero — solid black */}
+      <div className="relative w-full overflow-hidden bg-hero" style={{ minHeight: "340px" }}>
 
         {/* Breadcrumb on image */}
         <nav
