@@ -9,7 +9,32 @@ export function Hero() {
   const fine = usePointerFine();
   const headlineRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
+  // ── JS-driven entrance animation ───────────────────────────────────────
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || reduce) return;
+
+    const stages = section.querySelectorAll<HTMLElement>(".hero-stage");
+    const easing = "cubic-bezier(0.16, 1, 0.3, 1)";
+    const delays = [60, 180, 320, 490];
+
+    stages.forEach((el, i) => {
+      const isCard = el.classList.contains("hero-stage-3");
+      el.style.opacity = "0";
+      el.style.transform = isCard ? "translateX(36px)" : "translateY(28px)";
+      el.style.transition = "none";
+
+      setTimeout(() => {
+        el.style.transition = `opacity 0.8s ${easing}, transform 0.8s ${easing}`;
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      }, delays[i] ?? 60 + i * 120);
+    });
+  }, [reduce]);
+
+  // ── Mouse parallax ──────────────────────────────────────────────────────
   useEffect(() => {
     if (reduce || !fine) return;
     const headline = headlineRef.current;
@@ -33,6 +58,7 @@ export function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="relative isolate min-h-[100svh] overflow-hidden bg-[#09090c] text-white flex flex-col justify-between pt-24 pb-8 md:pt-28 md:pb-10"
       aria-labelledby="hero-heading"
