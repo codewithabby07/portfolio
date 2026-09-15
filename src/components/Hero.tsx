@@ -37,9 +37,9 @@ export function Hero() {
       className="relative isolate min-h-[100svh] overflow-hidden bg-[#09090c] text-white flex flex-col justify-between pt-24 pb-8 md:pt-28 md:pb-10"
       aria-labelledby="hero-heading"
     >
-      {/* Radial ambient */}
+      {/* Radial ambient aura */}
       <div
-        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.04),transparent)]"
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_60%_50%_at_15%_25%,rgba(228,76,31,0.07),transparent_70%),radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.04),transparent)]"
         aria-hidden
       />
 

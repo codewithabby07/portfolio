@@ -20,16 +20,9 @@ const TIMELINES = [
   { id: "flexible", label: "⏳ Flexible", badge: "Planning" },
 ];
 
-const BUDGETS = [
-  { id: "starter", label: "₹25k – ₹50k" },
-  { id: "growth", label: "₹50k – ₹1,00,000", popular: true },
-  { id: "scale", label: "₹1,00,000+" },
-];
-
 type Fields = {
   service: string;
   timeline: string;
-  budget: string;
   name: string;
   email: string;
   phone: string;
@@ -42,7 +35,6 @@ type Errors = Partial<Record<"name" | "email" | "message", string>>;
 const initial: Fields = {
   service: "Custom Website",
   timeline: "⚡ 6–7 Days Sprint",
-  budget: "₹50k – ₹1,00,000",
   name: "",
   email: "",
   phone: "",
@@ -99,7 +91,6 @@ export function ContactForm() {
         body: JSON.stringify({
           service: values.service,
           timeline: values.timeline,
-          budget: values.budget,
           name: values.name,
           email: values.email,
           phone: values.phone || "Not provided",
@@ -124,7 +115,7 @@ export function ContactForm() {
   }
 
   const waBriefUrl = `https://wa.me/917055859219?text=${encodeURIComponent(
-    `Hi Abby, I just submitted a project brief on your portfolio:\n\n• Service: ${lastSubmitted.service}\n• Timeline: ${lastSubmitted.timeline}\n• Budget: ${lastSubmitted.budget}\n• Name: ${lastSubmitted.name || "Client"}\n\nLet's connect and discuss!`
+    `Hi Abby, I just submitted a project brief on your portfolio:\n\n• Service: ${lastSubmitted.service}\n• Timeline: ${lastSubmitted.timeline}\n• Name: ${lastSubmitted.name || "Client"}\n\nLet's connect and discuss!`
   )}`;
 
   return (
@@ -339,39 +330,7 @@ export function ContactForm() {
                     </div>
                   </div>
 
-                  {/* 3. Budget Selector */}
-                  <div>
-                    <label className="mb-2.5 block text-xs font-bold tracking-wider text-dark uppercase">
-                      3. Estimated Budget Bracket
-                    </label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {BUDGETS.map((b) => {
-                        const selected = values.budget === b.label;
-                        return (
-                          <button
-                            key={b.id}
-                            type="button"
-                            onClick={() => setValues((c) => ({ ...c, budget: b.label }))}
-                            className={cn(
-                              "relative flex items-center justify-center rounded-lg border py-2.5 text-center text-xs font-semibold transition-all duration-200 cursor-pointer",
-                              selected
-                                ? "border-accent bg-accent/10 text-accent shadow-xs"
-                                : "border-border bg-background text-dark/80 hover:border-dark/30 hover:bg-dark/[0.02]"
-                            )}
-                          >
-                            <span>{b.label}</span>
-                            {b.popular ? (
-                              <span className="absolute -top-2 right-2 rounded-full bg-accent px-1.5 py-0.2 text-[8px] font-bold text-white uppercase tracking-wider">
-                                Popular
-                              </span>
-                            ) : null}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* 4. Contact Inputs */}
+                  {/* 3. Contact Inputs */}
                   <div className="grid gap-4 sm:grid-cols-2 pt-2 border-t border-border">
                     <Field
                       id="name"

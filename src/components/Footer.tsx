@@ -71,7 +71,7 @@ export function Footer() {
               <li>Full Stack Web Applications</li>
               <li>High-Converting UI/UX Systems</li>
               <li>React & Next.js Architecture</li>
-              <li>Performance Optimization (99+)</li>
+              <li>Performance Optimization</li>
               <li>Custom Node.js & REST APIs</li>
             </ul>
           </div>
