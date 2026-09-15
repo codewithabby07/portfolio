@@ -302,35 +302,17 @@ export function Navigation() {
               })}
             </nav>
 
-            {/* Panel Bottom: Quick Actions & Availability */}
+            {/* Panel Bottom: Quick Actions */}
             <div className="border-t border-white/[0.08] pt-4 sm:pt-5 flex flex-col gap-3">
-              <div className="flex items-center justify-between text-xs text-white/50">
-                <span className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>Available for Projects</span>
-                </span>
-                <span className="font-mono text-[11px] text-white/40">Delhi, India</span>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2.5 pt-1">
-                <a
-                  href={site.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 py-2.5 px-3 text-xs font-bold text-emerald-400 uppercase tracking-wider transition-all hover:bg-emerald-500/20 active:scale-95"
-                >
-                  <span aria-hidden>💬</span>
-                  <span>WhatsApp</span>
-                </a>
-
-                <a
-                  href={`tel:${site.phone.replace(/\s+/g, "")}`}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-2.5 px-3 text-xs font-bold text-white uppercase tracking-wider transition-all hover:bg-white/10 active:scale-95"
-                >
-                  <span aria-hidden>📞</span>
-                  <span>Call</span>
-                </a>
-              </div>
+              <a
+                href={site.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 py-3 px-3 text-xs font-bold text-emerald-400 uppercase tracking-wider transition-all hover:bg-emerald-500/20 active:scale-95"
+              >
+                <span aria-hidden>💬</span>
+                <span>Chat on WhatsApp</span>
+              </a>
             </div>
           </div>
         </div>
