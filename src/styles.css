@@ -583,55 +583,69 @@
     transform: scaleX(1);
   }
 
-  .menu-overlay {
+  .menu-backdrop {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s var(--ease-out-expo);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .menu-overlay.is-open {
+  .menu-backdrop.is-open {
     opacity: 1;
     pointer-events: auto;
   }
 
+  .menu-panel {
+    transform: scale(0.96) translateY(-8px);
+    opacity: 0;
+    transition:
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .menu-backdrop.is-open .menu-panel {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
   .menu-item {
-    display: block;
+    display: flex;
     overflow: hidden;
   }
 
   .menu-item .menu-item-inner {
-    display: block;
-    transform: translateY(40%);
+    display: flex;
+    transform: translateY(12px);
     opacity: 0;
     transition:
-      transform 0.7s var(--ease-out-expo),
-      opacity 0.7s var(--ease-out-expo);
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .menu-overlay.is-open .menu-item .menu-item-inner {
+  .menu-backdrop.is-open .menu-item .menu-item-inner {
     transform: none;
     opacity: 1;
   }
 
-  .menu-overlay.is-open .menu-item:hover .menu-item-inner,
-  .menu-overlay.is-open .menu-item:focus-visible .menu-item-inner {
-    transform: translateX(0.35rem);
+  .menu-backdrop.is-open .menu-item:nth-child(1) .menu-item-inner {
+    transition-delay: 0.05s;
   }
-
-  .menu-overlay.is-open .menu-item:nth-child(1) .menu-item-inner {
-    transition-delay: 0.08s;
+  .menu-backdrop.is-open .menu-item:nth-child(2) .menu-item-inner {
+    transition-delay: 0.09s;
   }
-  .menu-overlay.is-open .menu-item:nth-child(2) .menu-item-inner {
-    transition-delay: 0.14s;
+  .menu-backdrop.is-open .menu-item:nth-child(3) .menu-item-inner {
+    transition-delay: 0.13s;
   }
-  .menu-overlay.is-open .menu-item:nth-child(3) .menu-item-inner {
-    transition-delay: 0.2s;
+  .menu-backdrop.is-open .menu-item:nth-child(4) .menu-item-inner {
+    transition-delay: 0.17s;
   }
-  .menu-overlay.is-open .menu-item:nth-child(4) .menu-item-inner {
-    transition-delay: 0.26s;
+  .menu-backdrop.is-open .menu-item:nth-child(5) .menu-item-inner {
+    transition-delay: 0.21s;
   }
-  .menu-overlay.is-open .menu-item:nth-child(5) .menu-item-inner {
-    transition-delay: 0.32s;
+  .menu-backdrop.is-open .menu-item:nth-child(6) .menu-item-inner {
+    transition-delay: 0.25s;
+  }
+  .menu-backdrop.is-open .menu-item:nth-child(7) .menu-item-inner {
+    transition-delay: 0.29s;
   }
 
   .cta-arrow {

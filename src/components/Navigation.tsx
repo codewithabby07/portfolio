@@ -204,56 +204,135 @@ export function Navigation() {
           role="dialog"
           aria-modal="true"
           aria-label="Site menu"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setOpen(false);
+          }}
           className={cn(
-            "menu-overlay fixed inset-0 z-[60] flex flex-col bg-hero text-white",
+            "menu-backdrop fixed inset-0 z-[60] flex items-center justify-center p-3.5 sm:p-5 md:p-6 bg-black/80 backdrop-blur-2xl",
             shown && "is-open",
           )}
         >
-          <div className="page-shell flex h-[4.25rem] items-center justify-between md:h-[5rem]">
-            <div className="flex items-center gap-2.5 font-display text-[13px] font-extrabold tracking-[0.14em] uppercase">
-              <img src="/favicon.svg" alt="" className="h-6 w-6 shrink-0 rounded-full" />
-              <span>{site.brand}</span>
-            </div>
-            <button
-              ref={closeRef}
-              type="button"
-              className="inline-flex h-11 w-11 items-center justify-center"
-              aria-label="Close menu"
-              onClick={() => setOpen(false)}
-            >
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
-                <path
-                  d="M6 6l12 12M18 6L6 18"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                />
-              </svg>
-            </button>
-          </div>
-
-          <nav
-            className="page-shell flex flex-1 flex-col justify-center pb-16"
-            aria-label="Menu"
+          {/* Large rounded floating dark navigation panel */}
+          <div
+            className="menu-panel relative flex flex-col justify-between w-full max-w-lg h-full max-h-[92svh] overflow-y-auto rounded-[1.75rem] sm:rounded-[2rem] border border-white/10 bg-[#09090c]/95 p-6 sm:p-8 text-white shadow-[0_30px_80px_-15px_rgba(0,0,0,0.95)] backdrop-blur-xl"
           >
-            {site.nav.map((item) => {
-              const targetHref = !isHome && item.href.startsWith("#") ? `/${item.href}` : item.href;
-              return (
+            {/* Panel Top: Logo & Minimal Close Button */}
+            <div className="flex items-center justify-between border-b border-white/[0.08] pb-4 sm:pb-5">
+              <a
+                href={isHome ? "#home" : "/"}
+                onClick={() => {
+                  setOpen(false);
+                  if (isHome) scrollToHash("#home", reduce);
+                }}
+                className="flex items-center gap-2.5 font-display text-[13px] font-extrabold tracking-[0.14em] uppercase text-white hover:opacity-90 transition-opacity"
+              >
+                <img src="/favicon.svg" alt="" className="h-6 w-6 shrink-0 rounded-full" />
+                <span>{site.brand}</span>
+              </a>
+
+              <button
+                ref={closeRef}
+                type="button"
+                className="group flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition-all hover:border-white/40 hover:bg-white/10 active:scale-95 cursor-pointer"
+                aria-label="Close menu"
+                onClick={() => setOpen(false)}
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-200 group-hover:rotate-90" fill="none" aria-hidden>
+                  <path
+                    d="M6 6l12 12M18 6L6 18"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* Panel Middle: Spacious Navigation Links */}
+            <nav className="my-auto py-4 sm:py-6 flex flex-col justify-center space-y-1" aria-label="Mobile Navigation">
+              {site.nav.map((item, idx) => {
+                const targetHref = !isHome && item.href.startsWith("#") ? `/${item.href}` : item.href;
+                const isActive = active === item.id;
+                return (
+                  <a
+                    key={item.id}
+                    href={targetHref}
+                    onClick={(event) => {
+                      if (targetHref.startsWith("#")) {
+                        onHashLinkClick(event, targetHref, reduce);
+                      }
+                      setOpen(false);
+                    }}
+                    className={cn(
+                      "menu-item group flex items-center justify-between rounded-xl border-b border-white/[0.06] py-3 sm:py-3.5 px-2 transition-all duration-200",
+                      isActive ? "bg-white/[0.04]" : "hover:bg-white/[0.02]"
+                    )}
+                  >
+                    <div className="menu-item-inner flex items-center gap-3.5 sm:gap-4">
+                      <span className={cn(
+                        "text-xs font-mono tracking-wider transition-colors",
+                        isActive ? "text-accent font-bold" : "text-white/30 group-hover:text-white/60"
+                      )}>
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <span className={cn(
+                        "font-display text-xl sm:text-2xl font-bold tracking-tight uppercase transition-all duration-200 group-hover:translate-x-1.5",
+                        isActive ? "text-white" : "text-white/80 group-hover:text-white"
+                      )}>
+                        {item.label}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      {isActive && (
+                        <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                      )}
+                      <span
+                        className={cn(
+                          "text-sm transition-all duration-200",
+                          isActive ? "text-accent translate-x-0" : "text-white/20 group-hover:text-accent group-hover:translate-x-1"
+                        )}
+                        aria-hidden
+                      >
+                        →
+                      </span>
+                    </div>
+                  </a>
+                );
+              })}
+            </nav>
+
+            {/* Panel Bottom: Quick Actions & Availability */}
+            <div className="border-t border-white/[0.08] pt-4 sm:pt-5 flex flex-col gap-3">
+              <div className="flex items-center justify-between text-xs text-white/50">
+                <span className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Available for Projects</span>
+                </span>
+                <span className="font-mono text-[11px] text-white/40">Delhi, India</span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2.5 pt-1">
                 <a
-                  key={item.id}
-                  href={targetHref}
-                  onClick={(event) => {
-                    if (targetHref.startsWith("#")) {
-                      onHashLinkClick(event, targetHref, reduce);
-                    }
-                    setOpen(false);
-                  }}
-                  className="menu-item display border-b border-white/20 py-4 text-[14vw] leading-none text-white uppercase md:text-[6.5rem]"
+                  href={site.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 py-2.5 px-3 text-xs font-bold text-emerald-400 uppercase tracking-wider transition-all hover:bg-emerald-500/20 active:scale-95"
                 >
-                  <span className="menu-item-inner">{item.label}</span>
+                  <span aria-hidden>💬</span>
+                  <span>WhatsApp</span>
                 </a>
-              );
-            })}
-          </nav>
+
+                <a
+                  href={`tel:${site.phone.replace(/\s+/g, "")}`}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-2.5 px-3 text-xs font-bold text-white uppercase tracking-wider transition-all hover:bg-white/10 active:scale-95"
+                >
+                  <span aria-hidden>📞</span>
+                  <span>Call</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       ) : null}
     </>
