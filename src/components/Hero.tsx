@@ -53,7 +53,7 @@ export function Hero() {
 
       <div className="page-shell relative z-10 flex flex-1 flex-col justify-between gap-10">
         {/* Top row */}
-        <div className="hero-stage flex flex-wrap items-center justify-end gap-4 border-b border-white/[0.08] pb-4">
+        <div className="hero-stage hero-stage-1 flex flex-wrap items-center justify-end gap-4 border-b border-white/[0.08] pb-4">
           <div className="hidden items-center gap-4 text-[11px] font-medium tracking-[0.22em] uppercase text-white/50 md:flex">
             <span>Full Stack Developer</span>
             <span className="h-1 w-1 rounded-full bg-accent/60" />
@@ -64,7 +64,7 @@ export function Hero() {
         {/* Main grid */}
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12 py-2 md:py-6">
           {/* Left: Headline + CTA */}
-          <div className="hero-stage lg:col-span-7 flex flex-col justify-center">
+          <div className="hero-stage hero-stage-2 lg:col-span-7 flex flex-col justify-center">
             <div className="mb-4 inline-flex items-center gap-3">
               <span className="h-px w-8 bg-accent" />
               <h1 className="text-[11px] font-semibold tracking-[0.24em] uppercase text-white/75">
@@ -122,7 +122,7 @@ export function Hero() {
               </a>
             </div>
 
-            {/* Stats strip: real numbers only */}
+            {/* Stats strip */}
             <div className="mt-8 grid grid-cols-3 gap-6 border-t border-white/[0.08] pt-5 max-w-lg">
               <div>
                 <span className="block font-display text-2xl font-bold tracking-tight text-white md:text-3xl">
@@ -152,7 +152,7 @@ export function Hero() {
           </div>
 
           {/* Right: Portrait card */}
-          <div className="hero-stage relative flex justify-center lg:col-span-5 lg:justify-end">
+          <div className="hero-stage hero-stage-3 relative flex justify-center lg:col-span-5 lg:justify-end">
             <div
               ref={cardRef}
               className="luxury-glass-card relative w-full max-w-[400px] rounded-2xl p-3 sm:p-4 transition-transform duration-300 ease-out will-change-transform"
@@ -189,8 +189,8 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Bottom bar: copyright, scroll, socials */}
-        <div className="hero-stage flex flex-wrap items-center justify-between gap-4 border-t border-white/[0.08] pt-5 text-[11px] tracking-[0.16em] uppercase text-white/50">
+        {/* Bottom bar */}
+        <div className="hero-stage hero-stage-4 flex flex-wrap items-center justify-between gap-4 border-t border-white/[0.08] pt-5 text-[11px] tracking-[0.16em] uppercase text-white/50">
           <div className="hidden sm:block">
             <span>©{site.hero.year} {site.brand}</span>
           </div>
