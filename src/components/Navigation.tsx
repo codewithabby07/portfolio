@@ -303,16 +303,26 @@ export function Navigation() {
             </nav>
 
             {/* Panel Bottom: Quick Actions */}
-            <div className="border-t border-white/[0.08] pt-4 sm:pt-5 flex flex-col gap-3">
-              <a
-                href={site.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 py-3 px-3 text-xs font-bold text-emerald-400 uppercase tracking-wider transition-all hover:bg-emerald-500/20 active:scale-95"
-              >
-                <span aria-hidden>💬</span>
-                <span>Chat on WhatsApp</span>
-              </a>
+            <div className="border-t border-white/[0.08] pt-4 sm:pt-5">
+              <div className="grid grid-cols-2 gap-2.5">
+                <a
+                  href={site.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 py-3 px-3 text-xs font-bold text-emerald-400 uppercase tracking-wider transition-all hover:bg-emerald-500/20 active:scale-95"
+                >
+                  <span aria-hidden>💬</span>
+                  <span>WhatsApp</span>
+                </a>
+
+                <a
+                  href={`tel:${site.phone.replace(/\s+/g, "")}`}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-3 px-3 text-xs font-bold text-white uppercase tracking-wider transition-all hover:bg-white/10 active:scale-95"
+                >
+                  <span aria-hidden>📞</span>
+                  <span>Call</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

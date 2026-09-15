@@ -13,7 +13,6 @@ import { ContactCTA } from "@/components/ContactCTA";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 import { ScrollProgress } from "@/components/ScrollProgress";
-import { MobileActionBar } from "@/components/MobileActionBar";
 import { Seo } from "@/components/Seo";
 import { site } from "@/data/site";
 
@@ -32,7 +31,6 @@ function Home() {
     <>
       <Seo />
       <ScrollProgress />
-      <MobileActionBar />
       <a href="#main" className="skip-link">
         Skip to content
       </a>

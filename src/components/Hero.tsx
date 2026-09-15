@@ -113,6 +113,14 @@ export function Hero() {
                 <span className="text-base" aria-hidden>💬</span>
                 <span>Chat on WhatsApp</span>
               </a>
+
+              <a
+                href={`tel:${site.phone.replace(/\s+/g, "")}`}
+                className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-md border border-white/30 bg-white/10 px-6 py-3.5 text-[12px] font-extrabold tracking-[0.16em] text-white uppercase shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-white/70 hover:bg-white/20 active:scale-95"
+              >
+                <span className="text-base" aria-hidden>📞</span>
+                <span>Call Now</span>
+              </a>
             </div>
 
             {/* Stats strip */}
