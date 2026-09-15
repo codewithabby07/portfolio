@@ -119,7 +119,7 @@ export function IntroCurtain() {
               letterSpacing: "0.02em",
               userSelect: "none",
               textShadow:
-                "0 0 80px rgba(228,76,31,0.5), 0 0 20px rgba(228,76,31,0.3), 0 2px 24px rgba(0,0,0,1)",
+                "0 2px 16px rgba(0,0,0,0.8)",
               lineHeight: 1.1,
             }}
           >
