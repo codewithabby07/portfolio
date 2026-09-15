@@ -104,14 +104,14 @@ export function IntroCurtain() {
       >
         <span
           style={{
-            fontFamily: "'Archivo', 'Playfair Display', serif",
-            fontStyle: "italic",
-            fontWeight: 800,
-            fontSize: "clamp(2rem, 6vw, 4.5rem)",
+            fontFamily: "'Birthstone', cursive",
+            fontStyle: "normal",
+            fontWeight: 400,
+            fontSize: "clamp(3rem, 9vw, 7rem)",
             color: "#e44c1f",
-            letterSpacing: "-0.02em",
+            letterSpacing: "0.01em",
             userSelect: "none",
-            textShadow: "0 0 60px rgba(228,76,31,0.4), 0 2px 20px rgba(0,0,0,0.9)",
+            textShadow: "0 0 60px rgba(228,76,31,0.45), 0 2px 20px rgba(0,0,0,0.9)",
           }}
         >
           CodeWithAbby
