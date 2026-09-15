@@ -1,122 +1,155 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const TEXT = "CodeWithAbby";
+// ms per character reveal
+const CHAR_DELAY = 85;
+// total typing duration
+const TYPE_DURATION = TEXT.length * CHAR_DELAY; // ~1020ms
 
 /**
- * Theater-style split curtain intro.
- * Phase 1 — "hold":  both panels closed, logo visible (1.4 s)
- * Phase 2 — "open":  panels slide apart (0.85 s ease-in-out)
- * Phase 3 — "done":  component unmounts
+ * Phases:
+ * "closed"  — shutter slides DOWN from top, covering screen    (0.65s)
+ * "typing"  — text types out L→R while shutter is closed
+ * "open"    — shutter slides back UP, revealing the website    (0.75s)
+ * "done"    — component unmounts
  */
+type Phase = "closed" | "typing" | "open" | "done";
+
 export function IntroCurtain() {
-  const [phase, setPhase] = useState<"hold" | "open" | "done">("hold");
+  const [phase, setPhase] = useState<Phase>("closed");
+  const [revealed, setRevealed] = useState(0); // chars typed so far
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
-    // Respect prefers-reduced-motion: skip immediately
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setPhase("done");
       return;
     }
-    const t1 = setTimeout(() => setPhase("open"), 1400);
-    const t2 = setTimeout(() => setPhase("done"), 2400);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
+
+    const push = (fn: () => void, ms: number) => {
+      const id = setTimeout(fn, ms);
+      timers.current.push(id);
+      return id;
     };
+
+    // After shutter closes (650ms slide), start typing
+    push(() => {
+      setPhase("typing");
+      for (let i = 1; i <= TEXT.length; i++) {
+        push(() => setRevealed(i), i * CHAR_DELAY);
+      }
+    }, 700);
+
+    // After typing finishes, open the shutter
+    push(() => setPhase("open"), 700 + TYPE_DURATION + 400);
+
+    // Unmount after shutter slides away
+    push(() => setPhase("done"), 700 + TYPE_DURATION + 400 + 850);
+
+    return () => timers.current.forEach(clearTimeout);
   }, []);
 
   if (phase === "done") return null;
 
   const isOpen = phase === "open";
 
-  const panelBase: React.CSSProperties = {
-    position: "fixed",
-    top: 0,
-    bottom: 0,
-    width: "50%",
-    zIndex: 9999,
-    willChange: "transform",
-    transition: isOpen
-      ? "transform 0.9s cubic-bezier(0.76, 0, 0.24, 1)"
-      : "none",
-    /* Velvet curtain texture via repeating gradient */
-    background: `
-      repeating-linear-gradient(
-        90deg,
-        rgba(0,0,0,0.55) 0px,
-        rgba(18,18,18,1)  6px,
-        rgba(4,4,4,0.85)  12px,
-        rgba(12,12,12,0.9) 18px,
-        rgba(0,0,0,0.55)  24px
-      ),
-      #0a0a0a
-    `,
-  };
-
   return (
     <>
-      {/* Overlay behind panels so website doesn't flash */}
+      {/* Dark backdrop so website doesn't flash through */}
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 9997,
+          background: "#09090c",
+          pointerEvents: "none",
+          opacity: isOpen ? 0 : 1,
+          transition: isOpen ? "opacity 0.75s ease" : "none",
+        }}
+      />
+
+      {/* ── Shutter panel ─────────────────────────────────────────────── */}
       <div
         style={{
           position: "fixed",
           inset: 0,
           zIndex: 9998,
-          background: "#09090c",
-          pointerEvents: "none",
-          opacity: isOpen ? 0 : 1,
-          transition: isOpen ? "opacity 0.9s ease" : "none",
+          transform: isOpen ? "translateY(-100%)" : "translateY(0)",
+          transition: isOpen
+            ? "transform 0.75s cubic-bezier(0.76, 0, 0.24, 1)"
+            : "transform 0.65s cubic-bezier(0.76, 0, 0.24, 1)",
+          // Horizontal slat texture — like a real rolling shutter
+          background: `
+            repeating-linear-gradient(
+              180deg,
+              #0e0e10 0px,
+              #161618 3px,
+              #0a0a0c 6px,
+              #131315 9px,
+              #0e0e10 12px
+            )
+          `,
+          boxShadow: "0 8px 40px rgba(0,0,0,0.9)",
+          borderBottom: "2px solid rgba(228,76,31,0.25)",
         }}
       />
 
-      {/* Left curtain panel */}
-      <div
-        style={{
-          ...panelBase,
-          left: 0,
-          transform: isOpen ? "translateX(-100%)" : "translateX(0)",
-          borderRight: "1px solid rgba(228,76,31,0.15)",
-          boxShadow: "inset -8px 0 24px rgba(0,0,0,0.6), 4px 0 20px rgba(0,0,0,0.8)",
-        }}
-      />
-
-      {/* Right curtain panel */}
-      <div
-        style={{
-          ...panelBase,
-          right: 0,
-          transform: isOpen ? "translateX(100%)" : "translateX(0)",
-          borderLeft: "1px solid rgba(228,76,31,0.15)",
-          boxShadow: "inset 8px 0 24px rgba(0,0,0,0.6), -4px 0 20px rgba(0,0,0,0.8)",
-        }}
-      />
-
-      {/* Logo — centered above the seam */}
+      {/* ── Typing text (sits above shutter) ──────────────────────────── */}
       <div
         style={{
           position: "fixed",
           inset: 0,
-          zIndex: 10000,
+          zIndex: 9999,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           pointerEvents: "none",
-          opacity: isOpen ? 0 : 1,
-          transition: isOpen ? "opacity 0.3s ease" : "none",
+          opacity: isOpen ? 0 : phase === "typing" || revealed > 0 ? 1 : 0,
+          transition: isOpen ? "opacity 0.2s ease" : "none",
         }}
       >
-        <span
-          style={{
-            fontFamily: "'Birthstone', cursive",
-            fontStyle: "normal",
-            fontWeight: 400,
-            fontSize: "clamp(3rem, 9vw, 7rem)",
-            color: "#e44c1f",
-            letterSpacing: "0.01em",
-            userSelect: "none",
-            textShadow: "0 0 60px rgba(228,76,31,0.45), 0 2px 20px rgba(0,0,0,0.9)",
-          }}
-        >
-          CodeWithAbby
-        </span>
+        <div style={{ display: "flex", alignItems: "center", gap: 0 }}>
+          {/* Revealed characters */}
+          <span
+            style={{
+              fontFamily: "'Birthstone', cursive",
+              fontWeight: 700,
+              fontSize: "clamp(3.5rem, 10vw, 8rem)",
+              color: "#e44c1f",
+              letterSpacing: "0.02em",
+              userSelect: "none",
+              textShadow:
+                "0 0 80px rgba(228,76,31,0.5), 0 0 20px rgba(228,76,31,0.3), 0 2px 24px rgba(0,0,0,1)",
+              lineHeight: 1.1,
+            }}
+          >
+            {TEXT.slice(0, revealed)}
+          </span>
+
+          {/* Blinking cursor — only while typing */}
+          {phase === "typing" && revealed < TEXT.length && (
+            <span
+              style={{
+                display: "inline-block",
+                width: "3px",
+                height: "clamp(2.8rem, 8vw, 6.4rem)",
+                background: "#e44c1f",
+                marginLeft: "4px",
+                borderRadius: "2px",
+                animation: "curtain-blink 0.6s step-end infinite",
+              }}
+            />
+          )}
+        </div>
       </div>
+
+      {/* Blink keyframe injected inline */}
+      <style>{`
+        @keyframes curtain-blink {
+          0%, 100% { opacity: 1; }
+          50%       { opacity: 0; }
+        }
+      `}</style>
     </>
   );
 }
