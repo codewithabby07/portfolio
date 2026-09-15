@@ -3,7 +3,7 @@ import { cn } from "@/lib/cn";
 
 const COMMAND_LOGS = {
   audit: [
-    "$ lighthouse https://alp-buildcon-1.vercel.app",
+    "$ lighthouse https://alpbuildcon.com",
     "Running Lighthouse audit...",
     "✔ Performance: 99 / 100",
     "✔ Accessibility: 97 / 100",

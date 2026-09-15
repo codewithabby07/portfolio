@@ -47,7 +47,7 @@ function ProjectImage({
     if (img) img.style.transform = "";
   }
 
-  const isContain = project.id === "alp-buildcon" || project.id === "creavo";
+  const isContain = project.id === "alp-buildcon" || project.id === "creavo" || project.id === "property-broker";
 
   return (
     <div
