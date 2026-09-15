@@ -7,6 +7,7 @@ import {
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { MotionRoot } from "@/components/MotionRoot";
+import { IntroCurtain } from "@/components/IntroCurtain";
 import { site } from "@/data/site";
 import appCss from "../styles.css?url";
 
@@ -67,6 +68,7 @@ function RootDocument() {
         <HeadContent />
       </head>
       <body>
+        <IntroCurtain />
         <PreviewHostBridge />
         <MotionRoot />
         <AuthProvider>
