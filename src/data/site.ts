@@ -1,8 +1,5 @@
 /**
- * Brand, copy, portrait, socials, and SEO.
- * Project list lives in ./projects.ts
- * Services and skills live in ./services.ts
- * Replace /public/images/portrait.jpg without changing layout.
+ * Brand, copy, portrait, socials, and SEO for CodeWithAbby Digital Studio.
  */
 export const site = {
   brand: "CODEWITHABBY",
@@ -12,77 +9,74 @@ export const site = {
   email: "codewithabby07@gmail.com",
   phone: "+91 7055859219",
   whatsapp: "https://wa.me/917055859219",
-  jobTitle: "Full Stack Developer & Web Developer in Delhi",
+  jobTitle: "Founder & Lead Full Stack Developer | CodeWithAbby Studio",
   locale: "en_US",
-  title: "Full Stack Developer & Web Developer in Delhi | CodeWithAbby",
+  title: "CodeWithAbby — Web & Digital Studio | Founded by Syed Abbas Ali",
   description:
-    "Abby (CodeWithAbby) is a Full Stack Developer & Web Developer in Delhi, India. Building fast, responsive business websites and modern web applications with React, Next.js, and Node.js.",
+    "CodeWithAbby is a premium web & digital studio founded by Syed Abbas Ali. Engineering fast, bespoke digital platforms, WebGL experiences, and custom web applications for ambitious brands worldwide.",
   portrait: {
     src: "/images/portrait.jpg",
-    alt: "Portrait of Abby, Full Stack Developer based in Delhi.",
+    alt: "Portrait of Syed Abbas Ali (Abby), Founder & Lead Developer at CodeWithAbby.",
     width: 768,
     height: 1376,
   },
   nav: [
-    { label: "Home", href: "#home", id: "home" },
-    { label: "About", href: "#about", id: "about" },
-    { label: "Work", href: "#work", id: "work" },
-    { label: "Services", href: "#services", id: "services" },
+    { label: "Home", href: "/", id: "home" },
+    { label: "Work", href: "/work", id: "work" },
+    { label: "Services", href: "/services", id: "services" },
+    { label: "Industries", href: "/industries", id: "industries" },
+    { label: "About", href: "/about", id: "about" },
+    { label: "Team", href: "/team", id: "team" },
     { label: "Blog", href: "/blog", id: "blog" },
-    { label: "FAQ", href: "#faq", id: "faq" },
-    { label: "Contact", href: "#contact", id: "contact" },
+    { label: "Contact", href: "/contact", id: "contact" },
   ],
   hero: {
     year: "2026",
-    tagline: "Full Stack Developer building fast, functional websites for founders and brands",
-    featuredLabel: "Featured",
-  },
-  industries: [
-    "Real Estate & Construction",
-    "Healthcare & Clinics",
-    "SaaS & Tech Products",
-    "Creative Agencies",
-    "E-Commerce & Brands",
-  ],
-  about: {
-    label: "About.",
-    headline: ["WEBSITES THAT WORK.", "FAST TO BUILD,", "BUILT TO LAST."],
-    body: "Abby is a Delhi-based Full Stack Developer with 3+ years building websites and web applications for founders, startups, and small businesses. I handle the full stack: design, frontend, backend, and deployment. Delivered in 6–7 days.",
-    still: {
-      src: "/images/about-still.jpg",
-      alt: "Sunlit terracotta wall with a sharp geometric shadow.",
-    },
+    eyebrow: "PREMIUM WEB & DIGITAL STUDIO",
+    tagline: "High-craft digital platforms engineered for speed, authority, and conversion.",
+    founderBadge: "FOUNDED BY SYED ABBAS ALI",
+    featuredLabel: "Selected Work",
   },
   marquee: [
-    "Full Stack Development",
-    "UI/UX Implementation",
-    "React & Next.js",
-    "Node.js & APIs",
-    "Performance Optimization",
-    "Web Architecture",
+    "Full-Stack Web Development",
+    "Bespoke Frontend Engineering",
+    "Creative WebGL & 3D Experiences",
+    "Editorial UI/UX Architecture",
+    "Technical SEO & Schema",
+    "Sub-Second Performance Optimization",
   ],
+  about: {
+    label: "About the Studio.",
+    headline: ["HIGH-CRAFT CODE.", "EDITORIAL PRECISION.", "ZERO AGENCY BLOAT."],
+    body: "CodeWithAbby is a modern boutique digital studio founded by Syed Abbas Ali. We bridge the gap between uncompromising aesthetic design and senior-level software engineering. We don't use generic templates or outsource work to juniors—every line of code is purpose-built to give your brand an unfair digital advantage.",
+    still: {
+      src: "/images/about-still.jpg",
+      alt: "Architectural shadow on dark minimalist stone.",
+    },
+  },
   cta: {
-    label: "Let's talk.",
-    lines: ["LET'S BUILD", "YOUR NEXT", "BIG PROJECT."],
-    button: "Get in touch",
+    label: "Start a Project.",
+    lines: ["HAVE A BIG VISION?", "LET'S BUILD SOMETHING", "ICONIC TOGETHER."],
+    button: "Initiate Project Enquiry",
   },
   contact: {
-    label: "Contact",
-    title: "Reach out",
-    kicker: "Start a project",
+    label: "Direct Studio Inquiries",
+    title: "Initiate a Project",
+    kicker: "Direct Founder Consultation",
     background: "/images/contact-bg.jpg",
     success:
-      "Thanks for reaching out! I'll reply within 24 hours.",
-    error: "Something went wrong. Please check the form and try again.",
+      "Thank you for contacting CodeWithAbby. Syed Abbas Ali will personally review your brief and reply within 24 hours.",
+    error: "Something went wrong. Please check your details or connect with us directly via WhatsApp.",
   },
   socials: [
-    { label: "GitHub", href: "https://github.com/codewithabby07" },
     { label: "WhatsApp", href: "https://wa.me/917055859219" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/abby-undefined-436951433/" },
+    { label: "GitHub", href: "https://github.com/codewithabby07" },
     { label: "Instagram", href: "https://www.instagram.com/codewithabby07/" },
     { label: "X", href: "https://x.com/codewithabby07" },
   ],
-  footerNote: "Open to remote projects worldwide",
+  footerNote: "Based in Delhi, India • Serving Clients Worldwide",
+  availabilityStatus: "Available for Q2 2026 Studio Projects",
   googleVerification: "google06b6930185313ea1",
   bingVerification: "",
 } as const;

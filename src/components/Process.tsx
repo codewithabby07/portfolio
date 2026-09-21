@@ -1,33 +1,30 @@
+import { Link } from "@tanstack/react-router";
 import { Reveal, SectionLabel } from "@/components/ui";
 
 const steps = [
   {
     number: "01",
-    title: "DISCOVERY",
-    emoji: "🔍",
+    title: "Discovery & Scope",
     description:
-      "We talk through your goals, audience, and what you need the site to do. I ask the questions that shape the build before writing a single line of code.",
+      "We discuss business goals, target audience, and functional requirements. Every architectural decision is validated before writing code.",
   },
   {
     number: "02",
-    title: "DESIGN",
-    emoji: "🎨",
+    title: "Design & Blueprint",
     description:
-      "Wireframes and high-fidelity mockups. Every layout decision across typography, spacing, colour, and motion is deliberate before development starts.",
+      "Clean wireframes, typographic hierarchy, and responsive layout systems tailored to your brand identity.",
   },
   {
     number: "03",
-    title: "DEVELOPMENT",
-    emoji: "⚡",
+    title: "Clean Engineering",
     description:
-      "Clean code in React, Next.js, and Node.js. Mobile-first, accessible, and performance-tuned from the start.",
+      "Custom development using React, Next.js, and Tailwind CSS. Zero bloat, mobile-first, and optimized for sub-second speeds.",
   },
   {
     number: "04",
-    title: "DELIVERY",
-    emoji: "🚀",
+    title: "Launch & Support",
     description:
-      "Deployed, tested, and handed over with documentation. 30 days of support included after launch.",
+      "Comprehensive multi-device QA, edge deployment on Vercel, domain configuration, and direct post-launch support.",
   },
 ];
 
@@ -35,100 +32,78 @@ export function Process() {
   return (
     <section
       id="process"
-      className="relative scroll-mt-24 overflow-hidden bg-dark py-24 md:py-32"
+      className="relative scroll-mt-24 overflow-hidden bg-black text-white py-20 md:py-28 border-t border-white/10"
       aria-labelledby="process-heading"
     >
-      {/* Faint grid overlay */}
+      {/* Background Dot Matrix Pattern */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        className="pointer-events-none absolute inset-0 opacity-20"
         style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
+          backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
         }}
         aria-hidden
       />
 
-      <div className="page-shell relative">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <Reveal>
-          <SectionLabel light>Process.</SectionLabel>
-          <div className="mt-4 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
-            <h2
-              id="process-heading"
-              className="display text-5xl leading-none text-white md:text-7xl"
-            >
-              HOW I{" "}
-              <em
-                className="not-italic text-accent"
-                style={{ fontFamily: "'Playfair Display', serif" }}
+          <div className="border-b border-white/[0.06] pb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <SectionLabel>Methodology</SectionLabel>
+              <h2
+                id="process-heading"
+                className="font-display mt-2 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white"
               >
-                Work.
-              </em>
-            </h2>
-            <p className="max-w-xs text-sm text-white/50 md:text-right">
-              Four stages, from first call to final deployment.
+                How We Deliver.
+              </h2>
+            </div>
+            <p className="max-w-xs text-sm text-[#86868b]">
+              A transparent 4-stage execution model from initial brief to global edge launch.
             </p>
           </div>
         </Reveal>
 
-        {/* Steps grid */}
-        <div className="mt-16 grid gap-px bg-white/8 md:grid-cols-2 lg:grid-cols-4">
+        {/* Steps Cards Grid */}
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
-            <Reveal key={step.number} delay={i * 0.1}>
-              <div className="group relative flex h-full flex-col gap-6 bg-dark p-8 transition-colors duration-300 hover:bg-white/5">
-                {/* Step number */}
-                <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-white/30 uppercase">
-                  {step.number}
-                </span>
+            <Reveal key={step.number} delay={i * 0.05}>
+              <div className="group relative flex h-full flex-col justify-between rounded-2xl border border-white/[0.07] bg-white/[0.02] p-7 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]">
+                <div>
+                  <span className="font-mono text-xs font-semibold text-[#E44C1F]">
+                    Stage {step.number}
+                  </span>
+                  <h3 className="font-display mt-4 text-lg font-bold text-white group-hover:text-[#E44C1F] transition-colors">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 text-xs sm:text-sm leading-relaxed text-[#86868b]">
+                    {step.description}
+                  </p>
+                </div>
 
-                {/* Emoji icon */}
-                <span
-                  className="text-4xl transition-transform duration-300 group-hover:scale-110"
-                  role="img"
-                  aria-label={step.title}
-                >
-                  {step.emoji}
-                </span>
-
-                {/* Title */}
-                <h3 className="font-display text-lg font-bold tracking-[0.12em] text-white uppercase">
-                  {step.title}
-                </h3>
-
-                {/* Description */}
-                <p className="flex-1 text-sm leading-relaxed text-white/55">
-                  {step.description}
-                </p>
-
-                {/* Hover accent line */}
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+                <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                  <span className="text-[10px] font-mono uppercase text-white/40">Step {i + 1} of 4</span>
+                  <span className="text-xs text-[#E44C1F]">✦</span>
+                </div>
               </div>
             </Reveal>
           ))}
         </div>
 
-        {/* Bottom CTA strip */}
-        <Reveal delay={0.4}>
-          <div className="mt-px flex items-center justify-between bg-white/5 px-8 py-5">
-            <p className="text-sm text-white/40">
-              Typical delivery:{" "}
-              <span className="font-semibold text-accent">6 – 7 Days</span>
-            </p>
-            <a
-              href="#contact"
-              className="group inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.2em] text-accent uppercase transition-opacity hover:opacity-75"
-            >
-              Start a project
-              <span
-                className="transition-transform duration-200 group-hover:translate-x-1"
-                aria-hidden
-              >
-                →
-              </span>
-            </a>
-          </div>
-        </Reveal>
+        {/* Bottom Velocity Banner */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-xl px-8 py-5">
+          <p className="text-xs sm:text-sm text-[#86868b]">
+            Average studio project velocity:{" "}
+            <span className="font-semibold text-white">6 – 14 Business Days</span>
+          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#E44C1F] hover:underline"
+          >
+            <span>Start a Project with Us</span>
+            <span>→</span>
+          </Link>
+        </div>
       </div>
     </section>
   );

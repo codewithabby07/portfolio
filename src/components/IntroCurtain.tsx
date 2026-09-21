@@ -113,13 +113,14 @@ export function IntroCurtain() {
           <span
             style={{
               fontFamily: "'Birthstone', cursive",
-              fontWeight: 700,
+              fontStyle: "normal",
+              fontWeight: 400,
               fontSize: "clamp(3.5rem, 10vw, 8rem)",
               color: "#e44c1f",
               letterSpacing: "0.02em",
               userSelect: "none",
               textShadow:
-                "0 2px 16px rgba(0,0,0,0.8)",
+                "0 0 60px rgba(228,76,31,0.55), 0 0 20px rgba(228,76,31,0.35), 0 2px 24px rgba(0,0,0,1)",
               lineHeight: 1.1,
             }}
           >

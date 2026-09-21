@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import type { Project } from "@/data/projects";
-import { ArrowIcon } from "@/components/ui";
+import { cn } from "@/lib/cn";
 
 export function ProjectModal({
   project,
@@ -25,15 +25,17 @@ export function ProjectModal({
 
   if (!project) return null;
 
+  const isContain = project.id === "alp-buildcon" || project.id === "creavo";
+
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-dark/80 backdrop-blur-md"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-2xl transition-all duration-300 animate-in fade-in"
       role="dialog"
       aria-modal="true"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-3xl rounded-2xl bg-surface p-6 sm:p-10 shadow-2xl border border-border overflow-hidden my-8"
+        className="relative w-full max-w-xl max-h-[85vh] overflow-y-auto rounded-[28px] sm:rounded-[36px] bg-[#0d0e14]/95 text-white p-5 sm:p-7 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.9)] border border-white/15 my-auto backdrop-blur-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -41,59 +43,68 @@ export function ProjectModal({
           type="button"
           onClick={onClose}
           aria-label="Close modal"
-          className="absolute top-5 right-5 flex h-10 w-10 items-center justify-center rounded-full bg-dark/10 text-dark hover:bg-dark hover:text-white transition-colors"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/80 hover:bg-[#E44C1F] hover:text-white transition-all cursor-pointer z-10"
         >
           ✕
         </button>
 
         {/* Header */}
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="font-display text-sm font-bold text-accent">
-            {project.number}
+        <div className="flex flex-wrap items-center gap-2.5 pr-10">
+          <span className="font-mono text-xs font-bold text-[#E44C1F]">
+            PROJECT {project.number}
           </span>
-          <span className="text-xs font-semibold tracking-wider text-muted uppercase">
+          <span className="text-white/20">•</span>
+          <span className="text-xs font-mono uppercase tracking-wider text-neutral-400">
             {project.category}
           </span>
           {project.impact ? (
-            <span className="rounded-full bg-accent/10 border border-accent/30 px-3 py-0.5 text-[10px] font-bold text-accent uppercase">
-              {project.impact}
+            <span className="rounded-full bg-[#E44C1F]/15 border border-[#E44C1F]/30 px-2.5 py-0.5 text-[10px] font-bold text-[#E44C1F]">
+              ⚡ {project.impact}
             </span>
           ) : null}
         </div>
 
-        <h3 className="display mt-2 text-3xl sm:text-5xl text-dark">
+        <h3 className="font-agency-headline mt-2 text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
           {project.title}
         </h3>
 
-        {/* Screenshot */}
-        <div className="mt-6 overflow-hidden rounded-xl bg-dark/10 border border-border shadow-inner">
+        {/* Screenshot (Contained, iPhone-style frame) */}
+        <div
+          className={cn(
+            "mt-4 overflow-hidden rounded-[20px] border border-white/10 shadow-inner flex items-center justify-center",
+            isContain ? "bg-[#07080c] p-3" : "bg-neutral-900"
+          )}
+        >
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-auto object-cover max-h-[340px]"
+            className={cn(
+              "w-full max-h-[260px] sm:max-h-[300px] rounded-[14px]",
+              isContain ? "object-contain" : "object-cover object-top"
+            )}
           />
         </div>
 
         {/* Description */}
-        <div className="mt-6">
-          <h4 className="font-display text-xs font-bold tracking-widest text-muted uppercase">
-            Architecture & Execution
+        <div className="mt-5">
+          <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-neutral-400">
+            About This Project
           </h4>
-          <p className="mt-2 text-base leading-relaxed text-dark/80">
+          <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-neutral-300 font-sans">
             {project.description}
           </p>
         </div>
 
         {/* Technologies */}
-        <div className="mt-6">
-          <h4 className="font-display text-xs font-bold tracking-widest text-muted uppercase mb-3">
-            Tech Stack
+        <div className="mt-4">
+          <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">
+            Technologies Used
           </h4>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className="rounded-sm bg-dark/5 border border-dark/10 px-3 py-1 text-xs font-medium text-dark"
+                className="rounded-lg bg-white/5 border border-white/10 px-2.5 py-1 font-mono text-[11px] text-neutral-300"
               >
                 {tech}
               </span>
@@ -102,25 +113,25 @@ export function ProjectModal({
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-border pt-6">
+        <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-white/10 pt-4">
           {project.liveUrl ? (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-dark px-6 py-3 text-xs font-extrabold tracking-widest text-white uppercase transition-all hover:bg-accent"
+              className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-[#E44C1F] px-5 py-3 text-xs font-bold tracking-wider text-white uppercase transition-all duration-300 hover:bg-[#ff5d2e] shadow-[0_0_20px_rgba(228,76,31,0.35)] active:scale-95"
             >
               <span>Visit Live Website</span>
-              <ArrowIcon className="h-3 w-3" />
+              <span className="text-sm">↗</span>
             </a>
           ) : null}
 
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md border border-border px-6 py-3 text-xs font-bold tracking-widest text-dark uppercase hover:bg-dark/5 transition-colors"
+            className="rounded-2xl border border-white/15 bg-white/5 px-5 py-3 text-xs font-bold tracking-wider text-white uppercase hover:bg-white/10 transition-colors cursor-pointer"
           >
-            Close Preview
+            Close
           </button>
         </div>
       </div>

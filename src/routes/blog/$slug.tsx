@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { site } from "@/data/site";
-import { getPostBySlug, posts } from "@/data/posts";
+import { getPostBySlug, posts, type BlogPost } from "@/data/posts";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/ui";
@@ -152,7 +152,7 @@ function BlogPostPage() {
           {/* Intro / Lead */}
           <Reveal className="mt-10">
             <div className="space-y-4 border-l-2 border-accent pl-5 md:pl-6">
-              {post.content.intro.split("\n\n").map((para, i) => (
+              {post.content.intro.split("\n\n").map((para: string, i: number) => (
                 <p
                   key={i}
                   className="text-base leading-relaxed text-dark/85 md:text-[1.08rem] md:leading-[1.78]"
@@ -165,14 +165,14 @@ function BlogPostPage() {
 
           {/* Article sections */}
           <div className="mt-12 space-y-14 border-t border-border pt-12">
-            {post.content.sections.map((section, idx) => (
+            {post.content.sections.map((section: BlogPost["content"]["sections"][number], idx: number) => (
               <Reveal key={idx} delay={idx * 0.04} className="space-y-5">
                 <h2 className="font-display text-xl font-bold tracking-tight text-dark sm:text-2xl md:text-3xl">
                   {section.heading}
                 </h2>
 
                 <div className="space-y-4">
-                  {section.body.map((para, pIdx) => (
+                  {section.body.map((para: string, pIdx: number) => (
                     <p
                       key={pIdx}
                       className="text-base leading-relaxed text-dark/80 md:text-[1.06rem] md:leading-[1.82]"
@@ -248,7 +248,7 @@ function BlogPostPage() {
             <span className="text-xs font-semibold text-muted mr-1">
               Tagged:
             </span>
-            {post.tags.map((tag) => (
+            {post.tags.map((tag: string) => (
               <span
                 key={tag}
                 className="rounded-sm bg-dark/5 px-2.5 py-1 text-xs font-medium text-dark/70"

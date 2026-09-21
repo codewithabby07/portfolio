@@ -1,21 +1,25 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { Link } from "@tanstack/react-router";
 import { projects, isFilled, type Project } from "@/data/projects";
-import { ArrowIcon, LineReveal, MediaReveal, Reveal, SectionLabel } from "@/components/ui";
+import { ArrowIcon, MediaReveal, Reveal, SectionLabel } from "@/components/ui";
 import { ProjectModal } from "@/components/ProjectModal";
 import { cn } from "@/lib/cn";
 import { usePointerFine, useReducedMotion } from "@/lib/motion";
+
+// Exactly 3 featured projects for the main page as requested: ALP Buildcon, Creavo, Zainca
+const MAIN_PAGE_PROJECT_SLUGS = ["alp-buildcon", "creavo", "zainca"];
 
 function ProjectMeta({ project }: { project: Project }) {
   const bits = [
     isFilled(project.role) ? project.role : null,
     project.year || null,
-    project.technologies.length ? project.technologies.join(" · ") : null,
+    project.technologies.length ? project.technologies.slice(0, 3).join(" • ") : null,
   ].filter(Boolean) as string[];
 
   if (!bits.length) return null;
 
   return (
-    <p className="text-[12px] tracking-[0.14em] text-muted uppercase">
+    <p className="text-[11px] tracking-[0.14em] text-neutral-500 uppercase font-mono">
       {bits.join("  /  ")}
     </p>
   );
@@ -23,61 +27,64 @@ function ProjectMeta({ project }: { project: Project }) {
 
 function ProjectImage({
   project,
-  interactive,
 }: {
   project: Project;
-  interactive: boolean;
 }) {
   const frameRef = useRef<HTMLDivElement>(null);
   const fine = usePointerFine();
   const reduce = useReducedMotion();
 
   function onMove(event: MouseEvent<HTMLDivElement>) {
-    if (!fine || reduce) return;
-    const img = frameRef.current?.querySelector("[data-img]") as HTMLElement | null;
-    if (!img) return;
+    if (!fine || reduce || !frameRef.current) return;
+    const img = frameRef.current.querySelector("[data-img]") as HTMLElement | null;
     const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 10;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 8;
-    img.style.transform = `scale(1.045) translate3d(${x}px, ${y}px, 0)`;
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    const rotY = x * 10;
+    const rotX = -y * 8;
+    frameRef.current.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02, 1.02, 1.02)`;
+    if (img) {
+      img.style.transform = `scale(1.04) translate3d(${x * 8}px, ${y * 6}px, 0)`;
+    }
   }
 
   function onLeave() {
+    if (frameRef.current) {
+      frameRef.current.style.transform = "";
+    }
     const img = frameRef.current?.querySelector("[data-img]") as HTMLElement | null;
     if (img) img.style.transform = "";
   }
 
-  const isContain = project.id === "alp-buildcon" || project.id === "creavo" || project.id === "property-broker";
+  const isContain = project.id === "alp-buildcon" || project.id === "creavo";
 
   return (
     <div
       ref={frameRef}
       className={cn(
-        "relative overflow-hidden rounded-xl shadow-xl cursor-pointer",
-        isContain ? "bg-[#09090c]" : "bg-dark/10"
+        "relative overflow-hidden rounded-[24px] sm:rounded-[28px] border border-neutral-200 shadow-xl transition-transform duration-200 ease-out group-hover/project:border-[#E44C1F]/50 group-hover/project:shadow-2xl will-change-transform",
+        isContain ? "bg-[#090a10]" : "bg-neutral-100"
       )}
+      style={{ transformStyle: "preserve-3d" }}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
     >
       <img
         data-img
         src={project.image}
-        alt={`${project.title} project preview`}
+        alt={`${project.title} live preview`}
         width={1600}
         height={1000}
         loading="lazy"
         className={cn(
-          "project-img aspect-[16/10] h-full w-full rounded-xl transition-transform duration-500",
-          isContain ? "object-contain p-1.5 md:p-2" : "object-cover object-top"
+          "aspect-[16/10] h-full w-full rounded-[22px] transition-transform duration-300 ease-out",
+          isContain ? "object-contain p-2 md:p-3" : "object-cover object-top"
         )}
       />
-      <div className="project-shade pointer-events-none absolute inset-0 rounded-xl" />
-      <span className="project-index display pointer-events-none absolute right-6 bottom-4 text-5xl text-white/35 md:text-7xl">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 rounded-2xl" />
+      <span className="pointer-events-none absolute right-5 bottom-3 text-4xl font-mono font-bold text-white/30 md:text-5xl">
         {project.number}
       </span>
-      {interactive ? (
-        <span className="sr-only">Open {project.title}</span>
-      ) : null}
     </div>
   );
 }
@@ -94,73 +101,73 @@ function ProjectBlock({
   const reverse = index % 2 === 1;
   const live = isFilled(project.liveUrl);
 
-  const image = (
-    <MediaReveal delay={0.06}>
-      <ProjectImage project={project} interactive={true} />
-    </MediaReveal>
-  );
-
   return (
-    <article className="group/project border-t border-border py-12 transition-[border-color] duration-500 hover:border-accent/50 md:py-16">
+    <article className="group/project border-t border-neutral-200 py-12 transition-[border-color] duration-300 hover:border-[#E44C1F]/40 md:py-16">
       <div
         className={cn(
-          "grid items-end gap-8 lg:grid-cols-12 lg:gap-12",
+          "grid items-center gap-8 lg:grid-cols-12 lg:gap-12",
           reverse && "lg:[&>div:first-child]:order-2",
         )}
       >
-        <Reveal className="lg:col-span-5">
+        <Reveal className="lg:col-span-5 space-y-4">
           <div className="flex items-center gap-3">
-            <p className="font-display text-sm font-semibold tracking-[0.2em] text-accent">
-              {project.number}
-            </p>
-            {project.impact ? (
-              <span className="inline-flex items-center rounded-full border border-accent/25 bg-accent/10 px-2.5 py-0.5 text-[10px] font-semibold tracking-wider text-accent uppercase">
-                {project.impact}
-              </span>
-            ) : null}
+            <span className="font-mono text-xs font-bold text-[#E44C1F]">
+              PROJECT {project.number}
+            </span>
+            <span className="text-neutral-300">•</span>
+            <span className="text-xs font-mono uppercase tracking-wider text-neutral-500">
+              {project.category}
+            </span>
           </div>
 
-          <h3 className="display mt-3 text-4xl text-dark transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/project:translate-x-1 md:text-6xl lg:text-[4.4rem]">
+          <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-950 group-hover/project:text-[#E44C1F] transition-colors">
             {project.title}
           </h3>
-          <p className="mt-4 text-[12px] tracking-[0.18em] text-muted uppercase">
-            {project.category}
-          </p>
-          {isFilled(project.description) ? (
-            <p className="mt-5 max-w-md text-base leading-relaxed text-muted">
-              {project.description}
-            </p>
-          ) : null}
-          <div className="mt-6 flex flex-wrap items-center gap-5">
-            <ProjectMeta project={project} />
-            <div className="flex items-center gap-4">
-              <button
-                type="button"
-                onClick={() => onOpenModal(project)}
-                className="inline-flex items-center gap-1.5 rounded-sm bg-dark/5 px-3 py-1.5 text-xs font-bold text-dark hover:bg-dark hover:text-white transition-colors uppercase"
-              >
-                <span>Case Study</span>
-                <span aria-hidden>→</span>
-              </button>
 
-              {live ? (
-                <a
-                  href={project.liveUrl}
-                  className="project-link group/link text-xs font-semibold text-accent uppercase"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Live Demo
-                  <ArrowIcon className="cta-arrow" />
-                </a>
-              ) : null}
-            </div>
+          <p className="text-sm leading-relaxed text-neutral-700">
+            {project.description}
+          </p>
+
+          <ProjectMeta project={project} />
+
+          {/* Action Buttons: Live Link + Case Study */}
+          <div className="pt-2 flex flex-wrap items-center gap-3">
+            {live ? (
+              <a
+                href={project.liveUrl}
+                className="inline-flex items-center gap-2 rounded-xl bg-[#E44C1F] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-[#ff5d2e] hover:shadow-[0_0_20px_rgba(228,76,31,0.3)] active:scale-95"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Visit Live Website</span>
+                <span className="text-sm font-bold">↗</span>
+              </a>
+            ) : null}
+
+            <Link
+              to="/work/$slug"
+              params={{ slug: project.slug }}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-neutral-300 bg-neutral-100 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-neutral-900 hover:border-neutral-400 hover:bg-neutral-200 transition-all"
+            >
+              <span>Case Study</span>
+              <span aria-hidden>→</span>
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => onOpenModal(project)}
+              className="inline-flex items-center gap-1 text-xs text-neutral-500 hover:text-neutral-950 transition-colors cursor-pointer ml-1 font-medium"
+            >
+              <span>Quick Preview</span>
+            </button>
           </div>
         </Reveal>
 
         <div className="lg:col-span-7" onClick={() => onOpenModal(project)}>
           <div data-view-cursor className="cursor-pointer">
-            {image}
+            <MediaReveal delay={0.06}>
+              <ProjectImage project={project} />
+            </MediaReveal>
           </div>
         </div>
       </div>
@@ -168,68 +175,52 @@ function ProjectBlock({
   );
 }
 
-function ViewHint() {
-  const fine = usePointerFine();
-  const reduce = useReducedMotion();
-  const [point, setPoint] = useState({ x: 0, y: 0 });
-  const [on, setOn] = useState(false);
-
-  useEffect(() => {
-    if (!fine || reduce) return;
-
-    const onMove = (event: globalThis.MouseEvent) => {
-      const target = event.target as HTMLElement | null;
-      const hovering = Boolean(target?.closest("[data-view-cursor]"));
-      setOn(hovering);
-      if (hovering) {
-        setPoint({ x: event.clientX, y: event.clientY });
-      }
-    };
-
-    window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
-  }, [fine, reduce]);
-
-  if (!fine || reduce) return null;
-
-  return (
-    <div
-      className={cn("view-hint", on && "is-on")}
-      style={{ left: point.x, top: point.y }}
-      aria-hidden
-    >
-      View
-    </div>
-  );
-}
-
 export function Work() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  // Exactly three projects on the main page: ALP Buildcon, Creavo, Zainca
+  const mainProjects = projects.filter((p) =>
+    MAIN_PAGE_PROJECT_SLUGS.includes(p.slug)
+  );
 
   return (
     <section
       id="work"
-      className="scroll-mt-32 bg-background pb-8 md:pb-12"
+      className="relative scroll-mt-32 bg-white text-neutral-900 py-16 md:py-24 border-t border-neutral-200"
       aria-labelledby="work-heading"
     >
-      <ViewHint />
       <ProjectModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
       />
-      <div className="page-shell">
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <SectionLabel>Portfolio</SectionLabel>
-          <h2
-            id="work-heading"
-            className="display mt-4 text-[13vw] text-dark sm:text-7xl md:text-8xl"
-          >
-            <LineReveal lines={["SELECTED WORK."]} />
-          </h2>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-neutral-200 pb-8">
+            <div>
+              <SectionLabel className="text-[#E44C1F] font-mono text-xs font-bold uppercase tracking-wider">Selected Projects</SectionLabel>
+              <h2
+                id="work-heading"
+                className="font-display mt-2 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950"
+              >
+                Our Work
+              </h2>
+            </div>
+
+            {/* View All Projects Option at the top */}
+            <Link
+              to="/work"
+              className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-100 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-neutral-900 hover:border-[#E44C1F] hover:bg-[#E44C1F] hover:text-white transition-all shadow-sm"
+            >
+              <span>View All Projects</span>
+              <span>→</span>
+            </Link>
+          </div>
         </Reveal>
 
-        <div className="mt-6 md:mt-8">
-          {projects.map((project, index) => (
+        {/* 3 Featured Projects: ALP Buildcon, Creavo, Zainca */}
+        <div className="mt-8">
+          {mainProjects.map((project, index) => (
             <ProjectBlock
               key={project.id}
               project={project}
@@ -238,8 +229,30 @@ export function Work() {
             />
           ))}
         </div>
+
+        {/* Prominent View All Projects Option at the Bottom */}
+        <div className="mt-14 flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-neutral-200 bg-neutral-50 p-8 sm:p-10 shadow-sm">
+          <div>
+            <span className="text-xs font-mono text-[#E44C1F] font-semibold uppercase tracking-wider">
+              Portfolio Archive
+            </span>
+            <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-950 mt-1">
+              Looking for our complete catalog of live work?
+            </h3>
+            <p className="text-xs text-neutral-600 mt-1">
+              Explore all case studies across Real Estate, Healthcare, SaaS, and Creative Studios.
+            </p>
+          </div>
+
+          <Link
+            to="/work"
+            className="inline-flex items-center gap-2.5 rounded-full bg-[#E44C1F] px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#ff5d2e] shadow-[0_0_25px_rgba(228,76,31,0.25)] transition-all shrink-0"
+          >
+            <span>View All Projects</span>
+            <span>→</span>
+          </Link>
+        </div>
       </div>
     </section>
   );
 }
-

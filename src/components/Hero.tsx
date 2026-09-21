@@ -1,230 +1,164 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { site } from "@/data/site";
-import { ArrowIcon, Portrait } from "@/components/ui";
-import { usePointerFine, useReducedMotion } from "@/lib/motion";
-import { onHashLinkClick } from "@/lib/scroll";
+import { SylvaLivingWorldScene } from "@/shaders/sylva-living-world/SylvaLivingWorldScene";
 
 export function Hero() {
-  const reduce = useReducedMotion();
-  const fine = usePointerFine();
-  const headlineRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const [sceneMounted, setSceneMounted] = useState(false);
 
-  // ── Mouse parallax ──────────────────────────────────────────────────────
   useEffect(() => {
-    if (reduce || !fine) return;
-    const headline = headlineRef.current;
-    const card = cardRef.current;
-    if (!headline || !card) return;
-
-    const onMove = (event: MouseEvent) => {
-      const x = (event.clientX / window.innerWidth - 0.5) * 12;
-      const y = (event.clientY / window.innerHeight - 0.5) * 10;
-      headline.style.transform = `translate3d(${x * 0.4}px, ${y * 0.3}px, 0)`;
-      card.style.transform = `perspective(1000px) rotateY(${x * 0.6}deg) rotateX(${-y * 0.6}deg) translate3d(${x * 0.2}px, ${y * 0.2}px, 0)`;
-    };
-
-    window.addEventListener("mousemove", onMove, { passive: true });
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      headline.style.transform = "";
-      card.style.transform = "";
-    };
-  }, [reduce, fine]);
+    setSceneMounted(true);
+  }, []);
 
   return (
     <section
       id="home"
-      className="relative isolate min-h-[100svh] overflow-hidden bg-[#09090c] text-white flex flex-col justify-between pt-24 pb-8 md:pt-28 md:pb-10"
+      className="relative isolate min-h-[92svh] overflow-hidden bg-black text-white flex flex-col justify-between pt-24 pb-10 md:pt-32 md:pb-12"
       aria-labelledby="hero-heading"
+      style={{ contain: "paint" }}
     >
-      {/* Radial ambient aura */}
+      {/* ── 3D Sylva Living World Scene as Hero Backdrop (GPU-optimized) ── */}
       <div
-        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_60%_50%_at_15%_25%,rgba(228,76,31,0.07),transparent_70%),radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.04),transparent)]"
-        aria-hidden
-      />
-
-      {/* Background watermark */}
-      <div
-        aria-hidden
-        className="hero-fade display pointer-events-none absolute top-[14%] left-1/2 z-0 -translate-x-1/2 text-[18vw] leading-none whitespace-nowrap text-white/[0.02] select-none uppercase tracking-widest"
+        className="absolute inset-0 z-0 overflow-hidden pointer-events-auto"
+        aria-hidden="true"
+        style={{ transform: "translateZ(0)", willChange: "transform" }}
       >
-        {site.brand}
+        {sceneMounted && (
+          <SylvaLivingWorldScene
+            variant="living-green"
+            style={{
+              width: "100%",
+              height: "100%",
+              minHeight: "100%",
+            }}
+          />
+        )}
       </div>
 
-      <div className="page-shell relative z-10 flex flex-1 flex-col justify-between gap-10">
-        {/* Top row */}
-        <div className="hero-stage hero-stage-1 flex flex-wrap items-center justify-end gap-4 border-b border-white/[0.08] pb-4">
-          <div className="hidden items-center gap-4 text-[11px] font-medium tracking-[0.22em] uppercase text-white/50 md:flex">
-            <span>Full Stack Developer</span>
-            <span className="h-1 w-1 rounded-full bg-accent/60" />
-            <span>Delhi, India · Remote</span>
+      {/* ── Smooth Contrast Protection Overlay ── */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/70 via-black/35 to-black/90"
+        aria-hidden="true"
+      />
+
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10 flex flex-1 flex-col justify-center items-center w-full text-center my-auto py-10 md:py-16">
+        {/* Main Headline (Curated Creative Agency Editorial Typography) */}
+        <h1
+          id="hero-heading"
+          className="max-w-4xl tracking-tight text-white flex flex-col items-center select-none pb-2 sm:pb-3"
+        >
+          {/* Line 1: Premium bold modern sans-serif in crisp white */}
+          <span
+            className="block text-[clamp(1.85rem,4.2vw,3.4rem)] text-white leading-[1.12]"
+            style={{
+              fontFamily: "'Satoshi', sans-serif",
+              fontWeight: 800,
+              letterSpacing: "-0.035em",
+              textShadow: "0 2px 12px rgba(0,0,0,0.85)",
+            }}
+          >
+            Your business deserves
+          </span>
+
+          {/* Line 2: Elegant high-contrast editorial serif italic in orange with hand-drawn brush underline */}
+          <div className="relative inline-block mt-2 sm:mt-2.5">
+            <span
+              className="block text-[clamp(2.5rem,6.6vw,5.4rem)] text-[#E44C1F] leading-[1.04]"
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontWeight: 600,
+                fontStyle: "italic",
+                letterSpacing: "-0.015em",
+                textShadow: "0 2px 12px rgba(0,0,0,0.8)",
+              }}
+            >
+              a better website.
+            </span>
+
+            {/* Hand-drawn organic brush-stroke underline */}
+            <svg
+              className="absolute -bottom-1 sm:-bottom-1.5 left-0 w-full pointer-events-none select-none overflow-visible"
+              viewBox="0 0 360 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+              style={{ height: "15px", maxHeight: "20px" }}
+              aria-hidden="true"
+            >
+              {/* Primary tapered brush stroke with organic curve and subtle upward angle */}
+              <path
+                d="M 4 16.5 C 38 14.8, 85 13.5, 142 14.5 C 205 15.6, 275 12.8, 354 4.5 C 358.5 4, 359.5 6, 356 7.2 C 298 15.2, 218 20.5, 142 19.5 C 88 18.8, 40 18.5, 2 18.8 C 0.8 18.8, 1.2 16.8, 4 16.5 Z"
+                fill="#E44C1F"
+              />
+              {/* Secondary natural pressure flick */}
+              <path
+                d="M 16 19.2 C 75 19.5, 160 20.2, 245 17.5 C 285 16.2, 325 13.8, 348 11"
+                stroke="#E44C1F"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                opacity="0.85"
+              />
+            </svg>
           </div>
+        </h1>
+
+        {/* Shortened, Punchy Subtitle */}
+        <p
+          className="mt-6 max-w-xl text-base sm:text-lg font-normal leading-relaxed text-white/90"
+          style={{ textShadow: "0 2px 12px rgba(0,0,0,0.95)" }}
+        >
+          We build fast, high-converting websites and modern digital experiences that turn visitors into clients.
+        </p>
+
+        {/* Action Buttons */}
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <Link
+            to="/work"
+            className="inline-flex items-center gap-2 rounded-full bg-[#E44C1F] px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-200 hover:bg-[#ff5d2e] shadow-[0_0_30px_rgba(228,76,31,0.5)] active:scale-95 cursor-pointer"
+          >
+            <span>View Selected Work</span>
+            <span>→</span>
+          </Link>
+
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/70 px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all duration-200 hover:border-white/60 hover:bg-black/90 active:scale-95 cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+          >
+            <span>Start a Project</span>
+            <span>→</span>
+          </Link>
+
+          <a
+            href={site.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-black/70 px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-emerald-400 backdrop-blur-md hover:bg-black/90 hover:border-emerald-400 transition-all active:scale-95 shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+          >
+            <span>WhatsApp Direct</span>
+            <span className="text-sm">↗</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Bottom Navigation Bar */}
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 w-full flex flex-wrap items-center justify-between gap-4 border-t border-white/15 pt-5 text-xs font-mono tracking-wider uppercase text-white/80">
+        <div>
+          <span>©{site.hero.year} {site.brand} STUDIO</span>
         </div>
 
-        {/* Main grid */}
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12 py-2 md:py-6">
-          {/* Left: Headline + CTA */}
-          <div className="hero-stage hero-stage-2 lg:col-span-7 flex flex-col justify-center">
-            <div className="mb-4 inline-flex items-center gap-3">
-              <span className="h-px w-8 bg-accent" />
-              <h1 className="text-[11px] font-semibold tracking-[0.24em] uppercase text-white/75">
-                Full Stack Developer &amp; Web Developer in Delhi
-              </h1>
-            </div>
-
-            <div
-              ref={headlineRef}
-              id="hero-heading"
-              className="display text-[clamp(2.5rem,6.5vw,5.4rem)] leading-[0.94] tracking-[-0.035em] text-white transition-transform duration-200 will-change-transform"
-              role="text"
-              aria-label="Building websites that actually work."
-            >
-              <span className="block font-light text-white/80">BUILDING</span>
-              <span className="block bg-gradient-to-r from-white via-white/95 to-white/75 bg-clip-text text-transparent">
-                WEBSITES THAT
-              </span>
-              <span className="block italic font-light text-white/90">
-                ACTUALLY WORK.
-              </span>
-            </div>
-
-            <p className="mt-5 max-w-xl text-base font-light leading-relaxed text-white/70 md:text-lg">
-              {site.description} Fast delivery, clean code, and a design that fits your brand.
-            </p>
-
-            {/* CTAs */}
-            <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-5">
-              <a
-                href="#work"
-                onClick={(event) => onHashLinkClick(event, "#work", reduce)}
-                className="luxury-btn-primary group"
-              >
-                <span>View My Work</span>
-                <ArrowIcon className="cta-arrow transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
-
-              <a
-                href={site.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-md bg-[#25D366] px-6 py-3.5 text-[12px] font-extrabold tracking-[0.16em] text-black uppercase shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-105 hover:bg-[#20bd5a] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] active:scale-95"
-              >
-                <span className="text-base" aria-hidden>💬</span>
-                <span>Chat on WhatsApp</span>
-              </a>
-
-              <a
-                href={`tel:${site.phone.replace(/\s+/g, "")}`}
-                className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-md border border-white/30 bg-white/10 px-6 py-3.5 text-[12px] font-extrabold tracking-[0.16em] text-white uppercase shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-white/70 hover:bg-white/20 active:scale-95"
-              >
-                <span className="text-base" aria-hidden>📞</span>
-                <span>Call Now</span>
-              </a>
-            </div>
-
-            {/* Stats strip */}
-            <div className="mt-8 grid grid-cols-3 gap-6 border-t border-white/[0.08] pt-5 max-w-lg">
-              <div>
-                <span className="block font-display text-2xl font-bold tracking-tight text-white md:text-3xl">
-                  3+
-                </span>
-                <span className="mt-1 block text-[10px] tracking-[0.16em] uppercase text-white/50">
-                  Years Experience
-                </span>
-              </div>
-              <div>
-                <span className="block font-display text-2xl font-bold tracking-tight text-white md:text-3xl">
-                  15+
-                </span>
-                <span className="mt-1 block text-[10px] tracking-[0.16em] uppercase text-white/50">
-                  Projects Delivered
-                </span>
-              </div>
-              <div>
-                <span className="block font-display text-2xl font-bold tracking-tight text-accent md:text-3xl">
-                  6–7 Days
-                </span>
-                <span className="mt-1 block text-[10px] tracking-[0.16em] uppercase text-white/50">
-                  Avg. Delivery
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Portrait card */}
-          <div className="hero-stage hero-stage-3 relative flex justify-center lg:col-span-5 lg:justify-end">
-            <div
-              ref={cardRef}
-              className="luxury-glass-card relative w-full max-w-[400px] rounded-2xl p-3 sm:p-4 transition-transform duration-300 ease-out will-change-transform"
-            >
-              {/* Card bar */}
-              <div className="mb-3 flex items-center justify-between px-2 text-[10px] tracking-[0.2em] uppercase text-white/55">
-                <span className="flex items-center gap-1.5 font-semibold text-white/80">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                  {site.name}
-                </span>
-                <span>{site.hero.year}</span>
-              </div>
-
-              {/* Portrait */}
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-dark/60 shadow-inner">
-                <Portrait
-                  priority
-                  sizes="(min-width: 1024px) 380px, 90vw"
-                  className="h-full w-full object-cover object-[center_20%] transition-transform duration-1000 ease-out hover:scale-[1.03]"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/15 to-transparent" />
-
-                {/* Portrait caption */}
-                <div className="absolute inset-x-0 bottom-0 p-4">
-                  <span className="inline-block rounded-sm bg-white/10 px-2.5 py-1 text-[9px] font-semibold tracking-[0.18em] uppercase text-white backdrop-blur-md">
-                    Full Stack Developer
-                  </span>
-                  <p className="mt-1.5 text-xs font-medium text-white/90">
-                    Delhi, India · Available Worldwide
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="hero-stage hero-stage-4 flex flex-wrap items-center justify-between gap-4 border-t border-white/[0.08] pt-5 text-[11px] tracking-[0.16em] uppercase text-white/50">
-          <div className="hidden sm:block">
-            <span>©{site.hero.year} {site.brand}</span>
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="mx-auto sm:mx-0">
-            <a
-              href="#about"
-              onClick={(event) => onHashLinkClick(event, "#about", reduce)}
-              className="scroll-capsule group"
-              aria-label="Scroll to learn more about Abby"
-            >
-              <span className="scroll-pill-wheel group-hover:border-white/60 transition-colors" />
-              <span className="text-[9px] tracking-[0.2em] font-medium text-white/50 group-hover:text-white transition-colors">
-                Scroll
-              </span>
-            </a>
-          </div>
-
-          {/* Socials */}
-          <div className="flex items-center gap-5">
-            {site.socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors"
-              >
-                {social.label}
-              </a>
-            ))}
-          </div>
+        <div className="flex items-center gap-6">
+          <Link to="/work" className="hover:text-[#E44C1F] transition-colors font-medium">
+            Work →
+          </Link>
+          <Link to="/services" className="hover:text-[#E44C1F] transition-colors font-medium">
+            Services →
+          </Link>
+          <Link to="/about" className="hover:text-[#E44C1F] transition-colors font-medium">
+            About →
+          </Link>
+          <Link to="/contact" className="hover:text-[#E44C1F] transition-colors font-medium">
+            Contact →
+          </Link>
         </div>
       </div>
     </section>

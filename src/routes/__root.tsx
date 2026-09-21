@@ -9,6 +9,7 @@ import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { MotionRoot } from "@/components/MotionRoot";
 import { IntroCurtain } from "@/components/IntroCurtain";
 import { site } from "@/data/site";
+import { MobileActionBar } from "@/components/MobileActionBar";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -46,6 +47,11 @@ export const Route = createRootRoute({
       { rel: "manifest", href: "/__grok/manifest.webmanifest" },
       { rel: "stylesheet", href: appCss },
       { rel: "canonical", href: `${site.url}/` },
+      { rel: "preconnect", href: "https://api.fontshare.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,800,900&f[]=clash-display@500,600,700&display=swap",
+      },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "preconnect",
@@ -54,7 +60,7 @@ export const Route = createRootRoute({
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Birthstone&family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&family=Outfit:wght@300;400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Birthstone&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Instrument+Serif:ital@0;1&family=Manrope:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&family=Outfit:wght@300;400;500;600;700&display=swap",
       },
     ],
   }),
@@ -73,6 +79,7 @@ function RootDocument() {
         <MotionRoot />
         <AuthProvider>
           <Outlet />
+          <MobileActionBar />
         </AuthProvider>
         <Scripts />
       </body>

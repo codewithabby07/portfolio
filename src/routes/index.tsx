@@ -1,17 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
-import { Marquee } from "@/components/Marquee";
 import { About } from "@/components/About";
 import { Work } from "@/components/Work";
-import { SylvaScene } from "@/components/SylvaScene";
-import { Process } from "@/components/Process";
-import { Testimonials } from "@/components/Testimonials";
 import { Services } from "@/components/Services";
-import { Skills } from "@/components/Skills";
+import { IndustrySection } from "@/components/IndustrySection";
+import { Process } from "@/components/Process";
 import { Faq } from "@/components/Faq";
-import { ContactCTA } from "@/components/ContactCTA";
-import { ContactForm } from "@/components/ContactForm";
+import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Seo } from "@/components/Seo";
@@ -23,6 +19,9 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: site.title },
       { name: "description", content: site.description },
+      { property: "og:title", content: site.title },
+      { property: "og:description", content: site.description },
+      { property: "og:url", content: `${site.url}/` },
     ],
   }),
 });
@@ -37,18 +36,22 @@ function Home() {
       </a>
       <Navigation />
       <main id="main">
+        {/* 1. Cinematic Studio Hero with Sylva 3D Living World Backdrop */}
         <Hero />
-        <Marquee />
-        <About />
-        <SylvaScene />
+        {/* 2. Selected Agency Work */}
         <Work />
-        <Process />
-        <Testimonials />
+        {/* 4. Studio Capabilities & Services */}
         <Services />
-        <Skills />
+        {/* 5. Industry Verticals Showcase */}
+        <IndustrySection />
+        {/* 6. The Studio Methodology */}
+        <Process />
+        {/* 7. Frequently Asked Questions */}
         <Faq />
-        <ContactCTA />
-        <ContactForm />
+        {/* 8. Studio Positioning & Manifesto (Above Footer) */}
+        <About />
+        {/* 9. Final CTA Card Section */}
+        <FinalCTA />
       </main>
       <Footer />
     </>

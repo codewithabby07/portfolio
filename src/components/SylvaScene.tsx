@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { SylvaLivingWorldScene } from "@designcodeio/threeui";
-import "@designcodeio/threeui/style.css";
+import { SylvaLivingWorldScene } from "@/shaders/sylva-living-world/SylvaLivingWorldScene";
 
 /**
- * Wraps ThreeUI SylvaLivingWorldScene in a client-only guard.
- * The component itself renders an iframe+srcDoc and has its own
- * IntersectionObserver / visibility lifecycle — no extra wrapping needed.
- * We just prevent it from running during SSR.
+ * SylvaScene — ThreeUI Sylva Living World Scene (living-green)
+ * - Sized with 100dvh to handle dynamic mobile browser viewport changes.
+ * - Prevents horizontal overflow and double scrollbars.
+ * - Full-width, full-viewport framing on both desktop and mobile.
  */
 export function SylvaScene() {
   const [mounted, setMounted] = useState(false);
@@ -16,11 +15,16 @@ export function SylvaScene() {
   }, []);
 
   return (
-    <div
+    <section
+      id="sylva-living-world"
+      className="sylva-scene-host"
       style={{
         width: "100%",
-        height: "100svh",
+        maxWidth: "100vw",
+        height: "100dvh",
+        minHeight: "100dvh",
         position: "relative",
+        overflow: "hidden",
         background: "#4a4d44",
       }}
       aria-hidden="true"
@@ -28,9 +32,13 @@ export function SylvaScene() {
       {mounted && (
         <SylvaLivingWorldScene
           variant="living-green"
-          style={{ width: "100%", height: "100%" }}
+          style={{
+            width: "100%",
+            height: "100%",
+            minHeight: "100dvh",
+          }}
         />
       )}
-    </div>
+    </section>
   );
 }

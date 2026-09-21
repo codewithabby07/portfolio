@@ -1,9 +1,15 @@
+import { Link } from "@tanstack/react-router";
 import { site } from "@/data/site";
-import { onHashLinkClick } from "@/lib/scroll";
 import { useToast, ToastMessage, copyToClipboard } from "@/components/Toast";
 
 export function Footer() {
-  const socials = site.socials.filter((s) => Boolean(s.href));
+  const socials = [
+    { label: "GitHub", href: "https://github.com/codewithabby07" },
+    { label: "WhatsApp", href: "https://wa.me/917055859219" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/abby-undefined-436951433/" },
+    { label: "Instagram", href: "https://www.instagram.com/codewithabby07/" },
+    { label: "X", href: "https://x.com/codewithabby07" },
+  ];
   const { showToast, toast } = useToast();
 
   function handleEmailClick(e: React.MouseEvent) {
@@ -13,56 +19,84 @@ export function Footer() {
     });
   }
 
+  function onHashLinkClick(
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) {
+    if (!href.startsWith("#")) return;
+    if (window.location.pathname !== "/") return;
+    event.preventDefault();
+    const target = document.querySelector(href);
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.pushState(null, "", href);
+  }
+
   return (
-    <footer className="border-t border-dark/10 bg-dark text-white">
+    <footer className="relative border-t border-white/10 bg-black text-white">
       <ToastMessage message={toast} />
-      <div className="page-shell py-16 md:py-20">
-        {/* Main Grid */}
-        <div className="grid gap-12 lg:grid-cols-12">
-          {/* Column 1: Brand & Atelier Overview */}
+
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
+          {/* Column 1: Brand & Bio (4 cols) */}
           <div className="lg:col-span-4">
-            <div className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3">
               <img
                 src="/favicon.svg"
-                alt=""
+                alt="CodeWithAbby Logo"
                 className="h-7 w-7 rounded-full"
-                width={28}
-                height={28}
               />
-              <span className="font-display text-base font-extrabold tracking-[0.16em] text-white uppercase">
+              <span className="font-display text-sm font-bold tracking-[0.14em] uppercase text-white">
                 {site.brand}
               </span>
-            </div>
+            </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
               Full Stack Developer building websites and web apps for founders, startups, and businesses. Delhi, India.
             </p>
             <div className="mt-6 flex items-center gap-2 text-xs tracking-wider text-white/40 uppercase">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[#E44C1F]" />
               <span>Delhi, India · Remote</span>
             </div>
           </div>
 
-          {/* Column 2: Navigation */}
+          {/* Column 2: Navigation (3 cols) */}
           <div className="lg:col-span-3">
             <p className="font-display text-xs font-semibold tracking-[0.2em] text-white/40 uppercase">
               Navigation
             </p>
             <ul className="mt-4 space-y-2.5">
-              {site.nav.map((item) => (
-                <li key={item.id}>
-                  <a
-                    href={item.href}
-                    onClick={(event) => onHashLinkClick(event, item.href)}
-                    className="text-sm font-medium text-white/70 transition-colors duration-300 hover:text-white"
-                  >
-                    {item.label}
-                  </a>
+              {[
+                { label: "Home", href: "/" },
+                { label: "About", href: "/about" },
+                { label: "Work", href: "/work" },
+                { label: "Services", href: "/services" },
+                { label: "Blog", href: "/blog" },
+                { label: "FAQ", href: "/#faq" },
+                { label: "Contact", href: "/contact" },
+              ].map((item) => (
+                <li key={item.label}>
+                  {item.href.startsWith("/#") ? (
+                    <a
+                      href={item.href}
+                      onClick={(e) => onHashLinkClick(e, item.href.replace("/", ""))}
+                      className="text-sm font-medium text-white/70 transition-colors duration-300 hover:text-white"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className="text-sm font-medium text-white/70 transition-colors duration-300 hover:text-white"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3: Capabilities */}
+          {/* Column 3: Capabilities (3 cols) */}
           <div className="lg:col-span-3">
             <p className="font-display text-xs font-semibold tracking-[0.2em] text-white/40 uppercase">
               Capabilities
@@ -70,13 +104,13 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5 text-sm text-white/70">
               <li>Full Stack Web Applications</li>
               <li>High-Converting UI/UX Systems</li>
-              <li>React & Next.js Architecture</li>
+              <li>React &amp; Next.js Architecture</li>
               <li>Performance Optimization</li>
-              <li>Custom Node.js & REST APIs</li>
+              <li>Custom Node.js &amp; REST APIs</li>
             </ul>
           </div>
 
-          {/* Column 4: Contact & Socials */}
+          {/* Column 4: Connect & Socials (2 cols) */}
           <div className="lg:col-span-2">
             <p className="font-display text-xs font-semibold tracking-[0.2em] text-white/40 uppercase">
               Connect
@@ -86,7 +120,7 @@ export function Footer() {
                 <a
                   href={`mailto:${site.email}`}
                   onClick={handleEmailClick}
-                  className="text-white/70 transition-colors duration-300 hover:text-accent cursor-pointer"
+                  className="text-white/70 transition-colors duration-300 hover:text-[#E44C1F] cursor-pointer"
                 >
                   Email
                 </a>
@@ -103,8 +137,8 @@ export function Footer() {
               </li>
             </ul>
 
-            {/* Social icon row */}
-            <div className="mt-6 flex items-center gap-3 flex-wrap">
+            {/* Social icon row (3 top, 2 bottom) */}
+            <div className="mt-6 flex items-center gap-3 flex-wrap max-w-[170px]">
               {socials.map((social) => (
                 <a
                   key={social.label}
@@ -146,7 +180,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Legal & Copyright Bar */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row pb-12 sm:pb-0">
           <p>© {site.hero.year} {site.brand}. All rights reserved.</p>
           <p>Built by {site.name}</p>
         </div>
