@@ -1,5 +1,5 @@
 import { SylvaLivingWorldScene } from "@designcodeio/threeui";
-import "@designcodeio/threeui/lib-dist/style.css";
+import "@designcodeio/threeui/style.css";
 
 /**
  * SylvaScene — ThreeUI "living-green" variant mounted as a full-viewport
