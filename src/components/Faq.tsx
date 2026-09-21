@@ -44,22 +44,24 @@ export function Faq() {
   return (
     <section
       id="faq"
-      className="relative scroll-mt-24 bg-black text-white py-20 md:py-28 border-t border-white/10"
+      className="relative scroll-mt-24 bg-white text-neutral-900 py-20 md:py-28 border-t border-neutral-200"
       aria-labelledby="faq-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="border-b border-white/[0.06] pb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div className="border-b border-neutral-200 pb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
-              <SectionLabel>Questions</SectionLabel>
+              <SectionLabel className="text-[#E44C1F] font-mono text-xs font-bold uppercase tracking-wider">
+                Questions
+              </SectionLabel>
               <h2
                 id="faq-heading"
-                className="font-display mt-2 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white"
+                className="font-display mt-2 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950"
               >
                 Common Inquiries.
               </h2>
             </div>
-            <p className="max-w-xs text-sm text-[#86868b]">
+            <p className="max-w-xs text-sm text-neutral-600">
               Straightforward answers about our engineering process, pricing approach, and delivery timelines.
             </p>
           </div>
@@ -72,31 +74,31 @@ export function Faq() {
             return (
               <Reveal key={faq.id} delay={i * 0.05}>
                 <div
-                  className={`rounded-2xl border transition-all duration-300 backdrop-blur-xl ${
+                  className={`rounded-2xl border transition-all duration-300 ${
                     isOpen
-                      ? "border-[#E44C1F]/40 bg-white/[0.04] shadow-[0_4px_25px_rgba(228,76,31,0.1)]"
-                      : "border-white/[0.07] bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.03]"
+                      ? "border-[#E44C1F]/40 bg-neutral-50 shadow-md ring-1 ring-[#E44C1F]/10"
+                      : "border-neutral-200 bg-neutral-50/70 hover:border-neutral-300 hover:bg-neutral-100/60 shadow-sm"
                   } p-6`}
                 >
                   <button
                     type="button"
                     onClick={() => toggle(faq.id)}
-                    className="flex w-full items-center justify-between text-left font-display text-lg font-bold text-white cursor-pointer"
+                    className="flex w-full items-center justify-between text-left font-display text-lg font-bold text-neutral-950 hover:text-[#E44C1F] transition-colors cursor-pointer"
                     aria-expanded={isOpen}
                   >
                     <span>{faq.question}</span>
                     <span
-                      className={`ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+                      className={`ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm font-semibold transition-all duration-300 ${
                         isOpen
-                          ? "border-[#E44C1F] bg-[#E44C1F] text-white"
-                          : "border-white/20 text-white/60"
+                          ? "border-[#E44C1F] bg-[#E44C1F] text-white shadow-sm"
+                          : "border-neutral-300 bg-white text-neutral-700"
                       }`}
                     >
                       {isOpen ? "−" : "+"}
                     </span>
                   </button>
                   {isOpen ? (
-                    <p className="mt-3 text-sm leading-relaxed text-white/70 animate-in fade-in duration-200">
+                    <p className="mt-3 text-sm leading-relaxed text-neutral-600 animate-in fade-in duration-200">
                       {faq.answer}
                     </p>
                   ) : null}
