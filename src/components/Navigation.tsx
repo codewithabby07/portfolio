@@ -182,7 +182,6 @@ export function Navigation() {
             {[
               { label: "Home", href: "/" },
               ...navLinks,
-              { label: "Contact", href: "/contact" },
             ].map((link, idx) => {
               const isActive =
                 pathname === link.href ||

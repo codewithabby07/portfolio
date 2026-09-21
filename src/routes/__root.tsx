@@ -9,7 +9,6 @@ import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { MotionRoot } from "@/components/MotionRoot";
 import { IntroCurtain } from "@/components/IntroCurtain";
 import { site } from "@/data/site";
-import { MobileActionBar } from "@/components/MobileActionBar";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -79,7 +78,6 @@ function RootDocument() {
         <MotionRoot />
         <AuthProvider>
           <Outlet />
-          <MobileActionBar />
         </AuthProvider>
         <Scripts />
       </body>
