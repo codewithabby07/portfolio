@@ -4,6 +4,7 @@ import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { About } from "@/components/About";
 import { Work } from "@/components/Work";
+import { SylvaScene } from "@/components/SylvaScene";
 import { Process } from "@/components/Process";
 import { Testimonials } from "@/components/Testimonials";
 import { Services } from "@/components/Services";
@@ -39,6 +40,7 @@ function Home() {
         <Hero />
         <Marquee />
         <About />
+        <SylvaScene />
         <Work />
         <Process />
         <Testimonials />
