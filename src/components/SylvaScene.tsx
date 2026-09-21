@@ -1,30 +1,21 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import "@designcodeio/threeui/style.css";
 
 /**
- * Lazy-loaded ThreeUI SylvaLivingWorldScene.
- * - CSS is imported dynamically so it doesn't block first paint.
- * - The heavy Three.js bundle (~220 KB gzip) is only fetched when the
- *   section is within 300px of the viewport (IntersectionObserver).
- * - Mobile: height is auto so the scene expands naturally on small screens.
+ * Lazy-loaded SylvaLivingWorldScene.
+ * CSS is imported statically (lightweight, just styles).
+ * The heavy Three.js JS bundle is code-split and only fetched when
+ * this section enters the viewport (IntersectionObserver rootMargin 300px).
  */
-
 const LazySylva = lazy(() =>
   import("@designcodeio/threeui").then((m) => ({
     default: m.SylvaLivingWorldScene,
   }))
 );
 
-// Import CSS once — side-effect import bundled separately via dynamic import
-function useSylvaCSS() {
-  useEffect(() => {
-    import("@designcodeio/threeui/style.css" as string);
-  }, []);
-}
-
 export function SylvaScene() {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useSylvaCSS();
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     const el = wrapRef.current;
@@ -32,11 +23,11 @@ export function SylvaScene() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          setShouldLoad(true);
           observer.disconnect();
         }
       },
-      { rootMargin: "300px" }
+      { rootMargin: "400px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -47,18 +38,18 @@ export function SylvaScene() {
       ref={wrapRef}
       style={{
         width: "100%",
-        /* desktop: full viewport height; mobile: auto so scene isn't clipped */
         minHeight: "100svh",
         position: "relative",
         overflow: "hidden",
+        background: "#383b34",
       }}
       aria-hidden="true"
     >
-      {visible && (
+      {shouldLoad && (
         <Suspense fallback={null}>
           <LazySylva
             variant="living-green"
-            style={{ width: "100%", height: "100%" }}
+            style={{ width: "100%", minHeight: "100svh" }}
           />
         </Suspense>
       )}
