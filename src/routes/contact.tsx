@@ -95,6 +95,8 @@ const FAQS = [
   },
 ];
 
+const FORMSPREE_ID = "xqpkbabk";
+
 function ContactPage() {
   const { showToast, toast } = useToast();
   const [selectedType, setSelectedType] = useState(PROJECT_TYPES[0].label);
@@ -103,22 +105,53 @@ function ContactPage() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim() || !email.trim()) {
       showToast("Please enter your name and email address.");
       return;
     }
 
-    const text = encodeURIComponent(
-      `Hi Abby,\n\nI'm reaching out from the CodeWithAbby website:\n• Name: ${name}\n• Email: ${email}\n• Phone: ${phone || "N/A"}\n• Project Type: ${selectedType}\n• Timeline: ${selectedTimeline}\n• Brief: ${message || "I'd like to discuss a new project with agreement lock."}`
-    );
-    window.open(`https://wa.me/917055859219?text=${text}`, "_blank");
-    setSubmitted(true);
-    showToast("Connecting you with Syed Abbas Ali on WhatsApp...");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      showToast("Please enter a valid email address.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim() || "Not provided",
+          projectType: selectedType,
+          timeline: selectedTimeline,
+          message: message.trim() || "Discussing new project with agreement lock.",
+          source: "CodeWithAbby Contact Page Form",
+        }),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        showToast("Project brief sent directly to Syed Abbas Ali's email!");
+      } else {
+        showToast("Could not send brief. Please try again or email codewithabby07@gmail.com");
+      }
+    } catch {
+      showToast("Network error. Please try again or email codewithabby07@gmail.com");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   function handleCopyEmail() {
@@ -211,19 +244,28 @@ function ContactPage() {
             <div className="lg:col-span-7">
               <Reveal delay={0.1}>
                 {submitted ? (
-                  <div className="rounded-[28px] sm:rounded-[36px] border border-emerald-300 bg-emerald-50/70 p-8 sm:p-12 text-center shadow-sm">
+                  <div className="rounded-[28px] sm:rounded-[36px] border border-emerald-300 bg-emerald-50/70 p-8 sm:p-12 text-center shadow-sm animate-in fade-in">
                     <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 text-2xl font-bold">
                       ✓
                     </div>
                     <h3 className="font-agency-headline mt-4 text-2xl sm:text-3xl font-extrabold text-neutral-900">
-                      Inquiry Received
+                      Inquiry Sent to Email!
                     </h3>
                     <p className="mt-2 text-sm text-neutral-600 max-w-md mx-auto leading-relaxed">
-                      Thank you, <strong className="text-neutral-900">{name}</strong>. Syed Abbas Ali is reviewing your brief. We will send the service agreement outline within 24 hours.
+                      Thank you, <strong className="text-neutral-900">{name}</strong>. Your project brief has been sent directly to Syed Abbas Ali's official email (<strong className="text-neutral-900">{site.email}</strong>).
+                    </p>
+                    <p className="mt-2 text-xs text-neutral-500 max-w-md mx-auto">
+                      We will review your requirements and reply to <strong className="text-neutral-800">{email}</strong> within 24 hours with the service agreement outline.
                     </p>
                     <button
                       type="button"
-                      onClick={() => setSubmitted(false)}
+                      onClick={() => {
+                        setSubmitted(false);
+                        setName("");
+                        setEmail("");
+                        setPhone("");
+                        setMessage("");
+                      }}
                       className="mt-6 inline-flex items-center text-xs font-bold text-[#E44C1F] hover:underline uppercase tracking-wider cursor-pointer"
                     >
                       Submit Another Inquiry →
@@ -306,10 +348,11 @@ function ContactPage() {
                             id="name"
                             type="text"
                             required
+                            disabled={isSubmitting}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder="Syed Abbas Ali"
-                            className="mt-1.5 w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-[#E44C1F] focus:outline-none focus:ring-1 focus:ring-[#E44C1F] transition-all"
+                            className="mt-1.5 w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-[#E44C1F] focus:outline-none focus:ring-1 focus:ring-[#E44C1F] transition-all disabled:opacity-50"
                           />
                         </div>
 
@@ -321,10 +364,11 @@ function ContactPage() {
                             id="email"
                             type="email"
                             required
+                            disabled={isSubmitting}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="abby@example.com"
-                            className="mt-1.5 w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-[#E44C1F] focus:outline-none focus:ring-1 focus:ring-[#E44C1F] transition-all"
+                            className="mt-1.5 w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-[#E44C1F] focus:outline-none focus:ring-1 focus:ring-[#E44C1F] transition-all disabled:opacity-50"
                           />
                         </div>
                       </div>
@@ -336,10 +380,11 @@ function ContactPage() {
                         <input
                           id="phone"
                           type="tel"
+                          disabled={isSubmitting}
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           placeholder="+91 70558 59219"
-                          className="mt-1.5 w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-[#E44C1F] focus:outline-none focus:ring-1 focus:ring-[#E44C1F] transition-all"
+                          className="mt-1.5 w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-[#E44C1F] focus:outline-none focus:ring-1 focus:ring-[#E44C1F] transition-all disabled:opacity-50"
                         />
                       </div>
 
@@ -350,20 +395,31 @@ function ContactPage() {
                         <textarea
                           id="message"
                           rows={4}
+                          disabled={isSubmitting}
                           value={message}
                           onChange={(e) => setMessage(e.target.value)}
                           placeholder="Tell us about what you want to achieve, reference websites, or special features..."
-                          className="mt-1.5 w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-[#E44C1F] focus:outline-none focus:ring-1 focus:ring-[#E44C1F] transition-all"
+                          className="mt-1.5 w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-[#E44C1F] focus:outline-none focus:ring-1 focus:ring-[#E44C1F] transition-all disabled:opacity-50"
                         />
                       </div>
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#E44C1F] px-8 py-4 text-xs font-extrabold uppercase tracking-wider text-white hover:bg-[#ff5d2e] shadow-lg shadow-[#E44C1F]/30 active:scale-98 transition-all cursor-pointer"
+                      disabled={isSubmitting}
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#E44C1F] px-8 py-4 text-xs font-extrabold uppercase tracking-wider text-white hover:bg-[#ff5d2e] shadow-lg shadow-[#E44C1F]/30 active:scale-98 transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <span>Send Brief & Start with Agreement Lock</span>
-                      <span>→</span>
+                      {isSubmitting ? (
+                        <>
+                          <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                          <span>Sending Brief to Email...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Send Brief & Start with Agreement Lock</span>
+                          <span>→</span>
+                        </>
+                      )}
                     </button>
                   </form>
                 )}
