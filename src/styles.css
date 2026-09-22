@@ -1113,7 +1113,7 @@
    360° Dynamic Tech Orbit Stack (Outer & Inner Orbits)
    ───────────────────────────────────────────────────────────── */
 .orbit-track {
-  animation: spinOrbit 45s linear infinite;
+  animation: spinOrbit 52s linear infinite;
   transform-origin: center center;
 }
 
@@ -1122,7 +1122,7 @@
 }
 
 .orbit-track-inner {
-  animation: spinOrbitReverse 30s linear infinite;
+  animation: spinOrbitReverse 36s linear infinite;
   transform-origin: center center;
 }
 
@@ -1149,7 +1149,7 @@
 }
 
 .orbit-item-counter {
-  animation: counterOrbit 45s linear infinite;
+  animation: counterOrbit 52s linear infinite;
   transform-origin: center center;
 }
 
