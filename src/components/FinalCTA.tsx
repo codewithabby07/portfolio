@@ -71,10 +71,10 @@ export function FinalCTA() {
               <div className="mt-8 sm:mt-10">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2.5 rounded-full bg-[#E44C1F] px-9 py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-[#ff5d2e] hover:shadow-[0_0_35px_rgba(228,76,31,0.5)] active:scale-95 cursor-pointer"
+                  className="luxury-btn-primary cursor-pointer text-xs sm:text-sm px-9 py-4 shadow-[0_0_35px_rgba(228,76,31,0.5)]"
                 >
                   <span>START A PROJECT</span>
-                  <span className="text-base font-bold">→</span>
+                  <span className="btn-arr text-base font-bold">→</span>
                 </Link>
               </div>
             </div>

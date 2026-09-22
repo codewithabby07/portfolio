@@ -249,32 +249,63 @@
     background: rgba(255, 255, 255, 0.06);
   }
 
-  .luxury-btn-primary {
+  .luxury-btn-primary,
+  .btn-nev-primary {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
     padding: 0.95rem 2rem;
-    background: #ffffff;
-    color: #07070a;
+    background: #e44c1f;
+    color: #ffffff;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    border-radius: 2px;
+    border-radius: 9999px;
     overflow: hidden;
-    transition: all 0.4s var(--ease-out-expo);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 8px 25px rgba(228, 76, 31, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    z-index: 1;
   }
 
-  .luxury-btn-primary:hover {
-    background: #f4f4f4;
+  .luxury-btn-primary::before,
+  .btn-nev-primary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: #000000;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 0;
+  }
+
+  .luxury-btn-primary:hover::before,
+  .btn-nev-primary:hover::before {
+    transform: scaleX(1);
+  }
+
+  .luxury-btn-primary > *,
+  .btn-nev-primary > * {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .luxury-btn-primary:hover,
+  .btn-nev-primary:hover {
+    color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 18px 45px rgba(255, 255, 255, 0.18);
+    box-shadow: 0 14px 35px rgba(228, 76, 31, 0.45);
+    border-color: rgba(255, 255, 255, 0.3);
   }
 
-  .luxury-btn-secondary {
+  .luxury-btn-secondary,
+  .btn-nev-outline {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -287,17 +318,64 @@
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 2px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: all 0.4s var(--ease-out-expo);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 9999px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 1;
   }
 
-  .luxury-btn-secondary:hover {
+  .luxury-btn-secondary::before,
+  .btn-nev-outline::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 0.12);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 0;
+  }
+
+  .luxury-btn-secondary:hover::before,
+  .btn-nev-outline:hover::before {
+    transform: scaleX(1);
+  }
+
+  .luxury-btn-secondary > *,
+  .btn-nev-outline > * {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .luxury-btn-secondary:hover,
+  .btn-nev-outline:hover {
+    color: #ffffff;
     background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.32);
+    border-color: rgba(255, 255, 255, 0.4);
     transform: translateY(-2px);
+  }
+
+  /* Universal button arrow slide */
+  .btn-arr,
+  .btn-arrow {
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .luxury-btn-primary:hover .btn-arr,
+  .luxury-btn-primary:hover .btn-arrow,
+  .luxury-btn-secondary:hover .btn-arr,
+  .luxury-btn-secondary:hover .btn-arrow,
+  .btn-nev-primary:hover .btn-arr,
+  .btn-nev-primary:hover .btn-arrow,
+  .btn-nev-outline:hover .btn-arr,
+  .btn-nev-outline:hover .btn-arrow {
+    transform: translateX(4px);
   }
 
   .pulse-dot {
@@ -1030,3 +1108,43 @@
 .animate-slide-up {
   animation: slide-up 0.4s var(--ease-out-expo) both;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   360° Dynamic Tech Orbit Stack (Inspired by High-Craft Studios)
+   ───────────────────────────────────────────────────────────── */
+.orbit-track {
+  animation: spinOrbit 45s linear infinite;
+  transform-origin: center center;
+}
+
+.orbit-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes spinOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orbit-item-counter {
+  animation: counterOrbit 45s linear infinite;
+  transform-origin: center center;
+}
+
+.orbit-track:hover .orbit-item-counter {
+  animation-play-state: paused;
+}
+
+@keyframes counterOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+

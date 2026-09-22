@@ -44,10 +44,10 @@ export function About() {
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 rounded-full bg-white/[0.05] border border-white/15 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:border-[#E44C1F] hover:text-[#E44C1F] transition-all"
+                className="luxury-btn-secondary cursor-pointer"
               >
                 <span>Read Full Studio Story</span>
-                <span>→</span>
+                <span className="btn-arr">→</span>
               </Link>
               <Link
                 to="/team"

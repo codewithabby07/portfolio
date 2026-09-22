@@ -114,28 +114,28 @@ export function Hero() {
         <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
           <Link
             to="/work"
-            className="inline-flex items-center gap-2 rounded-full bg-[#E44C1F] px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-200 hover:bg-[#ff5d2e] shadow-[0_0_30px_rgba(228,76,31,0.5)] active:scale-95 cursor-pointer"
+            className="luxury-btn-primary cursor-pointer"
           >
             <span>View Selected Work</span>
-            <span>→</span>
+            <span className="btn-arr">→</span>
           </Link>
 
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/70 px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all duration-200 hover:border-white/60 hover:bg-black/90 active:scale-95 cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+            className="luxury-btn-secondary cursor-pointer"
           >
             <span>Start a Project</span>
-            <span>→</span>
+            <span className="btn-arr">→</span>
           </Link>
 
           <a
             href={site.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-black/70 px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-emerald-400 backdrop-blur-md hover:bg-black/90 hover:border-emerald-400 transition-all active:scale-95 shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+            className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-black/70 px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-emerald-400 backdrop-blur-md hover:bg-emerald-500 hover:text-black hover:border-emerald-400 transition-all active:scale-95 shadow-[0_4px_20px_rgba(0,0,0,0.6)] cursor-pointer"
           >
             <span>WhatsApp Direct</span>
-            <span className="text-sm">↗</span>
+            <span className="text-sm transition-transform group-hover:translate-x-0.5">↗</span>
           </a>
         </div>
       </div>

@@ -34,208 +34,224 @@ export const Route = createFileRoute("/about")({
 });
 
 /* ─────────────────────────────────────────────────────────────
-   Interactive 3D Geometric Orbit Canvas
+   Interactive 360° Dynamic Tech Orbit Universe (NEV Showcase Inspired)
    ───────────────────────────────────────────────────────────── */
-function Studio3DCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const ORBIT_TECHS = [
+  {
+    name: "React 19",
+    role: "Component Architecture",
+    color: "#61DAFB",
+    svg: (
+      <svg viewBox="0 0 128 128" className="w-5 h-5 sm:w-7 sm:h-7">
+        <g fill="#61DAFB">
+          <circle cx="64" cy="64" r="11.4" />
+          <path d="M107.3 45.2c-2.3-.8-4.7-1.6-7-2.3.6-2.4 1.1-4.8 1.5-7.1-2.1.3-4.1.5-6.2.6-.4-2-.8-2.9-1.1-4.2-2.2.9-4.4 1.8-6.5 2.5-4.2-2.8-8.3-5.8-12-9.2-1.6 5.6-2.8 11.2-3.6 17-.3 1.3-.5 2.5-.6 3.8-4.5-.2-9-.1-13.5.2-.1-1.3-.3-2.6-.4-3.9-.8-5.8-2-11.4-3.6-17-3.8 3.5-7.8 6.4-12.1 9.2-2.1-.7-4.2-1.5-6.3-2.3-.4 1.4-.7 2.8-1.1 4.2-2.2-.1-4.3-.3-6.4-.6.4 2.3.9 4.7 1.5 7-2.4.7-4.8 1.4-7.1 2.3-4.5 9.7-5 18.8-1.4 27.5 2 5 4.9 9.8 8.7 14.3.7-.9 1.5-1.8 2.2-2.7 3.4-4.7 6.2-9.7 8.5-15-.7-1.4-1.3-2.9-1.9-4.3-2.4.1-4.9.2-7.3.4 1.8 7.7 4.5 14.8 8 21.3-4.5 1.8-8.7 3.2-12.6 4.3 1.7 3.6 3.5 7 5.5 10.3 5.8-.6 11.5-1.7 17.1-3.3-.2-1.3-.4-2.7-.6-4-3.8-1-7.4-2.3-10.8-3.8 3.6 2.6 7.4 5 11.4 7.2 2.2 1.2 4.4 2.3 6.7 3.3 2.2-1 4.4-2.1 6.5-3.3 4 2.2 7.8 4.6 11.4 7.2-3.4-1.5-7-2.8-10.8-3.8-.2 1.3-.4 2.6-.6 4 5.6 1.6 11.3 2.7 17.1 3.3 2-3.3 3.8-6.7 5.5-10.3-3.9-1.1-8.1-2.5-12.6-4.3 3.5-6.5 6.2-13.6 8-21.3-2.4-.2-4.9-.3-7.3-.4-.6 1.4-1.2 2.9-1.9 4.3 2.4 5.3 5.2 10.3 8.5 15 .7.9 1.5 1.8 2.2 2.7 3.8-4.5 6.7-9.3 8.7-14.3 3.6-8.7 3.1-17.8-1.4-27.5z" />
+        </g>
+      </svg>
+    ),
+  },
+  {
+    name: "Next.js",
+    role: "SSR & Edge Performance",
+    color: "#FFFFFF",
+    svg: (
+      <svg viewBox="0 0 180 180" className="w-5 h-5 sm:w-7 sm:h-7">
+        <circle cx="90" cy="90" r="90" fill="#000" />
+        <path
+          fill="#fff"
+          d="M149.508 157.52L69.142 54H54v71.97h12.114V69.384l73.885 95.461a90.304 90.304 0 009.509-7.325z"
+        />
+        <path fill="#fff" d="M81 151.21V54h14v97.21z" />
+      </svg>
+    ),
+  },
+  {
+    name: "TypeScript",
+    role: "Type-Safe Architecture",
+    color: "#3178C6",
+    svg: (
+      <svg viewBox="0 0 128 128" className="w-5 h-5 sm:w-7 sm:h-7">
+        <rect width="128" height="128" rx="20" fill="#3178C6" />
+        <path
+          fill="#fff"
+          d="M68 40h-24v12h11v48h13V52h11V40h-11zM103 54c-3-2-7-3-12-3-8 0-13 4-13 11 0 6 4 9 11 12 6 2 9 4 9 8 0 4-4 6-9 6-6 0-11-3-14-7l-8 9c5 7 13 10 22 10 10 0 17-5 17-13 0-6-4-10-12-13-5-2-9-4-9-7 0-3 3-5 8-5 5 0 9 2 12 5l7-9z"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "Tailwind CSS",
+    role: "Design Token Systems",
+    color: "#38BDF8",
+    svg: (
+      <svg viewBox="0 0 128 128" className="w-5 h-5 sm:w-7 sm:h-7">
+        <path
+          fill="#38BDF8"
+          d="M64.004 25.602c-17.067 0-27.73 8.53-32 25.597C27.731 34.133 17.068 25.602 0 25.602c0 17.065 13.863 32.002 32.004 32.002 17.066 0 27.73-8.537 32-25.602 4.27 8.53 14.933 17.065 32.004 17.065 0-17.067-13.863-32.004-32.004-32.004zm0 12.8c10.656 0 17.062 5.328 19.2 16.002-3.733 8-11.2 12.8-19.2 12.8-10.656 0-17.062-5.328-19.2-16.002 3.733-8 11.2-12.8 19.2-12.8zm-32 19.2c-10.656 0-17.062-5.328-19.2-16.002 3.733-8 11.2-12.8 19.2-12.8 10.656 0 17.062 5.328 19.2 16.002-3.733 8-11.2 12.8-19.2 12.8zm64 0c-10.656 0-17.062-5.328-19.2-16.002 3.733-8 11.2-12.8 19.2-12.8 10.656 0 17.062 5.328 19.2 16.002-3.733 8-11.2 12.8-19.2 12.8z"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "Node.js",
+    role: "Backend & Cloud APIs",
+    color: "#5FA04E",
+    svg: (
+      <svg viewBox="0 0 32 32" className="w-5 h-5 sm:w-7 sm:h-7">
+        <path
+          fill="#5FA04E"
+          d="M16 2.5L3 10v12l13 7.5 13-7.5V10L16 2.5zm0 3.2l10.5 6.1v9.6L16 27.5 5.5 21.4v-9.6L16 5.7z"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "Vercel",
+    role: "Global Edge Infrastructure",
+    color: "#FFFFFF",
+    svg: (
+      <svg viewBox="0 0 76 65" className="w-5 h-5 sm:w-7 sm:h-7">
+        <path fill="#FFFFFF" d="M37.527 0L75.054 65H0L37.527 0z" />
+      </svg>
+    ),
+  },
+  {
+    name: "TanStack",
+    role: "State, Router & Query",
+    color: "#FF4154",
+    svg: (
+      <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-7 sm:h-7">
+        <path
+          fill="#FF4154"
+          d="M12 2L2 7l10 5 10-5-10-5zm0 7.8L4.6 7 12 3.8 19.4 7 12 9.8zM2 17l10 5 10-5-2.2-1.1L12 19.8 4.2 15.9 2 17zm0-5l10 5 10-5-2.2-1.1L12 14.8 4.2 10.9 2 12z"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "GitHub",
+    role: "Version & CI/CD Pipelines",
+    color: "#FFFFFF",
+    svg: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 sm:w-7 sm:h-7 text-white">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+      </svg>
+    ),
+  },
+];
+
+function StudioOrbit360() {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [radius, setRadius] = useState(180);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animId: number;
-    let width = (canvas.width = canvas.offsetWidth * window.devicePixelRatio || 600);
-    let height = (canvas.height = canvas.offsetHeight * window.devicePixelRatio || 400);
-
-    const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = canvas.offsetWidth * window.devicePixelRatio || 600;
-      height = canvas.height = canvas.offsetHeight * window.devicePixelRatio || 400;
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Mouse tracking for interactive tilt
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetRotX = 0;
-    let targetRotY = 0;
-    let rotX = 0;
-    let rotY = 0;
-
-    const onMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      targetRotY = (x / rect.width) * 0.8;
-      targetRotX = -(y / rect.height) * 0.8;
-    };
-
-    window.addEventListener("mousemove", onMouseMove);
-
-    // 3D Nodes definition (representing Code, Design, Speed, Performance, Scale)
-    const nodes = [
-      { x: 0, y: 0, z: 0, label: "CodeWithAbby", accent: true, radius: 8 },
-      { x: -140, y: -80, z: 50, label: "Design", accent: false, radius: 5 },
-      { x: 140, y: -70, z: -50, label: "Engineering", accent: true, radius: 6 },
-      { x: 130, y: 90, z: 80, label: "Performance", accent: false, radius: 5 },
-      { x: -130, y: 80, z: -70, label: "Speed", accent: true, radius: 6 },
-      { x: 0, y: -130, z: 60, label: "Scale", accent: false, radius: 5 },
-      { x: 0, y: 130, z: -60, label: "Launch", accent: true, radius: 5 },
-      { x: -80, y: -30, z: -100, label: "React", accent: false, radius: 4 },
-      { x: 80, y: 30, z: 100, label: "Next.js", accent: false, radius: 4 },
-    ];
-
-    // Orbiting particle rings
-    const rings = [
-      { r: 160, tilt: 0.4, speed: 0.008, angle: 0, color: "rgba(228,76,31,0.25)" },
-      { r: 210, tilt: -0.6, speed: -0.006, angle: Math.PI / 4, color: "rgba(255,255,255,0.12)" },
-      { r: 260, tilt: 0.8, speed: 0.004, angle: Math.PI / 2, color: "rgba(228,76,31,0.15)" },
-    ];
-
-    let t = 0;
-
-    const render = () => {
-      t += 0.015;
-      rotX += (targetRotX - rotX) * 0.05;
-      rotY += (targetRotY - rotY) * 0.05;
-
-      ctx.clearRect(0, 0, width, height);
-
-      const cx = width / 2;
-      const cy = height / 2;
-      const scale = Math.min(width, height) / 460;
-
-      const currentRotY = rotY + t * 0.2;
-      const currentRotX = rotX + Math.sin(t * 0.3) * 0.15;
-
-      // Project 3D Point to 2D Screen
-      const project = (x: number, y: number, z: number) => {
-        const cosY = Math.cos(currentRotY);
-        const sinY = Math.sin(currentRotY);
-        const x1 = x * cosY + z * sinY;
-        const z1 = -x * sinY + z * cosY;
-
-        const cosX = Math.cos(currentRotX);
-        const sinX = Math.sin(currentRotX);
-        const y2 = y * cosX - z1 * sinX;
-        const z2 = y * sinX + z1 * cosX;
-
-        const fov = 400;
-        const p = fov / (fov + z2);
-
-        return {
-          px: cx + x1 * p * scale,
-          py: cy + y2 * p * scale,
-          p,
-          z: z2,
-        };
-      };
-
-      // Draw Orbiting Rings
-      rings.forEach((ring) => {
-        ring.angle += ring.speed;
-        ctx.beginPath();
-        ctx.strokeStyle = ring.color;
-        ctx.lineWidth = 1.2 * window.devicePixelRatio;
-
-        const steps = 60;
-        for (let i = 0; i <= steps; i++) {
-          const a = (i / steps) * Math.PI * 2;
-          const rx = Math.cos(a) * ring.r;
-          const ry = Math.sin(a) * ring.r * Math.cos(ring.tilt);
-          const rz = Math.sin(a) * ring.r * Math.sin(ring.tilt);
-
-          const pt = project(rx, ry, rz);
-          if (i === 0) ctx.moveTo(pt.px, pt.py);
-          else ctx.lineTo(pt.px, pt.py);
-        }
-        ctx.stroke();
-      });
-
-      // Draw Connecting Lines between close nodes
-      const projectedNodes = nodes.map((n) => ({
-        ...n,
-        ...project(n.x, n.y, n.z),
-      }));
-
-      projectedNodes.sort((a, b) => a.z - b.z);
-
-      for (let i = 0; i < projectedNodes.length; i++) {
-        for (let j = i + 1; j < projectedNodes.length; j++) {
-          const a = projectedNodes[i];
-          const b = projectedNodes[j];
-          const dist = Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
-          if (dist < 200) {
-            const alpha = (1 - dist / 200) * 0.35 * Math.min(a.p, b.p);
-            ctx.beginPath();
-            ctx.strokeStyle =
-              a.accent || b.accent
-                ? `rgba(228,76,31,${alpha})`
-                : `rgba(255,255,255,${alpha * 0.7})`;
-            ctx.lineWidth = 1 * window.devicePixelRatio;
-            ctx.moveTo(a.px, a.py);
-            ctx.lineTo(b.px, b.py);
-            ctx.stroke();
-          }
-        }
+    const updateRadius = () => {
+      if (!wrapRef.current) return;
+      const w = wrapRef.current.offsetWidth;
+      if (w < 380) {
+        setRadius(105);
+      } else if (w < 640) {
+        setRadius(135);
+      } else {
+        setRadius(Math.min(200, Math.floor(w * 0.38)));
       }
-
-      // Draw Nodes & Labels
-      projectedNodes.forEach((node) => {
-        const radius = node.radius * node.p * window.devicePixelRatio;
-
-        if (node.accent) {
-          const grad = ctx.createRadialGradient(
-            node.px,
-            node.py,
-            0,
-            node.px,
-            node.py,
-            radius * 3.5
-          );
-          grad.addColorStop(0, "rgba(228,76,31,0.7)");
-          grad.addColorStop(1, "rgba(228,76,31,0)");
-          ctx.fillStyle = grad;
-          ctx.beginPath();
-          ctx.arc(node.px, node.py, radius * 3.5, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        ctx.beginPath();
-        ctx.fillStyle = node.accent ? "#E44C1F" : "#FFFFFF";
-        ctx.arc(node.px, node.py, radius, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.font = `${Math.max(9, Math.floor(11 * node.p * window.devicePixelRatio))}px monospace`;
-        ctx.fillStyle = node.accent ? "#ff7a45" : "rgba(255,255,255,0.75)";
-        ctx.textAlign = "center";
-        ctx.fillText(node.label, node.px, node.py + radius + 14 * window.devicePixelRatio);
-      });
-
-      animId = requestAnimationFrame(render);
     };
 
-    render();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", onMouseMove);
-    };
+    updateRadius();
+    window.addEventListener("resize", updateRadius);
+    return () => window.removeEventListener("resize", updateRadius);
   }, []);
 
   return (
-    <div className="relative w-full h-[360px] sm:h-[440px] rounded-[28px] sm:rounded-[36px] overflow-hidden border border-white/10 bg-[#0a0a0f] shadow-2xl flex items-center justify-center">
-      <canvas ref={canvasRef} className="w-full h-full block" />
-      <div className="pointer-events-none absolute bottom-4 left-6 text-[10px] font-mono uppercase text-white/40 tracking-wider">
-        Interactive 3D Node Map • Move Cursor
+    <div className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden border border-white/10 bg-[#0a0a0f] p-6 sm:p-12 shadow-2xl flex flex-col items-center justify-center text-center">
+      {/* Ambient background glow */}
+      <div
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(228,76,31,0.12)_0%,transparent_70%)] blur-3xl"
+        aria-hidden
+      />
+
+      {/* Header Tag */}
+      <div className="relative z-10 mb-6 max-w-xl">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 border border-white/10 px-3 py-1 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#E44C1F]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#E44C1F] animate-pulse" />
+          <span>ENGINEERING ECOSYSTEM</span>
+        </span>
+        <h2 className="font-agency-headline text-2xl sm:text-3xl font-extrabold text-white mt-3">
+          The Right Tools. <span className="text-[#E44C1F]">Zero Framework Dogma.</span>
+        </h2>
+        <p className="text-xs sm:text-sm text-neutral-400 mt-2 max-w-md mx-auto">
+          Every platform is built with modern, battle-tested tools chosen for speed, scalability, and clean ownership.
+        </p>
       </div>
-      <div className="pointer-events-none absolute top-4 right-6 inline-flex items-center gap-1.5 rounded-full bg-white/5 border border-white/10 px-2.5 py-1 text-[10px] font-mono text-[#E44C1F]">
-        <span className="h-1.5 w-1.5 rounded-full bg-[#E44C1F] animate-pulse" />
-        <span>Direct Engineering</span>
+
+      {/* 360 Orbit Arena */}
+      <div
+        ref={wrapRef}
+        className="relative z-10 w-[290px] h-[290px] sm:w-[420px] sm:h-[420px] md:w-[480px] md:h-[480px] flex items-center justify-center my-4"
+      >
+        {/* Outer Orbit Ring */}
+        <div className="absolute inset-0 rounded-full border-[1.5px] border-dashed border-white/10 pointer-events-none" />
+
+        {/* Middle Accent Orbit Ring */}
+        <div className="absolute inset-8 sm:inset-12 rounded-full border border-dashed border-[#E44C1F]/25 pointer-events-none" />
+
+        {/* Inner Subtle Ring */}
+        <div className="absolute inset-16 sm:inset-24 rounded-full border border-dashed border-white/5 pointer-events-none" />
+
+        {/* Center Node: CodeWithAbby Founder Portrait */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-28 sm:h-28 rounded-full z-20 p-1 bg-gradient-to-br from-[#E44C1F] to-[#111318] shadow-[0_0_40px_rgba(228,76,31,0.35)] flex items-center justify-center">
+          <div className="w-full h-full rounded-full overflow-hidden border border-white/20 bg-black relative group">
+            <img
+              src="/images/portrait.jpg"
+              alt="Syed Abbas Ali (Abby)"
+              className="w-full h-full object-cover object-[center_12%]"
+            />
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span className="text-[9px] font-mono font-bold text-white uppercase tracking-wider">
+                Abby
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Orbit Rotating Track */}
+        <div className="absolute inset-0 orbit-track">
+          {ORBIT_TECHS.map((tech, i) => {
+            const count = ORBIT_TECHS.length;
+            const angle = (i / count) * (Math.PI * 2);
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+
+            return (
+              <div
+                key={tech.name}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                style={{
+                  transform: `translate(${x}px, ${y}px)`,
+                }}
+              >
+                {/* Counter-Spin Node to keep logo upright */}
+                <div className="orbit-item-counter relative group">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-[#0e0f14]/95 border border-white/15 backdrop-blur-xl shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-115 hover:border-[#E44C1F] hover:shadow-[0_0_25px_rgba(228,76,31,0.4)] cursor-pointer">
+                    {tech.svg}
+                  </div>
+
+                  {/* Tooltip on Hover */}
+                  <div className="pointer-events-none absolute -bottom-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-1 bg-[#14151d] border border-white/15 text-white text-[10px] font-mono px-2.5 py-1 rounded-md whitespace-nowrap shadow-2xl z-30 flex flex-col items-center">
+                    <span className="font-bold text-white">{tech.name}</span>
+                    <span className="text-[9px] text-[#E44C1F]">{tech.role}</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Footer Caption */}
+      <div className="relative z-10 mt-6 flex items-center gap-2 text-[10px] sm:text-xs font-mono text-neutral-400">
+        <span className="h-1.5 w-1.5 rounded-full bg-[#10B981] animate-ping" />
+        <span>360° Interactive Orbit • Hover any tech to pause & inspect</span>
       </div>
     </div>
   );
@@ -540,10 +556,10 @@ function AboutPage() {
             </div>
           </Reveal>
 
-          {/* Interactive 3D Orbit Canvas Section */}
+          {/* Interactive 360° Tech Orbit Universe */}
           <Reveal delay={0.05}>
             <div>
-              <Studio3DCanvas />
+              <StudioOrbit360 />
             </div>
           </Reveal>
 
