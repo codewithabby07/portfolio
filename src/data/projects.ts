@@ -338,7 +338,7 @@ export const projects: Project[] = [
     technologies: ["React", "Next.js", "Tailwind CSS", "Vercel", "Video Streaming"],
     role: "Lead Frontend & Media Developer",
     year: "2026",
-    image: "/images/projects/creavo.jpg",
+    image: "/images/projects/sample-video.png",
     liveUrl: "https://nev-sample-vid.vercel.app/",
     challenge:
       "High-resolution video showreels often suffer from slow buffering and high visitor bounce rates on mobile networks.",
@@ -383,7 +383,7 @@ export const projects: Project[] = [
     technologies: ["React", "Tailwind CSS", "JavaScript", "Vercel", "GSAP"],
     role: "Lead Creative Developer",
     year: "2026",
-    image: "/images/projects/creavo.jpg",
+    image: "/images/projects/santha-editing.png",
     liveUrl: "https://santha-editing-service.vercel.app/",
     challenge:
       "Creative video editors lose clients when pricing, service deliverables, and past proof are not clearly presented in a unified experience.",
@@ -428,7 +428,7 @@ export const projects: Project[] = [
     technologies: ["React", "Next.js", "Tailwind CSS", "Vercel", "Local SEO Schema"],
     role: "Full Stack Developer & SEO Strategist",
     year: "2026",
-    image: "/images/projects/alp-buildcon.jpg",
+    image: "/images/projects/aqua-plumbing.png",
     liveUrl: "https://aqua-plumbing-nev.vercel.app/",
     challenge:
       "Local trade businesses lose urgent customer inquiries when their website takes longer than 2 seconds to load or buries phone numbers.",
@@ -473,7 +473,7 @@ export const projects: Project[] = [
     technologies: ["React", "Next.js", "Tailwind CSS", "Vercel", "TypeScript"],
     role: "Lead Architectural & UX Engineer",
     year: "2026",
-    image: "/images/projects/property-broker.jpg",
+    image: "/images/projects/silvane-estates.png",
     liveUrl: "https://silvane-nev.vercel.app/",
     challenge:
       "Ultra-luxury architectural estates require museum-grade editorial pacing and high confidentiality rather than mass-market listing spam.",
@@ -518,7 +518,7 @@ export const projects: Project[] = [
     technologies: ["React", "Tailwind CSS", "JavaScript", "Vercel", "Video CDN"],
     role: "Creative Web Engineer",
     year: "2026",
-    image: "/images/projects/creavo.jpg",
+    image: "/images/projects/kevin-vfx.png",
     liveUrl: "https://www.kevingeorgevfx.com/",
     challenge:
       "VFX artists must present heavy visual effects footage without UI lag, dropped frames, or complex booking steps.",
@@ -563,7 +563,7 @@ export const projects: Project[] = [
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     role: "Full Stack SaaS Engineer",
     year: "2026",
-    image: "/images/projects/review-funnel.jpg",
+    image: "/images/projects/ai-startup-saas.png",
     liveUrl: "https://ai-startup-saas.vercel.app/",
     challenge:
       "Early-stage AI products frequently struggle to communicate their core value quickly to prospective users.",
