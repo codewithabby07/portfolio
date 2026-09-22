@@ -322,6 +322,276 @@ export const projects: Project[] = [
       "Deployment: Globally cached on Vercel.",
     ],
   },
+  {
+    id: "sample-video",
+    slug: "sample-video",
+    number: "07",
+    title: "SAMPLE VIDEO",
+    client: "Sample Video Streaming & Creator Studio",
+    category: "Video & Streaming Media",
+    industrySlug: "creative-agencies",
+    serviceSlugs: ["creative-web-experiences", "frontend-engineering", "performance-optimization"],
+    tagline: "High-conversion video and streaming platform with scroll-stopping vertical reels.",
+    description:
+      "A video platform built with scroll-stopping vertical reels, high-definition streaming embeds, and direct client conversion pipelines.",
+    impact: "3.8x Video Playthrough Rate",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Vercel", "Video Streaming"],
+    role: "Lead Frontend & Media Developer",
+    year: "2026",
+    image: "/images/projects/creavo.jpg",
+    liveUrl: "https://nev-sample-vid.vercel.app/",
+    challenge:
+      "High-resolution video showreels often suffer from slow buffering and high visitor bounce rates on mobile networks.",
+    solution:
+      "We engineered a lightweight streaming framework with lazy-loaded video previews, custom playback controls, and friction-free inquiry funnels.",
+    deliverables: [
+      "High-Definition Video Streaming Architecture",
+      "Scroll-Stopping Vertical Reel Grid",
+      "Custom Media Controls & Fullscreen Modal",
+      "Mobile-Optimized Touch Gestures",
+      "Direct Client Inquiry Pipeline",
+    ],
+    keyFeatures: [
+      {
+        title: "Instant Video Streaming",
+        description: "Edge-cached video delivery ensuring zero buffering across mobile cellular networks.",
+      },
+      {
+        title: "Creator Showcase Grid",
+        description: "Organized portfolio layout separating vertical short-form reels from cinematic long-form projects.",
+      },
+    ],
+    architecture: [
+      "Frontend: React 19 with GPU-accelerated video containers.",
+      "CDN: Vercel Global Edge Network with optimized media caching.",
+      "Performance: 60fps playback with zero frame drops.",
+    ],
+  },
+  {
+    id: "santha-editing",
+    slug: "santha-editing",
+    number: "08",
+    title: "SANTHA EDITING",
+    client: "Santha Video Production & Editing Studio",
+    category: "Creator & Video Production",
+    industrySlug: "creative-agencies",
+    serviceSlugs: ["creative-web-experiences", "ui-ux-implementation", "web-development"],
+    tagline: "Freelance video editor portfolio featuring curated project galleries and automated booking.",
+    description:
+      "A freelance video editor portfolio featuring project galleries, service tier breakdowns, and a clean path to book commercial projects.",
+    impact: "+210% Client Booking Conversion",
+    technologies: ["React", "Tailwind CSS", "JavaScript", "Vercel", "GSAP"],
+    role: "Lead Creative Developer",
+    year: "2026",
+    image: "/images/projects/creavo.jpg",
+    liveUrl: "https://santha-editing-service.vercel.app/",
+    challenge:
+      "Creative video editors lose clients when pricing, service deliverables, and past proof are not clearly presented in a unified experience.",
+    solution:
+      "We built a sleek, dark editorial portfolio showcasing client transformations, editing before/after comparisons, and a streamlined 3-step booking funnel.",
+    deliverables: [
+      "Cinematic Video Gallery & Modal Player",
+      "Transparent Service Tier Matrix",
+      "Interactive Client Testimonial Slider",
+      "One-Click Booking & WhatsApp Handover",
+      "Mobile Responsive Media Grid",
+    ],
+    keyFeatures: [
+      {
+        title: "Interactive Reel Showcase",
+        description: "High-impact video previews with instantaneous playback on hover.",
+      },
+      {
+        title: "Transparent Pricing Tiers",
+        description: "Clear package breakdowns eliminating back-and-forth pricing negotiations.",
+      },
+    ],
+    architecture: [
+      "Frontend: React with smooth CSS transform pipelines.",
+      "Styling: Bespoke Tailwind utility system with high-contrast obsidian tones.",
+      "Hosting: Edge-delivered on Vercel.",
+    ],
+  },
+  {
+    id: "aqua-plumbing",
+    slug: "aqua-plumbing",
+    number: "09",
+    title: "AQUA PLUMBING",
+    client: "Aqua Plumbing & Heating Solutions",
+    category: "Local Services & Lead-Gen",
+    industrySlug: "healthcare-clinics",
+    serviceSlugs: ["web-development", "technical-seo", "performance-optimization"],
+    tagline: "Local business lead-generation engine designed to get the phone ringing.",
+    description:
+      "A local plumber website designed to get the phone to ring — featuring an interactive quote form front and centre, plain pricing, and rapid mobile booking.",
+    impact: "+185% Monthly Inbound Calls",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Vercel", "Local SEO Schema"],
+    role: "Full Stack Developer & SEO Strategist",
+    year: "2026",
+    image: "/images/projects/alp-buildcon.jpg",
+    liveUrl: "https://aqua-plumbing-nev.vercel.app/",
+    challenge:
+      "Local trade businesses lose urgent customer inquiries when their website takes longer than 2 seconds to load or buries phone numbers.",
+    solution:
+      "We built an ultra-fast, mobile-first lead generation platform with sticky click-to-call bars, transparent service rate cards, and an instant quote form.",
+    deliverables: [
+      "High-Converting Quote Calculation Form",
+      "Sticky Mobile Emergency Call & Location Bar",
+      "Local Service Area SEO Matrix (JSON-LD LocalBusiness)",
+      "Verified Customer Reviews & Trust Badges",
+      "Sub-600ms Mobile Page Load Speed",
+    ],
+    keyFeatures: [
+      {
+        title: "Instant Quote Engine",
+        description: "30-second inquiry form capturing service category, emergency status, and contact details.",
+      },
+      {
+        title: "One-Tap Emergency Calling",
+        description: "Prominent floating mobile action buttons routing urgent service calls directly to dispatch.",
+      },
+    ],
+    architecture: [
+      "Frontend: Next.js + React with zero bloat for instant mobile loading.",
+      "SEO: Rich LocalBusiness and Service schema for top Google Maps positioning.",
+      "Hosting: Vercel serverless edge network.",
+    ],
+  },
+  {
+    id: "silvane-estates",
+    slug: "silvane-estates",
+    number: "10",
+    title: "SILVANE ESTATES",
+    client: "Silvane Private Architectural Residences",
+    category: "Luxury Real Estate & Estates",
+    industrySlug: "construction-real-estate",
+    serviceSlugs: ["creative-web-experiences", "ui-ux-implementation", "frontend-engineering"],
+    tagline: "Private architectural residences presented through slow editorial pacing and quiet luxury.",
+    description:
+      "Private architectural residences — slow editorial pacing, museum prose, quiet luxury, and discreet private acquisition flows.",
+    impact: "99+ Core Web Vitals • Private Acquisitions",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Vercel", "TypeScript"],
+    role: "Lead Architectural & UX Engineer",
+    year: "2026",
+    image: "/images/projects/property-broker.jpg",
+    liveUrl: "https://silvane-nev.vercel.app/",
+    challenge:
+      "Ultra-luxury architectural estates require museum-grade editorial pacing and high confidentiality rather than mass-market listing spam.",
+    solution:
+      "We engineered a museum-grade digital showcase utilizing warm neutral palettes, serene typography pairing, and private investor dossier gates.",
+    deliverables: [
+      "Editorial Architectural Portfolio Layout",
+      "High-Resolution Residence Lookbook & Spec Sheets",
+      "Confidential Investor Inquiry & Private Tour Flow",
+      "Custom Typography & Smooth Ambient Parallax",
+      "Sub-Second Edge Cached Experience",
+    ],
+    keyFeatures: [
+      {
+        title: "Quiet Luxury Aesthetic",
+        description: "Editorial typography with spacious grid rhythm and serene neutral color palette.",
+      },
+      {
+        title: "Private Acquisition Gate",
+        description: "Confidential inquiry mechanism for verified high-net-worth buyers.",
+      },
+    ],
+    architecture: [
+      "Frontend: React 19 + Tailwind CSS with responsive luxury glass styling.",
+      "Typography: Editorial serif accents paired with modern minimalist sans.",
+      "Hosting: Globally edge-served on Vercel.",
+    ],
+  },
+  {
+    id: "kevin-vfx",
+    slug: "kevin-vfx",
+    number: "11",
+    title: "KEVIN VFX",
+    client: "Kevin George VFX & Post-Production",
+    category: "VFX & Visual Media",
+    industrySlug: "creative-agencies",
+    serviceSlugs: ["creative-web-experiences", "frontend-engineering", "performance-optimization"],
+    tagline: "Personal brand and high-craft showreel showcase for an elite visual effects artist.",
+    description:
+      "Personal brand for a visual effects editor — featuring long-form showreels, breakdown reels, and one clear commercial booking path.",
+    impact: "4.5x Commercial Inquiry Rate",
+    technologies: ["React", "Tailwind CSS", "JavaScript", "Vercel", "Video CDN"],
+    role: "Creative Web Engineer",
+    year: "2026",
+    image: "/images/projects/creavo.jpg",
+    liveUrl: "https://www.kevingeorgevfx.com/",
+    challenge:
+      "VFX artists must present heavy visual effects footage without UI lag, dropped frames, or complex booking steps.",
+    solution:
+      "We created a dark luxury portfolio with hardware-accelerated video modal previews, project breakdown timelines, and transparent commercial hiring rates.",
+    deliverables: [
+      "Hardware-Accelerated Showreel Viewer",
+      "Before & After VFX Breakdown Sliders",
+      "Commercial Retainer & Project Booking Funnel",
+      "Dark Obsidian Glass Aesthetic",
+      "Mobile-Optimized Touch Video Player",
+    ],
+    keyFeatures: [
+      {
+        title: "Cinematic Showreel Hub",
+        description: "Zero-latency high-definition video modal viewer with custom player controls.",
+      },
+      {
+        title: "Direct Retainer Flow",
+        description: "One-click scheduling bridge for commercial agencies and studio producers.",
+      },
+    ],
+    architecture: [
+      "Frontend: React with optimized video playback buffers.",
+      "Hosting: Vercel Global Edge CDN.",
+      "Performance: 60fps smooth animations across desktop and mobile.",
+    ],
+  },
+  {
+    id: "ai-startup-saas",
+    slug: "ai-startup-saas",
+    number: "12",
+    title: "AI STARTUP SAAS",
+    client: "Next-Gen AI Intelligence Platform",
+    category: "SaaS & AI Technology",
+    industrySlug: "saas-growth-tools",
+    serviceSlugs: ["web-development", "frontend-engineering", "ui-ux-implementation"],
+    tagline: "Modern AI SaaS product landing with interactive feature breakdowns and launch funnels.",
+    description:
+      "Modern AI product landing — clean feature story, sharp messaging, and high-converting acquisition path built for product launch.",
+    impact: "+260% Beta Waitlist Signups",
+    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    role: "Full Stack SaaS Engineer",
+    year: "2026",
+    image: "/images/projects/review-funnel.jpg",
+    liveUrl: "https://ai-startup-saas.vercel.app/",
+    challenge:
+      "Early-stage AI products frequently struggle to communicate their core value quickly to prospective users.",
+    solution:
+      "We designed a crisp, high-clarity SaaS landing page featuring interactive live feature demos, transparent ROI metrics, and single-click signup onboarding.",
+    deliverables: [
+      "High-Converting SaaS Landing Page Architecture",
+      "Interactive AI Feature Breakdown & Live Demos",
+      "Tiered Subscription & Pricing Matrix",
+      "Automated Beta Waitlist & Stripe-Ready Flow",
+      "SEO-Optimized SaaS Marketing Engine",
+    ],
+    keyFeatures: [
+      {
+        title: "Interactive Feature Walkthrough",
+        description: "Hands-on UI demonstrations highlighting core productivity workflows.",
+      },
+      {
+        title: "High-Converting Waitlist Funnel",
+        description: "Frictionless email capture with automated referral incentives.",
+      },
+    ],
+    architecture: [
+      "Frontend: React 19 + TypeScript with Tailwind CSS.",
+      "Edge Functions: Serverless API endpoints for real-time waitlist processing.",
+      "Deployment: Vercel Edge Network with sub-second worldwide loading.",
+    ],
+  },
 ];
 
 export const featuredProject =
