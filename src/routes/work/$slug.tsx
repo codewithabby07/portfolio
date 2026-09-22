@@ -20,13 +20,18 @@ export const Route = createFileRoute("/work/$slug")({
     if (!project) return {};
     return {
       meta: [
-        { title: `${project.title} — Case Study | CodeWithAbby Studio` },
-        { name: "description", content: project.description },
+        { title: `${project.title} — Case Study & Live Architecture | CodeWithAbby` },
+        { name: "description", content: `${project.tagline} ${project.description}` },
         { property: "og:title", content: `${project.title} — Case Study | CodeWithAbby Studio` },
         { property: "og:description", content: project.description },
         { property: "og:url", content: `${site.url}/work/${project.slug}` },
         { property: "og:image", content: `${site.url}${project.image}` },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: `${project.title} — Case Study | CodeWithAbby` },
+        { name: "twitter:description", content: project.description },
+        { name: "twitter:image", content: `${site.url}${project.image}` },
       ],
+      links: [{ rel: "canonical", href: `${site.url}/work/${project.slug}` }],
     };
   },
 });
@@ -39,8 +44,61 @@ function CaseStudyDetail() {
   const currentIndex = projects.findIndex((p) => p.slug === project.slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
+  const caseStudySchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: `${project.title} — Case Study`,
+    headline: project.tagline,
+    description: project.description,
+    image: `${site.url}${project.image}`,
+    url: `${site.url}/work/${project.slug}`,
+    creator: {
+      "@type": "Person",
+      name: "Syed Abbas Ali",
+      url: `${site.url}/`,
+    },
+    provider: {
+      "@type": "Organization",
+      name: "CodeWithAbby",
+      url: `${site.url}/`,
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${site.url}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Work",
+        item: `${site.url}/work`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: project.title,
+        item: `${site.url}/work/${project.slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navigation />
 
       <main className="pt-28 sm:pt-36 pb-24 lg:pb-32">

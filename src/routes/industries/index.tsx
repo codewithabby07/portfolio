@@ -8,20 +8,26 @@ export const Route = createFileRoute("/industries/")({
   component: IndustriesIndex,
   head: () => ({
     meta: [
-      { title: "Industries We Serve | CodeWithAbby Studio" },
+      { title: "Industry-Specific Web Solutions & Commercial Frameworks | CodeWithAbby" },
       {
         name: "description",
         content:
-          "Custom websites engineered for Real Estate, Healthcare, Creative Studios, E-Commerce, and SaaS businesses.",
+          "Tailored custom websites engineered for Construction & Real Estate, Healthcare & Dental Clinics, Creative Studios, E-Commerce Brands, and SaaS Platforms.",
       },
-      { property: "og:title", content: "Industries We Serve | CodeWithAbby Studio" },
+      { property: "og:title", content: "Industry-Specific Web Solutions | CodeWithAbby" },
       {
         property: "og:description",
         content:
-          "Custom websites engineered for Real Estate, Healthcare, Creative Studios, E-Commerce, and SaaS businesses.",
+          "Tailored custom websites engineered for Construction & Real Estate, Healthcare & Dental Clinics, Creative Studios, E-Commerce Brands, and SaaS Platforms.",
       },
       { property: "og:url", content: `${site.url}/industries` },
+      { property: "og:image", content: `${site.url}/images/og.jpg` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Industry-Specific Web Solutions | CodeWithAbby" },
+      { name: "twitter:description", content: "Custom websites engineered for commercial industry sectors." },
+      { name: "twitter:image", content: `${site.url}/images/og.jpg` },
     ],
+    links: [{ rel: "canonical", href: `${site.url}/industries` }],
   }),
 });
 

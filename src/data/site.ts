@@ -5,15 +5,15 @@ export const site = {
   brand: "CODEWITHABBY",
   name: "Abby",
   fullName: "Syed Abbas Ali",
-  url: "https://codwithabby.vercel.app",
+  url: "https://codewithabby-portfolio.vercel.app",
   email: "codewithabby07@gmail.com",
   phone: "+91 7055859219",
   whatsapp: "https://wa.me/917055859219",
   jobTitle: "Founder & Lead Full Stack Developer | CodeWithAbby Studio",
   locale: "en_US",
-  title: "CodeWithAbby — Web & Digital Studio | Founded by Syed Abbas Ali",
+  title: "CodeWithAbby — Custom Web Development & Digital Studio | Syed Abbas Ali",
   description:
-    "CodeWithAbby is a premium web & digital studio founded by Syed Abbas Ali. Engineering fast, bespoke digital platforms, WebGL experiences, and custom web applications for ambitious brands worldwide.",
+    "CodeWithAbby is a boutique custom web development studio founded by Syed Abbas Ali. Engineering high-performance React & Next.js websites, WebGL experiences, and conversion-focused web applications for businesses in the US, UK, UAE, Canada, Australia, India, and worldwide.",
   portrait: {
     src: "/images/portrait.jpg",
     alt: "Portrait of Syed Abbas Ali (Abby), Founder & Lead Developer at CodeWithAbby.",
@@ -75,7 +75,17 @@ export const site = {
     { label: "Instagram", href: "https://www.instagram.com/codewithabby07/" },
     { label: "X", href: "https://x.com/codewithabby07" },
   ],
-  footerNote: "Based in Delhi, India • Serving Clients Worldwide",
+  targetMarkets: [
+    "United States",
+    "United Kingdom",
+    "United Arab Emirates",
+    "Canada",
+    "Australia",
+    "India",
+    "Europe",
+    "Worldwide",
+  ],
+  footerNote: "Serving Clients Across the US, UK, UAE, Australia, Canada, India & Worldwide",
   availabilityStatus: "Available for Q2 2026 Studio Projects",
   googleVerification: "google06b6930185313ea1",
   bingVerification: "",
@@ -83,3 +93,4 @@ export const site = {
 
 export type NavItem = (typeof site.nav)[number];
 export type SocialLink = (typeof site.socials)[number];
+

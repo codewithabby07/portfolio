@@ -10,20 +10,26 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
   head: () => ({
     meta: [
-      { title: "About | CodeWithAbby Web Studio" },
+      { title: "About CodeWithAbby | Independent Web Studio Founded by Syed Abbas Ali" },
       {
         name: "description",
         content:
-          "CodeWithAbby is an independent digital studio founded by Syed Abbas Ali in Delhi, building high-speed, custom web platforms for modern businesses.",
+          "CodeWithAbby is an independent digital studio founded by Syed Abbas Ali, building high-speed, custom web platforms for ambitious businesses worldwide.",
       },
-      { property: "og:title", content: "About | CodeWithAbby Web Studio" },
+      { property: "og:title", content: "About CodeWithAbby | Independent Web Studio" },
       {
         property: "og:description",
         content:
-          "CodeWithAbby is an independent digital studio founded by Syed Abbas Ali in Delhi, building high-speed, custom web platforms for modern businesses.",
+          "CodeWithAbby is an independent digital studio founded by Syed Abbas Ali, building high-speed, custom web platforms for ambitious businesses worldwide.",
       },
       { property: "og:url", content: `${site.url}/about` },
+      { property: "og:image", content: `${site.url}/images/og.jpg` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "About CodeWithAbby | Independent Web Studio" },
+      { name: "twitter:description", content: "Independent digital studio founded by Syed Abbas Ali." },
+      { name: "twitter:image", content: `${site.url}/images/og.jpg` },
     ],
+    links: [{ rel: "canonical", href: `${site.url}/about` }],
   }),
 });
 

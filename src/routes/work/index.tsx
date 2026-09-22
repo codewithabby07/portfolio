@@ -11,20 +11,26 @@ export const Route = createFileRoute("/work/")({
   component: WorkIndex,
   head: () => ({
     meta: [
-      { title: "Client Work & Live Websites | CodeWithAbby Studio" },
+      { title: "Client Work & Live Web Projects | CodeWithAbby Studio" },
       {
         name: "description",
         content:
-          "Explore production websites and digital experiences built by CodeWithAbby for real businesses. Live links, case studies, and proven results.",
+          "Explore production websites and digital experiences built by CodeWithAbby for real businesses. Live links, case studies, and verified performance benchmarks.",
       },
-      { property: "og:title", content: "Client Work & Live Websites | CodeWithAbby Studio" },
+      { property: "og:title", content: "Client Work & Live Web Projects | CodeWithAbby Studio" },
       {
         property: "og:description",
         content:
-          "Explore production websites and digital experiences built by CodeWithAbby for real businesses. Live links, case studies, and proven results.",
+          "Explore production websites and digital experiences built by CodeWithAbby for real businesses. Live links, case studies, and verified performance benchmarks.",
       },
       { property: "og:url", content: `${site.url}/work` },
+      { property: "og:image", content: `${site.url}/images/og.jpg` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Client Work & Live Web Projects | CodeWithAbby Studio" },
+      { name: "twitter:description", content: "Explore production websites and digital experiences built by CodeWithAbby." },
+      { name: "twitter:image", content: `${site.url}/images/og.jpg` },
     ],
+    links: [{ rel: "canonical", href: `${site.url}/work` }],
   }),
 });
 

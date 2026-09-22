@@ -19,12 +19,18 @@ export const Route = createFileRoute("/industries/$slug")({
     if (!industry) return {};
     return {
       meta: [
-        { title: `${industry.title} Digital Solutions | CodeWithAbby Studio` },
-        { name: "description", content: industry.description },
-        { property: "og:title", content: `${industry.title} Digital Solutions | CodeWithAbby Studio` },
+        { title: `${industry.title} Website Development & Digital Architecture | CodeWithAbby` },
+        { name: "description", content: `${industry.headline} ${industry.description}` },
+        { property: "og:title", content: `${industry.title} Web Solutions | CodeWithAbby` },
         { property: "og:description", content: industry.description },
         { property: "og:url", content: `${site.url}/industries/${industry.slug}` },
+        { property: "og:image", content: `${site.url}/images/og.jpg` },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: `${industry.title} Web Solutions | CodeWithAbby` },
+        { name: "twitter:description", content: industry.description },
+        { name: "twitter:image", content: `${site.url}/images/og.jpg` },
       ],
+      links: [{ rel: "canonical", href: `${site.url}/industries/${industry.slug}` }],
     };
   },
 });
@@ -37,8 +43,54 @@ function IndustryDetail() {
     industry.projectSlugs.includes(p.slug) || p.industrySlug === industry.slug
   );
 
+  const industrySchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: `${industry.title} Website Solutions`,
+    description: industry.description,
+    url: `${site.url}/industries/${industry.slug}`,
+    publisher: {
+      "@type": "Person",
+      name: "Syed Abbas Ali",
+      url: `${site.url}/`,
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${site.url}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Industries",
+        item: `${site.url}/industries`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: industry.shortTitle,
+        item: `${site.url}/industries/${industry.slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(industrySchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navigation />
 
       <main className="pt-28 sm:pt-36 pb-24 lg:pb-32">

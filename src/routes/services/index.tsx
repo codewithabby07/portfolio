@@ -8,20 +8,26 @@ export const Route = createFileRoute("/services/")({
   component: ServicesIndex,
   head: () => ({
     meta: [
-      { title: "Services | CodeWithAbby Web Studio" },
+      { title: "Custom Web Development Services & Technical Engineering | CodeWithAbby" },
       {
         name: "description",
         content:
-          "Custom web development, frontend engineering, UI/UX design, and performance optimization for growing businesses.",
+          "Full-stack custom web development, React/Next.js frontend engineering, UI/UX architecture, technical SEO, and sub-second performance optimization.",
       },
-      { property: "og:title", content: "Services | CodeWithAbby Web Studio" },
+      { property: "og:title", content: "Custom Web Development Services | CodeWithAbby" },
       {
         property: "og:description",
         content:
-          "Custom web development, frontend engineering, UI/UX design, and performance optimization for growing businesses.",
+          "Full-stack custom web development, React/Next.js frontend engineering, UI/UX architecture, technical SEO, and sub-second performance optimization.",
       },
       { property: "og:url", content: `${site.url}/services` },
+      { property: "og:image", content: `${site.url}/images/og.jpg` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Custom Web Development Services | CodeWithAbby" },
+      { name: "twitter:description", content: "Full-stack custom web development and performance engineering." },
+      { name: "twitter:image", content: `${site.url}/images/og.jpg` },
     ],
+    links: [{ rel: "canonical", href: `${site.url}/services` }],
   }),
 });
 

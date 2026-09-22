@@ -19,12 +19,18 @@ export const Route = createFileRoute("/services/$slug")({
     if (!service) return {};
     return {
       meta: [
-        { title: `${service.title} | CodeWithAbby Digital Studio` },
-        { name: "description", content: service.summary },
-        { property: "og:title", content: `${service.title} | CodeWithAbby Digital Studio` },
+        { title: `${service.title} — Custom Engineering & Deliverables | CodeWithAbby` },
+        { name: "description", content: `${service.tagline} ${service.summary}` },
+        { property: "og:title", content: `${service.title} | CodeWithAbby Studio` },
         { property: "og:description", content: service.summary },
         { property: "og:url", content: `${site.url}/services/${service.slug}` },
+        { property: "og:image", content: `${site.url}/images/og.jpg` },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: `${service.title} | CodeWithAbby` },
+        { name: "twitter:description", content: service.summary },
+        { name: "twitter:image", content: `${site.url}/images/og.jpg` },
       ],
+      links: [{ rel: "canonical", href: `${site.url}/services/${service.slug}` }],
     };
   },
 });
@@ -37,8 +43,84 @@ function ServiceDetail() {
     p.serviceSlugs.includes(service.slug)
   );
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    serviceType: service.shortTitle,
+    description: service.description,
+    provider: {
+      "@type": "Person",
+      name: "Syed Abbas Ali",
+      url: `${site.url}/`,
+    },
+    areaServed: [
+      { "@type": "Country", name: "United States" },
+      { "@type": "Country", name: "United Kingdom" },
+      { "@type": "Country", name: "United Arab Emirates" },
+      { "@type": "Country", name: "Canada" },
+      { "@type": "Country", name: "Australia" },
+      { "@type": "Country", name: "India" },
+    ],
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      url: `${site.url}/contact`,
+    },
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: service.faqs.map((f: { question: string; answer: string }) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.answer,
+      },
+    })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${site.url}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: `${site.url}/services`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: service.shortTitle,
+        item: `${site.url}/services/${service.slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navigation />
 
       <main className="pt-28 sm:pt-36 pb-24 lg:pb-32">

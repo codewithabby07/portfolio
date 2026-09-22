@@ -45,7 +45,6 @@ export const Route = createRootRoute({
       { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
       { rel: "manifest", href: "/__grok/manifest.webmanifest" },
       { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: `${site.url}/` },
       { rel: "preconnect", href: "https://api.fontshare.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",

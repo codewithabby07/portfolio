@@ -22,7 +22,13 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: site.title },
       { property: "og:description", content: site.description },
       { property: "og:url", content: `${site.url}/` },
+      { property: "og:image", content: `${site.url}/images/og.jpg` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: site.title },
+      { name: "twitter:description", content: site.description },
+      { name: "twitter:image", content: `${site.url}/images/og.jpg` },
     ],
+    links: [{ rel: "canonical", href: `${site.url}/` }],
   }),
 });
 

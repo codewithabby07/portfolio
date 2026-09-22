@@ -11,20 +11,26 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
   head: () => ({
     meta: [
-      { title: "Contact CodeWithAbby | Direct Founder Collaboration" },
+      { title: "Contact CodeWithAbby | Direct Founder Web Engineering & Inquiries" },
       {
         name: "description",
         content:
-          "Start your project with CodeWithAbby. Direct collaboration with Syed Abbas Ali for high-performance websites, custom web applications, and interactive 3D experiences.",
+          "Start your website project with CodeWithAbby. Direct collaboration with Syed Abbas Ali for high-performance custom websites, React/Next.js platforms, and commercial web applications.",
       },
       { property: "og:title", content: "Contact CodeWithAbby | Direct Founder Collaboration" },
       {
         property: "og:description",
         content:
-          "Start your project with CodeWithAbby. Direct collaboration with Syed Abbas Ali for high-performance websites, custom web applications, and interactive 3D experiences.",
+          "Start your website project with CodeWithAbby. Direct collaboration with Syed Abbas Ali for high-performance custom websites, React/Next.js platforms, and commercial web applications.",
       },
       { property: "og:url", content: `${site.url}/contact` },
+      { property: "og:image", content: `${site.url}/images/og.jpg` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Contact CodeWithAbby | Direct Founder Collaboration" },
+      { name: "twitter:description", content: "Start your custom web development project with Syed Abbas Ali." },
+      { name: "twitter:image", content: `${site.url}/images/og.jpg` },
     ],
+    links: [{ rel: "canonical", href: `${site.url}/contact` }],
   }),
 });
 

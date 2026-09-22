@@ -51,11 +51,11 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
-              Full Stack Developer building websites and web apps for founders, startups, and businesses. Delhi, India.
+              Full Stack Web Development &amp; Technical Engineering Studio. Building high-performance React and Next.js digital platforms for ambitious businesses worldwide.
             </p>
             <div className="mt-6 flex items-center gap-2 text-xs tracking-wider text-white/40 uppercase">
               <span className="h-1.5 w-1.5 rounded-full bg-[#E44C1F]" />
-              <span>Delhi, India · Remote</span>
+              <span>Global Client Deliveries · US · UK · UAE · India</span>
             </div>
           </div>
 
@@ -70,6 +70,7 @@ export function Footer() {
                 { label: "About", href: "/about" },
                 { label: "Work", href: "/work" },
                 { label: "Services", href: "/services" },
+                { label: "Industries", href: "/industries" },
                 { label: "Blog", href: "/blog" },
                 { label: "FAQ", href: "/#faq" },
                 { label: "Contact", href: "/contact" },

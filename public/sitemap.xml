@@ -1,33 +1,192 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core Top-Level Routes -->
   <url>
-    <loc>https://codwithabby.vercel.app/</loc>
-    <lastmod>2026-09-04</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://codewithabby-portfolio.vercel.app/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://codwithabby.vercel.app/blog</loc>
-    <lastmod>2026-09-04</lastmod>
+    <loc>https://codewithabby-portfolio.vercel.app/work</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://codwithabby.vercel.app/blog/how-i-build-websites-in-6-to-7-days</loc>
-    <lastmod>2026-09-04</lastmod>
+    <loc>https://codewithabby-portfolio.vercel.app/services</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/industries</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/about</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codwithabby.vercel.app/blog/nextjs-vs-wordpress-business-websites</loc>
-    <lastmod>2026-09-04</lastmod>
+    <loc>https://codewithabby-portfolio.vercel.app/contact</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/team</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/blog</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Core Services -->
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/services/web-development</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/services/frontend-engineering</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codwithabby.vercel.app/blog/case-study-alp-buildcon-custom-architecture</loc>
-    <lastmod>2026-09-04</lastmod>
+    <loc>https://codewithabby-portfolio.vercel.app/services/ui-ux-implementation</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/services/creative-web-experiences</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/services/technical-seo</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/services/performance-optimization</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Industry Frameworks -->
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/industries/construction-real-estate</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/industries/healthcare-clinics</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/industries/creative-agencies</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/industries/ecommerce-retail</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/industries/saas-growth-tools</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Case Studies -->
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/work/alp-buildcon</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/work/creavo</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/work/zainca</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/work/dentiva</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/work/review-funnel</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/work/property-broker</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Commercial Content Articles -->
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/blog/how-i-build-websites-in-6-to-7-days</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/blog/nextjs-vs-wordpress-business-websites</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/blog/case-study-alp-buildcon-custom-architecture</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/blog/custom-website-development-cost-guide</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://codewithabby-portfolio.vercel.app/blog/essential-features-high-converting-business-websites</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>
