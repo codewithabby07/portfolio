@@ -34,15 +34,16 @@ export const Route = createFileRoute("/about")({
 });
 
 /* ─────────────────────────────────────────────────────────────
-   Interactive 360° Dynamic Tech Orbit Universe (NEV Showcase Inspired)
+   Interactive 360° Dynamic Tech Orbit Universe (Dual-Orbit System)
    ───────────────────────────────────────────────────────────── */
-const ORBIT_TECHS = [
+const OUTER_ORBIT_TECHS = [
   {
     name: "React 19",
     role: "Component Architecture",
+    metric: "60fps Fluid UI",
     color: "#61DAFB",
     svg: (
-      <svg viewBox="0 0 128 128" className="w-5 h-5 sm:w-7 sm:h-7">
+      <svg viewBox="0 0 128 128" className="w-5 h-5 sm:w-6 sm:h-6">
         <g fill="#61DAFB">
           <circle cx="64" cy="64" r="11.4" />
           <path d="M107.3 45.2c-2.3-.8-4.7-1.6-7-2.3.6-2.4 1.1-4.8 1.5-7.1-2.1.3-4.1.5-6.2.6-.4-2-.8-2.9-1.1-4.2-2.2.9-4.4 1.8-6.5 2.5-4.2-2.8-8.3-5.8-12-9.2-1.6 5.6-2.8 11.2-3.6 17-.3 1.3-.5 2.5-.6 3.8-4.5-.2-9-.1-13.5.2-.1-1.3-.3-2.6-.4-3.9-.8-5.8-2-11.4-3.6-17-3.8 3.5-7.8 6.4-12.1 9.2-2.1-.7-4.2-1.5-6.3-2.3-.4 1.4-.7 2.8-1.1 4.2-2.2-.1-4.3-.3-6.4-.6.4 2.3.9 4.7 1.5 7-2.4.7-4.8 1.4-7.1 2.3-4.5 9.7-5 18.8-1.4 27.5 2 5 4.9 9.8 8.7 14.3.7-.9 1.5-1.8 2.2-2.7 3.4-4.7 6.2-9.7 8.5-15-.7-1.4-1.3-2.9-1.9-4.3-2.4.1-4.9.2-7.3.4 1.8 7.7 4.5 14.8 8 21.3-4.5 1.8-8.7 3.2-12.6 4.3 1.7 3.6 3.5 7 5.5 10.3 5.8-.6 11.5-1.7 17.1-3.3-.2-1.3-.4-2.7-.6-4-3.8-1-7.4-2.3-10.8-3.8 3.6 2.6 7.4 5 11.4 7.2 2.2 1.2 4.4 2.3 6.7 3.3 2.2-1 4.4-2.1 6.5-3.3 4 2.2 7.8 4.6 11.4 7.2-3.4-1.5-7-2.8-10.8-3.8-.2 1.3-.4 2.6-.6 4 5.6 1.6 11.3 2.7 17.1 3.3 2-3.3 3.8-6.7 5.5-10.3-3.9-1.1-8.1-2.5-12.6-4.3 3.5-6.5 6.2-13.6 8-21.3-2.4-.2-4.9-.3-7.3-.4-.6 1.4-1.2 2.9-1.9 4.3 2.4 5.3 5.2 10.3 8.5 15 .7.9 1.5 1.8 2.2 2.7 3.8-4.5 6.7-9.3 8.7-14.3 3.6-8.7 3.1-17.8-1.4-27.5z" />
@@ -52,10 +53,11 @@ const ORBIT_TECHS = [
   },
   {
     name: "Next.js",
-    role: "SSR & Edge Performance",
+    role: "SSR & Edge Routing",
+    metric: "Sub-Second TTFB",
     color: "#FFFFFF",
     svg: (
-      <svg viewBox="0 0 180 180" className="w-5 h-5 sm:w-7 sm:h-7">
+      <svg viewBox="0 0 180 180" className="w-5 h-5 sm:w-6 sm:h-6">
         <circle cx="90" cy="90" r="90" fill="#000" />
         <path
           fill="#fff"
@@ -67,10 +69,11 @@ const ORBIT_TECHS = [
   },
   {
     name: "TypeScript",
-    role: "Type-Safe Architecture",
+    role: "Type-Safe Systems",
+    metric: "Zero Runtime Bugs",
     color: "#3178C6",
     svg: (
-      <svg viewBox="0 0 128 128" className="w-5 h-5 sm:w-7 sm:h-7">
+      <svg viewBox="0 0 128 128" className="w-5 h-5 sm:w-6 sm:h-6">
         <rect width="128" height="128" rx="20" fill="#3178C6" />
         <path
           fill="#fff"
@@ -81,10 +84,11 @@ const ORBIT_TECHS = [
   },
   {
     name: "Tailwind CSS",
-    role: "Design Token Systems",
+    role: "Design Token Architecture",
+    metric: "Zero CSS Bloat",
     color: "#38BDF8",
     svg: (
-      <svg viewBox="0 0 128 128" className="w-5 h-5 sm:w-7 sm:h-7">
+      <svg viewBox="0 0 128 128" className="w-5 h-5 sm:w-6 sm:h-6">
         <path
           fill="#38BDF8"
           d="M64.004 25.602c-17.067 0-27.73 8.53-32 25.597C27.731 34.133 17.068 25.602 0 25.602c0 17.065 13.863 32.002 32.004 32.002 17.066 0 27.73-8.537 32-25.602 4.27 8.53 14.933 17.065 32.004 17.065 0-17.067-13.863-32.004-32.004-32.004zm0 12.8c10.656 0 17.062 5.328 19.2 16.002-3.733 8-11.2 12.8-19.2 12.8-10.656 0-17.062-5.328-19.2-16.002 3.733-8 11.2-12.8 19.2-12.8zm-32 19.2c-10.656 0-17.062-5.328-19.2-16.002 3.733-8 11.2-12.8 19.2-12.8 10.656 0 17.062 5.328 19.2 16.002-3.733 8-11.2 12.8-19.2 12.8zm64 0c-10.656 0-17.062-5.328-19.2-16.002 3.733-8 11.2-12.8 19.2-12.8 10.656 0 17.062 5.328 19.2 16.002-3.733 8-11.2 12.8-19.2 12.8z"
@@ -95,9 +99,10 @@ const ORBIT_TECHS = [
   {
     name: "Node.js",
     role: "Backend & Cloud APIs",
+    metric: "High Concurrency",
     color: "#5FA04E",
     svg: (
-      <svg viewBox="0 0 32 32" className="w-5 h-5 sm:w-7 sm:h-7">
+      <svg viewBox="0 0 32 32" className="w-5 h-5 sm:w-6 sm:h-6">
         <path
           fill="#5FA04E"
           d="M16 2.5L3 10v12l13 7.5 13-7.5V10L16 2.5zm0 3.2l10.5 6.1v9.6L16 27.5 5.5 21.4v-9.6L16 5.7z"
@@ -108,19 +113,21 @@ const ORBIT_TECHS = [
   {
     name: "Vercel",
     role: "Global Edge Infrastructure",
+    metric: "99.99% Global Uptime",
     color: "#FFFFFF",
     svg: (
-      <svg viewBox="0 0 76 65" className="w-5 h-5 sm:w-7 sm:h-7">
+      <svg viewBox="0 0 76 65" className="w-5 h-5 sm:w-6 sm:h-6">
         <path fill="#FFFFFF" d="M37.527 0L75.054 65H0L37.527 0z" />
       </svg>
     ),
   },
   {
     name: "TanStack",
-    role: "State, Router & Query",
+    role: "Router & Query Engine",
+    metric: "Instant State Sync",
     color: "#FF4154",
     svg: (
-      <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-7 sm:h-7">
+      <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-6 sm:h-6">
         <path
           fill="#FF4154"
           d="M12 2L2 7l10 5 10-5-10-5zm0 7.8L4.6 7 12 3.8 19.4 7 12 9.8zM2 17l10 5 10-5-2.2-1.1L12 19.8 4.2 15.9 2 17zm0-5l10 5 10-5-2.2-1.1L12 14.8 4.2 10.9 2 12z"
@@ -130,11 +137,65 @@ const ORBIT_TECHS = [
   },
   {
     name: "GitHub",
-    role: "Version & CI/CD Pipelines",
+    role: "CI/CD & Source Control",
+    metric: "100% IP Handover",
     color: "#FFFFFF",
     svg: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 sm:w-7 sm:h-7 text-white">
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-white">
         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+      </svg>
+    ),
+  },
+];
+
+const INNER_ORBIT_TECHS = [
+  {
+    name: "GSAP Motion",
+    role: "60fps Micro-interactions",
+    metric: "Timeline Precision",
+    color: "#0AE448",
+    svg: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 sm:w-5 sm:h-5">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#0AE448" strokeWidth="2" strokeLinecap="round" />
+        <path d="M2 17l10 5 10-5" stroke="#0AE448" strokeWidth="2" strokeLinecap="round" />
+        <path d="M2 12l10 5 10-5" stroke="#0AE448" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    name: "Three.js / 3D",
+    role: "WebGL & Interactive Shaders",
+    metric: "GPU Accelerated",
+    color: "#E44C1F",
+    svg: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 sm:w-5 sm:h-5">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="#E44C1F" strokeWidth="2" />
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="#E44C1F" strokeWidth="2" />
+        <line x1="12" y1="22.08" x2="12" y2="12" stroke="#E44C1F" strokeWidth="2" />
+      </svg>
+    ),
+  },
+  {
+    name: "Technical SEO",
+    role: "JSON-LD & Schema Authority",
+    metric: "100/100 Lighthouse",
+    color: "#10B981",
+    svg: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 sm:w-5 sm:h-5">
+        <circle cx="11" cy="11" r="8" stroke="#10B981" strokeWidth="2" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="#10B981" strokeWidth="2" strokeLinecap="round" />
+        <path d="M11 8v6M8 11h6" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    name: "Vite Engine",
+    role: "Instant HMR & Build Bundler",
+    metric: "Sub-Second Builds",
+    color: "#FFC000",
+    svg: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 sm:w-5 sm:h-5">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#FFC000" />
       </svg>
     ),
   },
@@ -142,18 +203,28 @@ const ORBIT_TECHS = [
 
 function StudioOrbit360() {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const [radius, setRadius] = useState(180);
+  const [outerRadius, setOuterRadius] = useState(195);
+  const [innerRadius, setInnerRadius] = useState(115);
+  const [activeTech, setActiveTech] = useState<{
+    name: string;
+    role: string;
+    metric: string;
+    color: string;
+  } | null>(null);
 
   useEffect(() => {
     const updateRadius = () => {
       if (!wrapRef.current) return;
       const w = wrapRef.current.offsetWidth;
       if (w < 380) {
-        setRadius(105);
+        setOuterRadius(115);
+        setInnerRadius(65);
       } else if (w < 640) {
-        setRadius(135);
+        setOuterRadius(155);
+        setInnerRadius(90);
       } else {
-        setRadius(Math.min(200, Math.floor(w * 0.38)));
+        setOuterRadius(Math.min(220, Math.floor(w * 0.4)));
+        setInnerRadius(Math.min(130, Math.floor(w * 0.24)));
       }
     };
 
@@ -163,64 +234,85 @@ function StudioOrbit360() {
   }, []);
 
   return (
-    <div className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden border border-white/10 bg-[#0a0a0f] p-6 sm:p-12 shadow-2xl flex flex-col items-center justify-center text-center">
-      {/* Ambient background glow */}
+    <div className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden border border-white/10 bg-[#08080c] p-6 sm:p-12 shadow-2xl flex flex-col items-center justify-center text-center">
+      {/* Ambient background lighting */}
       <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(228,76,31,0.12)_0%,transparent_70%)] blur-3xl"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 h-[450px] w-[450px] rounded-full bg-[radial-gradient(circle,rgba(228,76,31,0.15)_0%,transparent_70%)] blur-3xl animate-cta-breathe"
         aria-hidden
       />
 
-      {/* Header Tag */}
-      <div className="relative z-10 mb-6 max-w-xl">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 border border-white/10 px-3 py-1 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#E44C1F]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#E44C1F] animate-pulse" />
-          <span>ENGINEERING ECOSYSTEM</span>
+      {/* Floating Corner Quality Badges */}
+      <div className="hidden lg:flex items-center justify-between w-full relative z-10 mb-2 px-2 text-[11px] font-mono text-neutral-400">
+        <span className="flex items-center gap-1.5 rounded-full bg-white/[0.03] border border-white/10 px-3 py-1">
+          <span className="text-emerald-400">⚡</span> 99+ Core Web Vitals
         </span>
-        <h2 className="font-agency-headline text-2xl sm:text-3xl font-extrabold text-white mt-3">
-          The Right Tools. <span className="text-[#E44C1F]">Zero Framework Dogma.</span>
-        </h2>
-        <p className="text-xs sm:text-sm text-neutral-400 mt-2 max-w-md mx-auto">
-          Every platform is built with modern, battle-tested tools chosen for speed, scalability, and clean ownership.
-        </p>
+        <span className="flex items-center gap-1.5 rounded-full bg-white/[0.03] border border-white/10 px-3 py-1">
+          <span className="text-[#E44C1F]">🛡️</span> 100% Repository Ownership
+        </span>
       </div>
 
-      {/* 360 Orbit Arena */}
+      {/* Header Tag & Live Spotlight */}
+      <div className="relative z-10 mb-4 max-w-xl">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 border border-white/10 px-3.5 py-1 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#E44C1F]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#E44C1F] animate-pulse" />
+          <span>STUDIO TECH ECOSYSTEM</span>
+        </span>
+        <h2 className="font-agency-headline text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3">
+          The Right Tools. <span className="text-[#E44C1F]">Zero Framework Dogma.</span>
+        </h2>
+
+        {/* Dynamic Center Spotlight */}
+        <div className="min-h-[38px] mt-2 flex items-center justify-center">
+          {activeTech ? (
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-mono text-white animate-fade-in">
+              <span className="h-2 w-2 rounded-full" style={{ backgroundColor: activeTech.color }} />
+              <strong className="font-bold">{activeTech.name}:</strong>
+              <span className="text-neutral-300">{activeTech.role}</span>
+              <span className="text-[#E44C1F] text-[10px]">({activeTech.metric})</span>
+            </div>
+          ) : (
+            <p className="text-xs sm:text-sm text-neutral-400 max-w-md mx-auto">
+              Every platform is custom engineered with modern, high-speed tools chosen for conversion and scale.
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* 360 Dual-Orbit Universe */}
       <div
         ref={wrapRef}
-        className="relative z-10 w-[290px] h-[290px] sm:w-[420px] sm:h-[420px] md:w-[480px] md:h-[480px] flex items-center justify-center my-4"
+        className="relative z-10 w-[300px] h-[300px] sm:w-[460px] sm:h-[460px] md:w-[540px] md:h-[540px] flex items-center justify-center my-2"
       >
-        {/* Outer Orbit Ring */}
+        {/* Outer Orbit Dashed Ring */}
         <div className="absolute inset-0 rounded-full border-[1.5px] border-dashed border-white/10 pointer-events-none" />
 
-        {/* Middle Accent Orbit Ring */}
-        <div className="absolute inset-8 sm:inset-12 rounded-full border border-dashed border-[#E44C1F]/25 pointer-events-none" />
+        {/* Middle Accent Dashed Orbit Ring */}
+        <div className="absolute inset-10 sm:inset-16 rounded-full border border-dashed border-[#E44C1F]/20 pointer-events-none" />
 
-        {/* Inner Subtle Ring */}
-        <div className="absolute inset-16 sm:inset-24 rounded-full border border-dashed border-white/5 pointer-events-none" />
+        {/* Inner Orbit Dashed Ring */}
+        <div className="absolute inset-20 sm:inset-32 rounded-full border-[1.5px] border-dashed border-white/10 pointer-events-none" />
 
-        {/* Center Node: CodeWithAbby Founder Portrait */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-28 sm:h-28 rounded-full z-20 p-1 bg-gradient-to-br from-[#E44C1F] to-[#111318] shadow-[0_0_40px_rgba(228,76,31,0.35)] flex items-center justify-center">
-          <div className="w-full h-full rounded-full overflow-hidden border border-white/20 bg-black relative group">
+        {/* Center Node: CODEWITHABBY Agency Logo Emblem */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-28 sm:h-28 rounded-full z-20 p-1.5 bg-gradient-to-br from-[#E44C1F] via-[#ff7a45] to-[#111318] shadow-[0_0_50px_rgba(228,76,31,0.45)] flex items-center justify-center group cursor-pointer">
+          <div className="w-full h-full rounded-full overflow-hidden border-2 border-white/30 bg-[#07070a] flex flex-col items-center justify-center relative p-2">
             <img
-              src="/images/portrait.jpg"
-              alt="Syed Abbas Ali (Abby)"
-              className="w-full h-full object-cover object-[center_12%]"
+              src="/favicon.svg"
+              alt="CODEWITHABBY Agency Logo"
+              className="w-8 h-8 sm:w-11 sm:h-11 object-contain drop-shadow-[0_0_12px_rgba(228,76,31,0.8)] group-hover:scale-110 transition-transform duration-300"
             />
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span className="text-[9px] font-mono font-bold text-white uppercase tracking-wider">
-                Abby
-              </span>
-            </div>
+            <span className="text-[8px] sm:text-[9px] font-mono font-extrabold tracking-wider text-white uppercase mt-0.5 opacity-90">
+              ABBY
+            </span>
           </div>
         </div>
 
-        {/* Orbit Rotating Track */}
+        {/* 1. Outer Orbit Track (Clockwise, 45s) */}
         <div className="absolute inset-0 orbit-track">
-          {ORBIT_TECHS.map((tech, i) => {
-            const count = ORBIT_TECHS.length;
+          {OUTER_ORBIT_TECHS.map((tech, i) => {
+            const count = OUTER_ORBIT_TECHS.length;
             const angle = (i / count) * (Math.PI * 2);
-            const x = Math.cos(angle) * radius;
-            const y = Math.sin(angle) * radius;
+            const x = Math.cos(angle) * outerRadius;
+            const y = Math.sin(angle) * outerRadius;
 
             return (
               <div
@@ -231,13 +323,55 @@ function StudioOrbit360() {
                 }}
               >
                 {/* Counter-Spin Node to keep logo upright */}
-                <div className="orbit-item-counter relative group">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-[#0e0f14]/95 border border-white/15 backdrop-blur-xl shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-115 hover:border-[#E44C1F] hover:shadow-[0_0_25px_rgba(228,76,31,0.4)] cursor-pointer">
+                <div
+                  className="orbit-item-counter relative group"
+                  onMouseEnter={() => setActiveTech(tech)}
+                  onMouseLeave={() => setActiveTech(null)}
+                >
+                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-[#0f1017]/95 border border-white/15 backdrop-blur-xl shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-120 hover:border-[#E44C1F] hover:shadow-[0_0_30px_rgba(228,76,31,0.5)] cursor-pointer">
                     {tech.svg}
                   </div>
 
                   {/* Tooltip on Hover */}
-                  <div className="pointer-events-none absolute -bottom-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-1 bg-[#14151d] border border-white/15 text-white text-[10px] font-mono px-2.5 py-1 rounded-md whitespace-nowrap shadow-2xl z-30 flex flex-col items-center">
+                  <div className="pointer-events-none absolute -bottom-14 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-1 bg-[#14151d] border border-white/20 text-white text-[10px] font-mono px-3 py-1.5 rounded-lg whitespace-nowrap shadow-2xl z-30 flex flex-col items-center">
+                    <span className="font-bold text-white">{tech.name}</span>
+                    <span className="text-[9px] text-[#E44C1F]">{tech.role}</span>
+                    <span className="text-[8px] text-neutral-400">{tech.metric}</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 2. Inner Orbit Track (Counter-Clockwise, 30s) */}
+        <div className="absolute inset-0 orbit-track-inner">
+          {INNER_ORBIT_TECHS.map((tech, i) => {
+            const count = INNER_ORBIT_TECHS.length;
+            const angle = (i / count) * (Math.PI * 2);
+            const x = Math.cos(angle) * innerRadius;
+            const y = Math.sin(angle) * innerRadius;
+
+            return (
+              <div
+                key={tech.name}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                style={{
+                  transform: `translate(${x}px, ${y}px)`,
+                }}
+              >
+                {/* Counter-Spin Node for inner ring */}
+                <div
+                  className="orbit-item-counter-reverse relative group"
+                  onMouseEnter={() => setActiveTech(tech)}
+                  onMouseLeave={() => setActiveTech(null)}
+                >
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-[#14151f]/95 border border-white/20 backdrop-blur-xl shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-120 hover:border-[#E44C1F] hover:shadow-[0_0_25px_rgba(228,76,31,0.5)] cursor-pointer">
+                    {tech.svg}
+                  </div>
+
+                  {/* Tooltip on Hover */}
+                  <div className="pointer-events-none absolute -bottom-14 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-1 bg-[#14151d] border border-white/20 text-white text-[10px] font-mono px-3 py-1.5 rounded-lg whitespace-nowrap shadow-2xl z-30 flex flex-col items-center">
                     <span className="font-bold text-white">{tech.name}</span>
                     <span className="text-[9px] text-[#E44C1F]">{tech.role}</span>
                   </div>
@@ -248,10 +382,15 @@ function StudioOrbit360() {
         </div>
       </div>
 
-      {/* Footer Caption */}
-      <div className="relative z-10 mt-6 flex items-center gap-2 text-[10px] sm:text-xs font-mono text-neutral-400">
-        <span className="h-1.5 w-1.5 rounded-full bg-[#10B981] animate-ping" />
-        <span>360° Interactive Orbit • Hover any tech to pause & inspect</span>
+      {/* Footer Caption & Metrics */}
+      <div className="relative z-10 mt-4 flex flex-wrap items-center justify-center gap-4 text-[10px] sm:text-xs font-mono text-neutral-400">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 border border-white/10">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#10B981] animate-ping" />
+          <span>Dual-Ring 360° Orbit • Hover any tech to inspect</span>
+        </span>
+        <span className="hidden sm:inline-flex items-center gap-1 text-neutral-400">
+          <span>🚀 6–7 Day Sprint Velocity</span>
+        </span>
       </div>
     </div>
   );

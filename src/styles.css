@@ -1110,7 +1110,7 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
-   360° Dynamic Tech Orbit Stack (Inspired by High-Craft Studios)
+   360° Dynamic Tech Orbit Stack (Outer & Inner Orbits)
    ───────────────────────────────────────────────────────────── */
 .orbit-track {
   animation: spinOrbit 45s linear infinite;
@@ -1118,6 +1118,15 @@
 }
 
 .orbit-track:hover {
+  animation-play-state: paused;
+}
+
+.orbit-track-inner {
+  animation: spinOrbitReverse 30s linear infinite;
+  transform-origin: center center;
+}
+
+.orbit-track-inner:hover {
   animation-play-state: paused;
 }
 
@@ -1130,12 +1139,30 @@
   }
 }
 
+@keyframes spinOrbitReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
 .orbit-item-counter {
   animation: counterOrbit 45s linear infinite;
   transform-origin: center center;
 }
 
 .orbit-track:hover .orbit-item-counter {
+  animation-play-state: paused;
+}
+
+.orbit-item-counter-reverse {
+  animation: counterOrbitReverse 30s linear infinite;
+  transform-origin: center center;
+}
+
+.orbit-track-inner:hover .orbit-item-counter-reverse {
   animation-play-state: paused;
 }
 
@@ -1147,4 +1174,59 @@
     transform: rotate(-360deg);
   }
 }
+
+@keyframes counterOrbitReverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Atmospheric CTA Radar Ripple & Ambient Glow Animation
+   ───────────────────────────────────────────────────────────── */
+@keyframes ctaRadarPulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+.animate-cta-radar-1 {
+  animation: ctaRadarPulse 6s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+.animate-cta-radar-2 {
+  animation: ctaRadarPulse 6s cubic-bezier(0.2, 0.8, 0.4, 1) infinite 2s;
+}
+
+.animate-cta-radar-3 {
+  animation: ctaRadarPulse 6s cubic-bezier(0.2, 0.8, 0.4, 1) infinite 4s;
+}
+
+@keyframes ctaGlowBreathe {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.15);
+  }
+}
+
+.animate-cta-breathe {
+  animation: ctaGlowBreathe 7s ease-in-out infinite alternate;
+}
+
 
