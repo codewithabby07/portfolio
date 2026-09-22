@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Reveal, SectionLabel } from "@/components/ui";
+import { StudioOrbit360 } from "@/components/StudioOrbit360";
 
 export function About() {
   return (
@@ -104,6 +105,11 @@ export function About() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* 360 Dynamic Orbit Stack with Exact Paper Texture Background */}
+        <div className="mt-16">
+          <StudioOrbit360 />
         </div>
       </div>
     </section>
