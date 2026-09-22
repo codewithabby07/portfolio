@@ -5,7 +5,7 @@ export const site = {
   brand: "CODEWITHABBY",
   name: "Abby",
   fullName: "Syed Abbas Ali",
-  url: "https://codewithabby-portfolio.vercel.app",
+  url: "https://codwithabby.vercel.app",
   email: "codewithabby07@gmail.com",
   phone: "+91 7055859219",
   whatsapp: "https://wa.me/917055859219",
