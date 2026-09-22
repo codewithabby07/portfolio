@@ -1,4 +1,4 @@
-import { Reveal } from "@/components/ui";
+import { Reveal, HandwrittenWord } from "@/components/ui";
 
 const testimonials = [
   {
@@ -46,12 +46,14 @@ export function Testimonials() {
               className="display text-5xl leading-none text-dark md:text-7xl"
             >
               WHAT CLIENTS{" "}
-              <em
-                className="not-italic text-accent"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
-                Say.
-              </em>
+              <HandwrittenWord variant="swoosh" color="#E44C1F">
+                <em
+                  className="not-italic text-accent"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  Say.
+                </em>
+              </HandwrittenWord>
             </h2>
           </div>
         </Reveal>
