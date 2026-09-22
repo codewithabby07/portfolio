@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { services } from "@/data/services";
-import { Reveal, SectionLabel } from "@/components/ui";
+import { Reveal, SectionLabel, HandwrittenWord } from "@/components/ui";
 
 export function Services() {
   return (
@@ -23,7 +23,10 @@ export function Services() {
               id="services-heading"
               className="font-display mt-2 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white"
             >
-              Studio Services.
+              Studio{" "}
+              <HandwrittenWord variant="swoosh" color="#E44C1F">
+                <span className="text-[#E44C1F]">Services.</span>
+              </HandwrittenWord>
             </h2>
           </div>
           <div className="flex flex-col gap-2 max-w-md">

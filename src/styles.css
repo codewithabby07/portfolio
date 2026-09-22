@@ -1229,4 +1229,49 @@
   animation: ctaGlowBreathe 7s ease-in-out infinite alternate;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Scroll Mask Word Reveal Animation (Matching NEV Showcase)
+   ───────────────────────────────────────────────────────────── */
+.mwrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
+}
+
+.mw {
+  display: inline-block;
+  transform: translateY(118%);
+  opacity: 0;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.is-in .mw,
+.mwrap.is-in .mw,
+.mask.anim .mw {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Interactive Signature CTA Button Hover Physics
+   ───────────────────────────────────────────────────────────── */
+.btn-arr {
+  display: inline-block;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.luxury-btn-primary:hover .btn-arr,
+.btn-nev-primary:hover .btn-arr,
+.luxury-btn-secondary:hover .btn-arr,
+a:hover > .btn-arr,
+button:hover > .btn-arr,
+.group:hover .btn-arr {
+  transform: translateX(4px) scale(1.08);
+}
+
+
 

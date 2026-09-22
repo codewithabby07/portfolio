@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { site } from "@/data/site";
-import { Reveal, SectionLabel } from "@/components/ui";
+import { Reveal, SectionLabel, HandwrittenWord } from "@/components/ui";
 
 export function ContactCTA() {
   const [copied, setCopied] = useState(false);
@@ -42,7 +42,9 @@ export function ContactCTA() {
             className="font-display mt-4 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.12] max-w-3xl mx-auto"
           >
             Have a project in mind?{" "}
-            <span className="text-[#E44C1F]">Let's talk.</span>
+            <HandwrittenWord variant="swoosh" color="#E44C1F">
+              <span className="text-[#E44C1F]">Let's talk.</span>
+            </HandwrittenWord>
           </h2>
 
           <p className="mt-5 max-w-xl mx-auto text-base sm:text-lg text-[#86868b] leading-relaxed">

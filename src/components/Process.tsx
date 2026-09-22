@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Reveal, SectionLabel } from "@/components/ui";
+import { Reveal, SectionLabel, HandwrittenWord } from "@/components/ui";
 
 const steps = [
   {
@@ -55,7 +55,10 @@ export function Process() {
                 id="process-heading"
                 className="font-display mt-2 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white"
               >
-                How We Deliver.
+                Four steps,{" "}
+                <HandwrittenWord variant="wave" color="#E44C1F">
+                  <span className="text-[#E44C1F]">no dead ends.</span>
+                </HandwrittenWord>
               </h2>
             </div>
             <p className="max-w-xs text-sm text-[#86868b]">

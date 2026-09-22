@@ -5,6 +5,7 @@ import { site } from "@/data/site";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { ProjectModal } from "@/components/ProjectModal";
+import { HandwrittenWord } from "@/components/ui";
 import { cn } from "@/lib/cn";
 
 export const Route = createFileRoute("/work/")({
@@ -77,7 +78,10 @@ function WorkIndex() {
           {/* Hero Header */}
           <div className="border-b border-white/[0.08] pb-12">
             <h1 className="font-editorial-serif italic text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-white leading-[1.05]">
-              Our <span className="text-[#E44C1F]">Work</span>
+              Our{" "}
+              <HandwrittenWord variant="swoosh" color="#E44C1F">
+                <span className="text-[#E44C1F]">Work</span>
+              </HandwrittenWord>
             </h1>
 
             <p className="mt-4 max-w-2xl text-base sm:text-lg text-neutral-400 leading-relaxed font-sans">

@@ -1,7 +1,7 @@
 import { useState, useRef, type MouseEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { projects, isFilled, type Project } from "@/data/projects";
-import { MediaReveal, Reveal, SectionLabel } from "@/components/ui";
+import { MediaReveal, Reveal, SectionLabel, HandwrittenWord } from "@/components/ui";
 import { ProjectModal } from "@/components/ProjectModal";
 import { cn } from "@/lib/cn";
 import { usePointerFine, useReducedMotion } from "@/lib/motion";
@@ -236,7 +236,7 @@ export function Work() {
                 id="work-heading"
                 className="font-display mt-2 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950"
               >
-                Selected Work
+                Selected <HandwrittenWord variant="swoosh"><span className="text-[#E44C1F]">Work</span></HandwrittenWord>
               </h2>
               <p className="mt-2 text-sm text-neutral-600 max-w-xl">
                 Real production web platforms designed and engineered with custom layouts, 60fps animations, and live deployments.

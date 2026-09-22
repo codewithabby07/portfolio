@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Reveal } from "@/components/ui";
+import { Reveal, HandwrittenWord } from "@/components/ui";
 
 export function FinalCTA() {
   return (
@@ -41,12 +41,14 @@ export function FinalCTA() {
                 <br />
                 <span>something worth</span>
                 <br />
-                <span
-                  className="font-serif italic font-semibold text-[#E44C1F] inline-block mt-1 sm:mt-2"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                >
-                  remembering?
-                </span>
+                <HandwrittenWord variant="swoosh" color="#E44C1F" className="mt-1 sm:mt-2">
+                  <span
+                    className="font-serif italic font-semibold text-[#E44C1F] inline-block"
+                    style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  >
+                    remembering?
+                  </span>
+                </HandwrittenWord>
               </h2>
 
               {/* Supporting text */}

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Reveal, SectionLabel } from "@/components/ui";
+import { Reveal, SectionLabel, HandwrittenWord } from "@/components/ui";
 import { StudioOrbit360 } from "@/components/StudioOrbit360";
 
 export function About() {
@@ -27,7 +27,9 @@ export function About() {
             className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.12]"
           >
             Crafted with precision.{" "}
-            <span className="text-[#E44C1F]">Built to perform.</span>
+            <HandwrittenWord variant="swoosh" color="#E44C1F">
+              <span className="text-[#E44C1F]">Built to perform.</span>
+            </HandwrittenWord>
           </h2>
         </div>
 

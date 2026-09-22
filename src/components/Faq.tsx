@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Reveal, SectionLabel } from "@/components/ui";
+import { Reveal, SectionLabel, HandwrittenWord } from "@/components/ui";
 
 const faqs = [
   {
@@ -58,7 +58,10 @@ export function Faq() {
                 id="faq-heading"
                 className="font-display mt-2 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950"
               >
-                Common Inquiries.
+                Questions{" "}
+                <HandwrittenWord variant="swoosh" color="#E44C1F">
+                  <span className="text-[#E44C1F]">people ask.</span>
+                </HandwrittenWord>
               </h2>
             </div>
             <p className="max-w-xs text-sm text-neutral-600">
