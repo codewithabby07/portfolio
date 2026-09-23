@@ -60,12 +60,6 @@ export function FinalCTA() {
             />
 
             <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
-              {/* Live Availability Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1.5 text-[11px] font-mono text-emerald-300 mb-6 backdrop-blur-md shadow-sm">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
-                <span>AVAILABLE FOR NEXT SPRINT • 1 SPOT OPEN</span>
-              </div>
-
               {/* Section Headline */}
               <h2
                 id="final-cta-heading"

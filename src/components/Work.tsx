@@ -88,20 +88,7 @@ function WorkCard({
             isContain ? "object-contain p-3 bg-[#0A0A0E]" : "object-cover"
           )}
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/card:opacity-100" />
-
-        {/* Top Right Project Number */}
-        <span className="pointer-events-none absolute top-3 right-3.5 rounded-full bg-black/50 px-2.5 py-0.5 font-mono text-[11px] font-bold text-white backdrop-blur-md border border-white/10">
-          {project.number}
-        </span>
-
-        {/* Impact Badge on thumbnail if available */}
-        {project.impact && (
-          <span className="pointer-events-none absolute bottom-3 left-3.5 inline-flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-bold text-neutral-900 shadow-sm backdrop-blur-md border border-neutral-100">
-            <span className="text-[#E44C1F]">⚡</span>
-            <span>{project.impact}</span>
-          </span>
-        )}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/card:opacity-100" />
       </div>
 
       {/* Card Content Body */}

@@ -16,11 +16,31 @@ const TYPE_DURATION = TEXT.length * CHAR_DELAY; // ~1020ms
 type Phase = "closed" | "typing" | "open" | "done";
 
 export function IntroCurtain() {
-  const [phase, setPhase] = useState<Phase>("closed");
+  const [phase, setPhase] = useState<Phase>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        if (sessionStorage.getItem("cwa_intro_seen") === "1") {
+          return "done";
+        }
+      } catch {
+        // Fallback safely
+      }
+    }
+    return "closed";
+  });
   const [revealed, setRevealed] = useState(0); // chars typed so far
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
+    try {
+      if (sessionStorage.getItem("cwa_intro_seen") === "1") {
+        setPhase("done");
+        return;
+      }
+    } catch {
+      // Fallback safely
+    }
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setPhase("done");
       return;
@@ -40,8 +60,15 @@ export function IntroCurtain() {
       }
     }, 700);
 
-    // After typing finishes, open the shutter
-    push(() => setPhase("open"), 700 + TYPE_DURATION + 400);
+    // After typing finishes, open the shutter and mark session as seen
+    push(() => {
+      setPhase("open");
+      try {
+        sessionStorage.setItem("cwa_intro_seen", "1");
+      } catch {
+        // Fallback safely
+      }
+    }, 700 + TYPE_DURATION + 400);
 
     // Unmount after shutter slides away
     push(() => setPhase("done"), 700 + TYPE_DURATION + 400 + 850);
