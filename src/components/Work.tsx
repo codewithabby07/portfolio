@@ -1,177 +1,193 @@
-import { useState, useRef, type MouseEvent } from "react";
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { projects, isFilled, type Project } from "@/data/projects";
-import { MediaReveal, Reveal, SectionLabel, HandwrittenWord } from "@/components/ui";
+import { Reveal, SectionLabel, HandwrittenWord } from "@/components/ui";
 import { ProjectModal } from "@/components/ProjectModal";
 import { cn } from "@/lib/cn";
-import { usePointerFine, useReducedMotion } from "@/lib/motion";
 
-function ProjectMeta({ project }: { project: Project }) {
-  const bits = [
-    isFilled(project.role) ? project.role : null,
-    project.year || null,
-    project.technologies.length ? project.technologies.slice(0, 3).join(" • ") : null,
-  ].filter(Boolean) as string[];
+function getProjectTags(project: Project): string[] {
+  const customTags: Record<string, string[]> = {
+    "sample-video": ["Video", "Streaming"],
+    "santha-editing": ["Editing", "Creator"],
+    "aqua-plumbing": ["Business", "Lead-Gen"],
+    "silvane-estates": ["Editorial", "Estates"],
+    "kevin-vfx": ["Video", "Creator"],
+    "ai-startup-saas": ["SaaS", "Startup"],
+    "alp-buildcon": ["Real Estate", "Infrastructure"],
+    "creavo": ["Creative", "Studio"],
+    "zainca": ["E-Commerce", "Luxury"],
+    "dentiva": ["Healthcare", "Clinic"],
+    "review-funnel": ["SaaS", "Growth Tool"],
+    "property-broker": ["Real Estate", "PropTech"],
+  };
 
-  if (!bits.length) return null;
+  if (customTags[project.slug] || customTags[project.id]) {
+    return customTags[project.slug] || customTags[project.id];
+  }
 
-  return (
-    <p className="text-[11px] tracking-[0.14em] text-neutral-500 uppercase font-mono">
-      {bits.join("  /  ")}
-    </p>
-  );
+  return [project.category.split("&")[0].trim(), project.technologies[0] || "Web"];
 }
 
-function ProjectImage({
-  project,
-}: {
-  project: Project;
-}) {
-  const frameRef = useRef<HTMLDivElement>(null);
-  const fine = usePointerFine();
-  const reduce = useReducedMotion();
-
-  function onMove(event: MouseEvent<HTMLDivElement>) {
-    if (!fine || reduce || !frameRef.current) return;
-    const img = frameRef.current.querySelector("[data-img]") as HTMLElement | null;
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    const rotY = x * 8;
-    const rotX = -y * 6;
-    frameRef.current.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.01, 1.01, 1.01)`;
-    if (img) {
-      img.style.transform = `scale(1.03) translate3d(${x * 6}px, ${y * 4}px, 0)`;
-    }
-  }
-
-  function onLeave() {
-    if (frameRef.current) {
-      frameRef.current.style.transform = "";
-    }
-    const img = frameRef.current?.querySelector("[data-img]") as HTMLElement | null;
-    if (img) img.style.transform = "";
-  }
-
-  const isContain = project.id === "alp-buildcon" || project.id === "creavo";
-
-  return (
-    <div
-      ref={frameRef}
-      className={cn(
-        "relative overflow-hidden rounded-[20px] sm:rounded-[24px] border border-neutral-200/80 shadow-lg transition-all duration-300 ease-out group-hover/project:border-[#E44C1F]/50 group-hover/project:shadow-2xl will-change-transform",
-        isContain ? "bg-[#090a10]" : "bg-neutral-900"
-      )}
-      style={{ transformStyle: "preserve-3d" }}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-    >
-      <img
-        data-img
-        src={project.image}
-        alt={`${project.title} live preview`}
-        width={1600}
-        height={1000}
-        loading="lazy"
-        className={cn(
-          "aspect-[16/10] h-full w-full rounded-[18px] transition-transform duration-500 ease-out",
-          isContain ? "object-contain p-2 md:p-3" : "object-cover object-top"
-        )}
-      />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-40 rounded-2xl" />
-      <span className="pointer-events-none absolute right-4 bottom-2 text-3xl font-mono font-bold text-white/30 md:text-4xl">
-        {project.number}
+function renderStyledTitle(title: string) {
+  const parts = title.trim().split(" ");
+  if (parts.length === 1) {
+    return (
+      <span className="capitalize">
+        {title.toLowerCase()}{" "}
+        <em
+          className="font-editorial-serif italic font-normal text-[#E44C1F] not-italic ml-1"
+          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+        >
+          Studio
+        </em>
       </span>
-    </div>
+    );
+  }
+  const mainPart = parts.slice(0, -1).join(" ");
+  const lastPart = parts[parts.length - 1];
+
+  return (
+    <span className="capitalize">
+      {mainPart.toLowerCase()}{" "}
+      <em
+        className="font-editorial-serif italic font-normal text-[#E44C1F] not-italic ml-0.5"
+        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+      >
+        {lastPart.toLowerCase()}
+      </em>
+    </span>
   );
 }
 
-function ProjectBlock({
+function WorkCard({
   project,
-  index,
   onOpenModal,
 }: {
   project: Project;
-  index: number;
   onOpenModal: (project: Project) => void;
 }) {
-  const reverse = index % 2 === 1;
+  const tags = getProjectTags(project);
   const live = isFilled(project.liveUrl);
+  const isContain = project.id === "alp-buildcon" || project.id === "creavo";
 
   return (
-    <article className="group/project border-t border-neutral-200 py-10 transition-[border-color] duration-300 hover:border-[#E44C1F]/40 md:py-14">
+    <article className="group/card relative flex flex-col justify-between overflow-hidden rounded-[18px] border border-[#EFECE6] bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#E44C1F]/60 hover:shadow-[0_16px_40px_-14px_rgba(0,0,0,0.09)]">
+      {/* Top Image Thumbnail Container */}
       <div
-        className={cn(
-          "grid items-center gap-8 lg:grid-cols-12 lg:gap-12",
-          reverse && "lg:[&>div:first-child]:order-2",
-        )}
+        className="relative h-[200px] sm:h-[240px] md:h-[260px] w-full overflow-hidden bg-[#F4F1EC] cursor-pointer"
+        onClick={() => (live ? window.open(project.liveUrl, "_blank") : onOpenModal(project))}
       >
-        <Reveal className="lg:col-span-5 space-y-4">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-bold text-[#E44C1F]">
-              PROJECT {project.number}
-            </span>
-            <span className="text-neutral-300">•</span>
-            <span className="text-xs font-mono uppercase tracking-wider text-neutral-500">
-              {project.category}
-            </span>
+        <img
+          src={project.image}
+          alt={`${project.title} live screenshot`}
+          width={1200}
+          height={750}
+          loading="lazy"
+          className={cn(
+            "h-full w-full object-top transition-transform duration-700 ease-out group-hover/card:scale-105 group-hover/card:brightness-[1.03]",
+            isContain ? "object-contain p-3 bg-[#0A0A0E]" : "object-cover"
+          )}
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/card:opacity-100" />
+
+        {/* Top Right Project Number */}
+        <span className="pointer-events-none absolute top-3 right-3.5 rounded-full bg-black/50 px-2.5 py-0.5 font-mono text-[11px] font-bold text-white backdrop-blur-md border border-white/10">
+          {project.number}
+        </span>
+
+        {/* Impact Badge on thumbnail if available */}
+        {project.impact && (
+          <span className="pointer-events-none absolute bottom-3 left-3.5 inline-flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-bold text-neutral-900 shadow-sm backdrop-blur-md border border-neutral-100">
+            <span className="text-[#E44C1F]">⚡</span>
+            <span>{project.impact}</span>
+          </span>
+        )}
+      </div>
+
+      {/* Card Content Body */}
+      <div className="flex flex-1 flex-col justify-between p-4.5 sm:p-5 md:p-6 gap-3">
+        <div>
+          {/* Tags */}
+          <div className="flex items-center gap-1.5 flex-wrap">
+            {tags.map((tag, idx) => (
+              <span
+                key={tag}
+                className={cn(
+                  "rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider transition-colors",
+                  idx === 0
+                    ? "bg-[#E44C1F]/10 text-[#E44C1F] group-hover/card:bg-[#E44C1F]/15"
+                    : "bg-neutral-100 text-neutral-600 group-hover/card:bg-neutral-200"
+                )}
+              >
+                {tag}
+              </span>
+            ))}
           </div>
 
-          <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-neutral-950 group-hover/project:text-[#E44C1F] transition-colors">
-            {project.title}
+          {/* Title */}
+          <h3 className="mt-2.5 font-display text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 transition-colors group-hover/card:text-[#E44C1F]">
+            {renderStyledTitle(project.title)}
           </h3>
 
-          <p className="text-sm leading-relaxed text-neutral-700">
+          {/* Description */}
+          <p className="mt-1.5 text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-2">
             {project.description}
           </p>
+        </div>
 
-          {project.impact ? (
-            <div className="inline-flex items-center gap-1.5 rounded-md bg-[#E44C1F]/10 border border-[#E44C1F]/20 px-2.5 py-1 text-xs font-bold text-[#E44C1F]">
-              <span>⚡</span>
-              <span>{project.impact}</span>
-            </div>
-          ) : null}
-
-          <ProjectMeta project={project} />
-
-          {/* Action Buttons: Live Link + Case Study */}
-          <div className="pt-2 flex flex-wrap items-center gap-3">
-            {live ? (
-              <a
-                href={project.liveUrl}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#E44C1F] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-[#ff5d2e] hover:shadow-[0_0_20px_rgba(228,76,31,0.3)] active:scale-95"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>Visit Live Website</span>
-                <span className="text-sm font-bold">↗</span>
-              </a>
-            ) : null}
-
-            <Link
-              to="/work/$slug"
-              params={{ slug: project.slug }}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-neutral-300 bg-neutral-100 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-neutral-900 hover:border-neutral-400 hover:bg-neutral-200 transition-all"
+        {/* Footer Actions / Links */}
+        <div className="mt-2 pt-3 border-t border-neutral-100 flex items-center justify-between gap-2">
+          {/* Left: Visit Site with Founder/Studio Icon */}
+          {live ? (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#E44C1F] transition-all hover:text-neutral-950"
             >
-              <span>Case Study</span>
-              <span aria-hidden>→</span>
-            </Link>
-
+              <img
+                src="/favicon.svg"
+                alt="CodeWithAbby"
+                className="h-5 w-5 rounded-full border border-neutral-200 bg-[#0A0A0C] p-0.5 object-contain"
+              />
+              <span>Visit live site</span>
+              <span className="text-sm font-bold transition-transform duration-300 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5">
+                ↗
+              </span>
+            </a>
+          ) : (
             <button
               type="button"
               onClick={() => onOpenModal(project)}
-              className="inline-flex items-center gap-1 text-xs text-neutral-500 hover:text-neutral-950 transition-colors cursor-pointer ml-1 font-medium"
+              className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#E44C1F]"
             >
-              <span>Quick Preview</span>
+              <img
+                src="/favicon.svg"
+                alt="CodeWithAbby"
+                className="h-5 w-5 rounded-full border border-neutral-200 bg-[#0A0A0C] p-0.5 object-contain"
+              />
+              <span>View specs</span>
+              <span>→</span>
             </button>
-          </div>
-        </Reveal>
+          )}
 
-        <div className="lg:col-span-7" onClick={() => onOpenModal(project)}>
-          <div data-view-cursor className="cursor-pointer">
-            <MediaReveal delay={0.06}>
-              <ProjectImage project={project} />
-            </MediaReveal>
+          {/* Right: Case Study & Quick Preview */}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => onOpenModal(project)}
+              className="text-[11px] sm:text-xs font-medium text-neutral-500 hover:text-neutral-950 transition-colors cursor-pointer hidden sm:inline-block"
+            >
+              Preview
+            </button>
+            <Link
+              to="/work/$slug"
+              params={{ slug: project.slug }}
+              className="inline-flex items-center gap-1 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-neutral-800 transition-all hover:border-[#E44C1F] hover:bg-[#E44C1F] hover:text-white"
+            >
+              <span>Case Study</span>
+              <span className="font-bold">→</span>
+            </Link>
           </div>
         </div>
       </div>
@@ -230,16 +246,19 @@ export function Work() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-neutral-200 pb-8">
             <div>
               <SectionLabel className="text-[#E44C1F] font-mono text-xs font-bold uppercase tracking-wider">
-                Production Portfolio
+                Selected Work
               </SectionLabel>
               <h2
                 id="work-heading"
                 className="font-display mt-2 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950"
               >
-                Selected <HandwrittenWord variant="swoosh"><span className="text-[#E44C1F]">Work</span></HandwrittenWord>
+                Built different,{" "}
+                <HandwrittenWord variant="swoosh">
+                  <span className="text-[#E44C1F]">shipped live.</span>
+                </HandwrittenWord>
               </h2>
-              <p className="mt-2 text-sm text-neutral-600 max-w-xl">
-                Real production web platforms designed and engineered with custom layouts, 60fps animations, and live deployments.
+              <p className="mt-2 text-sm sm:text-base text-neutral-600 max-w-xl leading-relaxed">
+                Each project with its own voice, structure, and conversion path. All running in production right now.
               </p>
             </div>
 
@@ -276,13 +295,12 @@ export function Work() {
           })}
         </div>
 
-        {/* Project Blocks Grid */}
-        <div className="mt-6">
-          {displayedProjects.map((project, index) => (
-            <ProjectBlock
+        {/* Project Cards Grid (1 column on mobile, 2 columns on desktop) */}
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          {displayedProjects.map((project) => (
+            <WorkCard
               key={project.id}
               project={project}
-              index={index}
               onOpenModal={setSelectedProject}
             />
           ))}
@@ -297,7 +315,7 @@ export function Work() {
             <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-950 mt-1">
               Want to see all case studies & performance specs?
             </h3>
-            <p className="text-xs text-neutral-600 mt-1">
+            <p className="text-xs sm:text-sm text-neutral-600 mt-1">
               Explore all live deployments across Real Estate, Healthcare, SaaS, Video Production, and Creative Studios.
             </p>
           </div>
@@ -314,3 +332,4 @@ export function Work() {
     </section>
   );
 }
+
