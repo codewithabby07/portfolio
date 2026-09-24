@@ -28,12 +28,42 @@ function getProjectTags(project: Project): string[] {
   return [project.category.split("&")[0].trim(), project.technologies[0] || "Web"];
 }
 
-function renderStyledTitle(title: string) {
-  const parts = title.trim().split(" ");
+function renderStyledTitle(project: Project) {
+  const customTitles: Record<string, { main: string; accent: string }> = {
+    "alp-buildcon": { main: "ALP", accent: "Buildcon" },
+    "creavo": { main: "Creavo", accent: "Studio" },
+    "zainca": { main: "Zainca", accent: "Lifestyle" },
+    "dentiva": { main: "Dentiva", accent: "Clinic" },
+    "review-funnel": { main: "Review", accent: "Funnel" },
+    "property-broker": { main: "Abby Real", accent: "Estate" },
+    "sample-video": { main: "Sample", accent: "Video" },
+    "santha-editing": { main: "Santha", accent: "Editing" },
+    "aqua-plumbing": { main: "Aqua", accent: "Plumbing" },
+    "silvane-estates": { main: "Silvane", accent: "Estates" },
+    "kevin-vfx": { main: "Kevin", accent: "VFX" },
+    "ai-startup-saas": { main: "AI Startup", accent: "SaaS" },
+  };
+
+  const item = customTitles[project.slug] || customTitles[project.id];
+  if (item) {
+    return (
+      <span>
+        {item.main}{" "}
+        <em
+          className="font-editorial-serif italic font-normal text-[#E44C1F] not-italic ml-0.5"
+          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+        >
+          {item.accent}
+        </em>
+      </span>
+    );
+  }
+
+  const parts = project.title.trim().split(" ");
   if (parts.length === 1) {
     return (
       <span className="capitalize">
-        {title.toLowerCase()}{" "}
+        {project.title.toLowerCase()}{" "}
         <em
           className="font-editorial-serif italic font-normal text-[#E44C1F] not-italic ml-1"
           style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
@@ -113,7 +143,7 @@ function WorkCard({
 
           {/* Title */}
           <h3 className="mt-2.5 font-display text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 transition-colors group-hover/card:text-[#E44C1F]">
-            {renderStyledTitle(project.title)}
+            {renderStyledTitle(project)}
           </h3>
 
           {/* Description */}
@@ -191,20 +221,20 @@ export function Work() {
     { id: "all", label: "All Projects" },
     { id: "creative-agencies", label: "Video & Studios" },
     { id: "construction-real-estate", label: "Real Estate" },
-    { id: "saas-growth-tools", label: "SaaS & AI" },
+    { id: "healthcare-clinics", label: "Healthcare" },
   ];
 
-  // Featured list: includes the 6 newly integrated showcase projects + top flagships
+  // Homepage Featured list: Project 01, 02, 03, 04 (Dentiva), 06 (Property Broker), 08 (Santha Editing), 10 (Silvane), 11 (Kevin VFX)
+  // Excluded from homepage as requested: Project 07 (sample-video), 09 (aqua-plumbing), 12 (ai-startup-saas)
   const FEATURED_SLUGS = [
-    "sample-video",
-    "santha-editing",
-    "silvane-estates",
-    "aqua-plumbing",
-    "kevin-vfx",
-    "ai-startup-saas",
     "alp-buildcon",
     "creavo",
     "zainca",
+    "dentiva",
+    "property-broker",
+    "santha-editing",
+    "silvane-estates",
+    "kevin-vfx",
   ];
 
   const displayedProjects = (() => {
