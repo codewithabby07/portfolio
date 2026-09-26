@@ -13,7 +13,7 @@ export const site = {
   locale: "en_US",
   title: "CodeWithAbby — Web Developer in Delhi | Custom Business Websites",
   description:
-    "CodeWithAbby is a boutique custom web development studio founded by Syed Abbas Ali in Delhi, India. Engineering high-performance React & Next.js business websites, custom web applications, and e-commerce platforms for businesses in Delhi, across India, and worldwide.",
+    "Custom web development studio in Delhi by Syed Abbas Ali. Engineering high-performance React & Next.js business websites and bespoke web applications.",
   portrait: {
     src: "/images/portrait.jpg",
     alt: "Portrait of Syed Abbas Ali (Abby), Founder & Lead Web Developer at CodeWithAbby, Delhi, India.",

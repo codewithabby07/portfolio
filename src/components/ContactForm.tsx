@@ -127,7 +127,7 @@ export function ContactForm() {
       <ToastMessage message={toast} icon="✓" />
       <img
         src={site.contact.background}
-        alt=""
+        alt="CodeWithAbby Studio contact section background texture"
         className="absolute inset-0 h-full w-full object-cover"
         width={1600}
         height={900}
