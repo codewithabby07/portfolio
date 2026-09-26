@@ -8,23 +8,23 @@ export const Route = createFileRoute("/services/")({
   component: ServicesIndex,
   head: () => ({
     meta: [
-      { title: "Custom Web Development Services & Technical Engineering | CodeWithAbby" },
+      { title: "Business Website Development & Custom Web Engineering | CodeWithAbby" },
       {
         name: "description",
         content:
-          "Full-stack custom web development, React/Next.js frontend engineering, UI/UX architecture, technical SEO, and sub-second performance optimization.",
+          "Bespoke business website development, custom React/Next.js engineering, website design, UI/UX implementation, technical SEO, and performance optimization by CodeWithAbby in Delhi, India.",
       },
-      { property: "og:title", content: "Custom Web Development Services | CodeWithAbby" },
+      { property: "og:title", content: "Business Website Development & Custom Web Services | CodeWithAbby" },
       {
         property: "og:description",
         content:
-          "Full-stack custom web development, React/Next.js frontend engineering, UI/UX architecture, technical SEO, and sub-second performance optimization.",
+          "Bespoke business website development, custom React/Next.js engineering, website design, UI/UX implementation, technical SEO, and performance optimization by CodeWithAbby.",
       },
       { property: "og:url", content: `${site.url}/services` },
       { property: "og:image", content: `${site.url}/images/og.jpg` },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Custom Web Development Services | CodeWithAbby" },
-      { name: "twitter:description", content: "Full-stack custom web development and performance engineering." },
+      { name: "twitter:title", content: "Business Website Development & Custom Web Services | CodeWithAbby" },
+      { name: "twitter:description", content: "Custom business website development and performance engineering in Delhi, India." },
       { name: "twitter:image", content: `${site.url}/images/og.jpg` },
     ],
     links: [{ rel: "canonical", href: `${site.url}/services` }],

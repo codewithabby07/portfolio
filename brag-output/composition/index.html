@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>CodeWithAbby — Studio Launch</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #080808;
+        color: #fafafa;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .font-display {
+        font-family: 'Outfit', sans-serif;
+      }
+      .font-mono {
+        font-family: 'Space Mono', monospace;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        background: #080808;
+        overflow: hidden;
+      }
+
+      /* Ambient Background Glows */
+      .glow-bg {
+        position: absolute;
+        width: 900px;
+        height: 900px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(228, 76, 31, 0.18) 0%, rgba(228, 76, 31, 0.03) 50%, transparent 70%);
+        filter: blur(80px);
+        pointer-events: none;
+      }
+
+      /* Subtle Grid */
+      .grid-pattern {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 80px 80px;
+        pointer-events: none;
+      }
+
+      /* Scenes Container */
+      .scene {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 1920px;
+        height: 1080px;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      /* Glass Cards */
+      .glass-card {
+        background: rgba(18, 18, 18, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Glowing Badge */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        border-radius: 9999px;
+        background: rgba(228, 76, 31, 0.12);
+        border: 1px solid rgba(228, 76, 31, 0.3);
+        color: #ff6b3d;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      .accent-orange {
+        color: #e44c1f;
+      }
+      .accent-gradient {
+        background: linear-gradient(135deg, #ffffff 0%, #e44c1f 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="20"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- Audio Track -->
+      <audio
+        id="bg-music"
+        data-start="0"
+        data-duration="20"
+        data-volume="0.85"
+        src="assets/music/music.mp3"
+      ></audio>
+
+      <!-- Grid Overlay -->
+      <div class="grid-pattern"></div>
+      <div id="glow1" class="glow-bg" style="top: -200px; left: -200px"></div>
+      <div id="glow2" class="glow-bg" style="bottom: -200px; right: -200px"></div>
+
+      <!-- ================= SCENE 1: MANIFESTO HOOK (0s - 3.8s) ================= -->
+      <div id="scene1" class="scene">
+        <div class="flex flex-col items-center text-center max-w-5xl px-8">
+          <div id="s1-badge" class="badge font-mono mb-8 opacity-0">
+            <span class="w-2 h-2 rounded-full bg-[#E44C1F] animate-pulse"></span>
+            BOUTIQUE WEB STUDIO • SYED ABBAS ALI
+          </div>
+
+          <h1 id="s1-title1" class="font-display text-8xl font-black tracking-tight text-neutral-300 leading-none mb-3 opacity-0">
+            ZERO TEMPLATES.
+          </h1>
+          <h1 id="s1-title2" class="font-display text-8xl font-black tracking-tight text-neutral-500 leading-none mb-6 opacity-0">
+            ZERO AGENCY BLOAT.
+          </h1>
+          <h1 id="s1-title3" class="font-display text-8xl font-black tracking-tight accent-orange leading-none mb-10 opacity-0">
+            JUST HIGH-CRAFT CODE.
+          </h1>
+
+          <p id="s1-sub" class="text-2xl text-neutral-400 font-medium max-w-3xl leading-relaxed opacity-0">
+            Bespoke React & Next.js digital platforms engineered for sub-second speed, authority, and high conversion.
+          </p>
+        </div>
+      </div>
+
+      <!-- ================= SCENE 2: PERFORMANCE PROOF (3.8s - 8.5s) ================= -->
+      <div id="scene2" class="scene">
+        <div class="flex flex-col items-center w-full max-w-6xl px-8">
+          <div id="s2-header" class="text-center mb-14 opacity-0">
+            <div class="badge font-mono mb-3">ENGINEERING BENCHMARKS</div>
+            <h2 class="font-display text-6xl font-extrabold tracking-tight text-white">
+              Built for Speed. Not Page Builders.
+            </h2>
+          </div>
+
+          <!-- 3 Stat Cards -->
+          <div class="grid grid-cols-3 gap-8 w-full mb-12">
+            <!-- Card 1 -->
+            <div id="s2-card1" class="glass-card p-10 flex flex-col items-center text-center opacity-0">
+              <div class="w-16 h-16 rounded-2xl bg-[#E44C1F]/10 border border-[#E44C1F]/30 flex items-center justify-center text-3xl mb-6">
+                ⚡
+              </div>
+              <div class="font-display text-6xl font-black text-white mb-2 tracking-tight">
+                &lt; 800ms
+              </div>
+              <div class="text-lg text-[#E44C1F] font-bold uppercase tracking-wider font-mono mb-2">
+                Page Initialization
+              </div>
+              <p class="text-sm text-neutral-400">
+                Pre-rendered edge HTML delivered in milliseconds across global CDNs.
+              </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div id="s2-card2" class="glass-card p-10 flex flex-col items-center text-center border-[#E44C1F]/40 opacity-0">
+              <div class="w-16 h-16 rounded-2xl bg-[#E44C1F]/20 border border-[#E44C1F]/40 flex items-center justify-center text-3xl mb-6">
+                🏆
+              </div>
+              <div class="font-display text-6xl font-black text-[#FF6B3D] mb-2 tracking-tight">
+                99 / 100
+              </div>
+              <div class="text-lg text-white font-bold uppercase tracking-wider font-mono mb-2">
+                Lighthouse Score
+              </div>
+              <p class="text-sm text-neutral-400">
+                Flawless Core Web Vitals, pristine accessibility, and structured SEO schema.
+              </p>
+            </div>
+
+            <!-- Card 3 -->
+            <div id="s2-card3" class="glass-card p-10 flex flex-col items-center text-center opacity-0">
+              <div class="w-16 h-16 rounded-2xl bg-[#E44C1F]/10 border border-[#E44C1F]/30 flex items-center justify-center text-3xl mb-6">
+                🛡️
+              </div>
+              <div class="font-display text-6xl font-black text-white mb-2 tracking-tight">
+                100%
+              </div>
+              <div class="text-lg text-[#E44C1F] font-bold uppercase tracking-wider font-mono mb-2">
+                Code Ownership
+              </div>
+              <p class="text-sm text-neutral-400">
+                Full Git repository transfer with zero recurring proprietary builder lock-in.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stack Tags -->
+          <div id="s2-stack" class="flex items-center gap-4 font-mono text-sm text-neutral-400 opacity-0">
+            <span class="text-neutral-500 font-bold">TECH STACK:</span>
+            <span class="px-3 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-neutral-200">React 19</span>
+            <span class="px-3 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-neutral-200">Next.js</span>
+            <span class="px-3 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-neutral-200">TypeScript</span>
+            <span class="px-3 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-neutral-200">Tailwind CSS</span>
+            <span class="px-3 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-neutral-200">Three.js WebGL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= SCENE 3: WORK SHOWCASE (8.5s - 14.5s) ================= -->
+      <div id="scene3" class="scene">
+        <div class="flex flex-col items-center w-full max-w-6xl px-8">
+          <div id="s3-header" class="text-center mb-12 opacity-0">
+            <div class="badge font-mono mb-3">SELECTED CLIENT WORK</div>
+            <h2 class="font-display text-6xl font-extrabold tracking-tight text-white">
+              Crafted for Real Business Growth
+            </h2>
+          </div>
+
+          <!-- 3 Project Cards -->
+          <div class="grid grid-cols-3 gap-8 w-full mb-10">
+            <!-- Project 1 -->
+            <div id="s3-card1" class="glass-card overflow-hidden flex flex-col opacity-0">
+              <div class="h-44 bg-gradient-to-br from-neutral-800 to-neutral-900 relative p-6 flex flex-col justify-between border-b border-white/5">
+                <span class="font-mono text-xs text-[#E44C1F] font-bold">PROPTECH & REAL ESTATE</span>
+                <h3 class="font-display text-2xl font-bold text-white">ALP Buildcon</h3>
+              </div>
+              <div class="p-6 flex-1 flex flex-col justify-between bg-neutral-950/60">
+                <p class="text-sm text-neutral-300 leading-relaxed mb-4">
+                  Multi-crore developer portal. Load time dropped from 8.0s to 1.3s with instant WhatsApp lead capture.
+                </p>
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-400 border-t border-neutral-800 pt-3">
+                  <span>Sprint: 6 Days</span>
+                  <span class="text-emerald-400 font-bold">↑ 140% Leads</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div id="s3-card2" class="glass-card overflow-hidden flex flex-col border-[#E44C1F]/40 opacity-0">
+              <div class="h-44 bg-gradient-to-br from-[#1c120c] to-[#2d150b] relative p-6 flex flex-col justify-between border-b border-[#E44C1F]/20">
+                <span class="font-mono text-xs text-[#FF6B3D] font-bold">HEADLESS E-COMMERCE</span>
+                <h3 class="font-display text-2xl font-bold text-white">Zainca Luxury Store</h3>
+              </div>
+              <div class="p-6 flex-1 flex flex-col justify-between bg-neutral-950/60">
+                <p class="text-sm text-neutral-300 leading-relaxed mb-4">
+                  Bespoke storefront replacing bloated WooCommerce. 0.9s checkout flow with sub-second product filters.
+                </p>
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-400 border-t border-neutral-800 pt-3">
+                  <span>Sprint: 8 Days</span>
+                  <span class="text-emerald-400 font-bold">3.2x Sales Lift</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div id="s3-card3" class="glass-card overflow-hidden flex flex-col opacity-0">
+              <div class="h-44 bg-gradient-to-br from-neutral-800 to-neutral-900 relative p-6 flex flex-col justify-between border-b border-white/5">
+                <span class="font-mono text-xs text-[#E44C1F] font-bold">B2B SAAS PLATFORM</span>
+                <h3 class="font-display text-2xl font-bold text-white">Mainframe Studio</h3>
+              </div>
+              <div class="p-6 flex-1 flex flex-col justify-between bg-neutral-950/60">
+                <p class="text-sm text-neutral-300 leading-relaxed mb-4">
+                  Dark luxury SaaS landing architecture with interactive WebGL product preview and server-rendered data.
+                </p>
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-400 border-t border-neutral-800 pt-3">
+                  <span>Sprint: 5 Days</span>
+                  <span class="text-emerald-400 font-bold">99 Lighthouse</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Banner Pill -->
+          <div id="s3-pill" class="glass-card px-8 py-4 flex items-center gap-8 font-mono text-sm opacity-0">
+            <span class="flex items-center gap-2 text-white font-bold">
+              <span class="text-[#E44C1F]">✦</span> 6–14 Days Typical Delivery
+            </span>
+            <span class="text-neutral-600">|</span>
+            <span class="flex items-center gap-2 text-white font-bold">
+              <span class="text-[#E44C1F]">✦</span> Direct Founder Collaboration
+            </span>
+            <span class="text-neutral-600">|</span>
+            <span class="flex items-center gap-2 text-white font-bold">
+              <span class="text-[#E44C1F]">✦</span> Agreement-First Sprints
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= SCENE 4: BRAND RESOLVE & OUTRO (14.5s - 20s) ================= -->
+      <div id="scene4" class="scene">
+        <div class="flex flex-col items-center text-center max-w-4xl px-8">
+          <div id="s4-emblem" class="w-24 h-24 rounded-3xl bg-gradient-to-br from-[#E44C1F] to-[#8C2303] flex items-center justify-center text-5xl font-black text-white shadow-[0_0_80px_rgba(228,76,31,0.6)] mb-8 opacity-0">
+            A
+          </div>
+
+          <h1 id="s4-title" class="font-display text-8xl font-black tracking-tight text-white mb-4 opacity-0">
+            CODEWITHABBY
+          </h1>
+
+          <p id="s4-sub" class="text-2xl text-[#FF6B3D] font-mono font-bold tracking-wider uppercase mb-8 opacity-0">
+            Bespoke Web Development & Digital Studio
+          </p>
+
+          <div id="s4-box" class="glass-card px-10 py-5 rounded-full border border-[#E44C1F]/40 flex items-center gap-6 mb-8 opacity-0">
+            <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="font-mono text-lg font-bold text-neutral-200">
+              codwithabby.vercel.app
+            </span>
+          </div>
+
+          <div id="s4-founder" class="font-mono text-sm text-neutral-400 tracking-widest uppercase opacity-0">
+            FOUNDED BY SYED ABBAS ALI • WORLDWIDE CLIENTS (US, UK, UAE, IN)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GSAP TIMELINE SCRIPT -->
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Audio handling
+      const music = document.getElementById("bg-music");
+
+      // ================= SCENE 1 TIMELINE (0s - 3.8s) =================
+      tl.set("#scene1", { autoAlpha: 1 }, 0)
+        .fromTo("#s1-badge", { opacity: 0, y: -20, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 0.2)
+        .fromTo("#s1-title1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.4)
+        .fromTo("#s1-title2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.8)
+        .fromTo("#s1-title3", { opacity: 0, scale: 0.85, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(1.7)" }, 1.3)
+        .fromTo("#s1-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 1.8)
+        .to("#scene1", { opacity: 0, scale: 1.05, filter: "blur(8px)", duration: 0.5, ease: "power2.in" }, 3.4)
+        .set("#scene1", { autoAlpha: 0 }, 3.9);
+
+      // ================= SCENE 2 TIMELINE (3.8s - 8.5s) =================
+      tl.set("#scene2", { autoAlpha: 1 }, 3.8)
+        .fromTo("#s2-header", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 3.9)
+        .fromTo("#s2-card1", { opacity: 0, y: 50, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, 4.3)
+        .fromTo("#s2-card2", { opacity: 0, y: 50, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, 4.7)
+        .fromTo("#s2-card3", { opacity: 0, y: 50, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, 5.1)
+        .fromTo("#s2-stack", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 5.6)
+        .to("#scene2", { opacity: 0, y: -40, filter: "blur(6px)", duration: 0.5, ease: "power2.in" }, 8.0)
+        .set("#scene2", { autoAlpha: 0 }, 8.5);
+
+      // ================= SCENE 3 TIMELINE (8.5s - 14.5s) =================
+      tl.set("#scene3", { autoAlpha: 1 }, 8.5)
+        .fromTo("#s3-header", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 8.6)
+        .fromTo("#s3-card1", { opacity: 0, x: -60, scale: 0.95 }, { opacity: 1, x: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 9.0)
+        .fromTo("#s3-card2", { opacity: 0, y: 60, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 9.4)
+        .fromTo("#s3-card3", { opacity: 0, x: 60, scale: 0.95 }, { opacity: 1, x: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 9.8)
+        .fromTo("#s3-pill", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.5)" }, 10.4)
+        .to("#scene3", { opacity: 0, scale: 0.95, filter: "blur(8px)", duration: 0.5, ease: "power2.in" }, 14.0)
+        .set("#scene3", { autoAlpha: 0 }, 14.5);
+
+      // ================= SCENE 4 TIMELINE (14.5s - 20s) =================
+      tl.set("#scene4", { autoAlpha: 1 }, 14.5)
+        .fromTo("#s4-emblem", { opacity: 0, scale: 0.3, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.8, ease: "back.out(2)" }, 14.7)
+        .fromTo("#s4-title", { opacity: 0, y: 30, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 15.2)
+        .fromTo("#s4-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 15.8)
+        .fromTo("#s4-box", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, 16.2)
+        .fromTo("#s4-founder", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 16.7);
+
+      // Save timeline to window for Hyperframes driver
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

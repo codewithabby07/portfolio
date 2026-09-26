@@ -55,6 +55,8 @@ function BlogPostPage() {
     url: `${site.url}/blog/${post.slug}`,
     image: `${site.url}${post.coverImage.src}`,
     datePublished: post.date,
+    dateModified: post.date,
+    inLanguage: "en-US",
     author: {
       "@type": "Person",
       name: "Syed Abbas Ali",
@@ -157,7 +159,7 @@ function BlogPostPage() {
                   key={i}
                   className="text-base leading-relaxed text-dark/85 md:text-[1.08rem] md:leading-[1.78]"
                 >
-                  {para}
+                  <FormattedText text={para} />
                 </p>
               ))}
             </div>
@@ -177,7 +179,7 @@ function BlogPostPage() {
                       key={pIdx}
                       className="text-base leading-relaxed text-dark/80 md:text-[1.06rem] md:leading-[1.82]"
                     >
-                      {para}
+                      <FormattedText text={para} />
                     </p>
                   ))}
                 </div>
@@ -204,7 +206,7 @@ function BlogPostPage() {
                       📌
                     </span>
                     <p className="text-sm leading-relaxed text-dark/70">
-                      {section.note}
+                      <FormattedText text={section.note} />
                     </p>
                   </div>
                 )}
@@ -238,7 +240,7 @@ function BlogPostPage() {
                 Final thought
               </h3>
               <p className="text-base leading-relaxed text-dark/80 md:text-[1.06rem] md:leading-[1.82]">
-                {post.content.conclusion}
+                <FormattedText text={post.content.conclusion} />
               </p>
             </div>
           </Reveal>
@@ -397,4 +399,63 @@ function BlogPostPage() {
       <Footer />
     </div>
   );
+}
+
+function FormattedText({ text }: { text?: string }) {
+  if (!text) return null;
+
+  // Match markdown links [text](url) and bold **text**
+  const regex = /(\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*)/g;
+  const elements: (string | React.JSX.Element)[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      elements.push(text.substring(lastIndex, match.index));
+    }
+
+    if (match[2] && match[3]) {
+      // Link [text](url)
+      const linkText = match[2];
+      const url = match[3];
+      if (url.startsWith("/")) {
+        elements.push(
+          <Link
+            key={match.index}
+            to={url}
+            className="font-semibold text-accent hover:underline underline-offset-4 decoration-accent/50 transition-colors"
+          >
+            {linkText}
+          </Link>
+        );
+      } else {
+        elements.push(
+          <a
+            key={match.index}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-accent hover:underline underline-offset-4 decoration-accent/50 transition-colors"
+          >
+            {linkText}
+          </a>
+        );
+      }
+    } else if (match[4]) {
+      // Bold **text**
+      elements.push(
+        <strong key={match.index} className="font-semibold text-dark">
+          {match[4]}
+        </strong>
+      );
+    }
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    elements.push(text.substring(lastIndex));
+  }
+
+  return <>{elements}</>;
 }

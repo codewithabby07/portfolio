@@ -11,23 +11,23 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
   head: () => ({
     meta: [
-      { title: "Contact CodeWithAbby | Direct Founder Web Engineering & Inquiries" },
+      { title: "Contact CodeWithAbby | Web Development in Delhi & Worldwide" },
       {
         name: "description",
         content:
-          "Start your website project with CodeWithAbby. Direct collaboration with Syed Abbas Ali for high-performance custom websites, React/Next.js platforms, and commercial web applications.",
+          "Start your website project with CodeWithAbby. Direct founder collaboration with Syed Abbas Ali in Delhi, India for high-performance custom business websites and React/Next.js platforms.",
       },
-      { property: "og:title", content: "Contact CodeWithAbby | Direct Founder Collaboration" },
+      { property: "og:title", content: "Contact CodeWithAbby | Web Developer in Delhi" },
       {
         property: "og:description",
         content:
-          "Start your website project with CodeWithAbby. Direct collaboration with Syed Abbas Ali for high-performance custom websites, React/Next.js platforms, and commercial web applications.",
+          "Start your website project with CodeWithAbby. Direct founder collaboration with Syed Abbas Ali in Delhi, India for high-performance custom business websites and React/Next.js platforms.",
       },
       { property: "og:url", content: `${site.url}/contact` },
       { property: "og:image", content: `${site.url}/images/og.jpg` },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Contact CodeWithAbby | Direct Founder Collaboration" },
-      { name: "twitter:description", content: "Start your custom web development project with Syed Abbas Ali." },
+      { name: "twitter:title", content: "Contact CodeWithAbby | Web Developer in Delhi" },
+      { name: "twitter:description", content: "Start your custom web development project with Syed Abbas Ali in Delhi, India." },
       { name: "twitter:image", content: `${site.url}/images/og.jpg` },
     ],
     links: [{ rel: "canonical", href: `${site.url}/contact` }],

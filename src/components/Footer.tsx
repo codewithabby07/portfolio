@@ -51,11 +51,11 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
-              Full Stack Web Development &amp; Technical Engineering Studio. Building high-performance React and Next.js digital platforms for ambitious businesses worldwide.
+              Boutique Web Development Studio founded by Syed Abbas Ali in Delhi, India. Engineering custom React and Next.js business websites for companies in Delhi NCR, across India, and worldwide.
             </p>
             <div className="mt-6 flex items-center gap-2 text-xs tracking-wider text-white/40 uppercase">
               <span className="h-1.5 w-1.5 rounded-full bg-[#E44C1F]" />
-              <span>Global Client Deliveries · US · UK · UAE · India</span>
+              <span>Web Developer in Delhi, India · Global Client Deliveries</span>
             </div>
           </div>
 
@@ -102,12 +102,61 @@ export function Footer() {
             <p className="font-display text-xs font-semibold tracking-[0.2em] text-white/40 uppercase">
               Capabilities
             </p>
-            <ul className="mt-4 space-y-2.5 text-sm text-white/70">
-              <li>Full Stack Web Applications</li>
-              <li>High-Converting UI/UX Systems</li>
-              <li>React &amp; Next.js Architecture</li>
-              <li>Performance Optimization</li>
-              <li>Custom Node.js &amp; REST APIs</li>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              <li>
+                <Link
+                  to="/services/$slug"
+                  params={{ slug: "web-development" }}
+                  className="text-white/70 transition-colors duration-300 hover:text-[#E44C1F]"
+                >
+                  Business Website Development
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/$slug"
+                  params={{ slug: "frontend-engineering" }}
+                  className="text-white/70 transition-colors duration-300 hover:text-[#E44C1F]"
+                >
+                  Custom React &amp; Next.js Engineering
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/$slug"
+                  params={{ slug: "ui-ux-implementation" }}
+                  className="text-white/70 transition-colors duration-300 hover:text-[#E44C1F]"
+                >
+                  Website Design &amp; UI/UX
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/$slug"
+                  params={{ slug: "creative-web-experiences" }}
+                  className="text-white/70 transition-colors duration-300 hover:text-[#E44C1F]"
+                >
+                  Creative WebGL &amp; 3D Canvases
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/$slug"
+                  params={{ slug: "technical-seo" }}
+                  className="text-white/70 transition-colors duration-300 hover:text-[#E44C1F]"
+                >
+                  Technical SEO &amp; Schema
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/$slug"
+                  params={{ slug: "performance-optimization" }}
+                  className="text-white/70 transition-colors duration-300 hover:text-[#E44C1F]"
+                >
+                  Performance Optimization &amp; Speed
+                </Link>
+              </li>
             </ul>
           </div>
 

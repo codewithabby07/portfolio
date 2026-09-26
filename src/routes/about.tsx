@@ -10,23 +10,23 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
   head: () => ({
     meta: [
-      { title: "About CodeWithAbby | Independent Web Studio Founded by Syed Abbas Ali" },
+      { title: "About CodeWithAbby | Web Developer in Delhi & Independent Studio" },
       {
         name: "description",
         content:
-          "CodeWithAbby is an independent digital studio founded by Syed Abbas Ali, building high-speed, custom web platforms for ambitious businesses worldwide.",
+          "Meet Syed Abbas Ali, Founder & Lead Web Developer at CodeWithAbby in Delhi, India. Engineering high-performance custom business websites and React/Next.js platforms.",
       },
-      { property: "og:title", content: "About CodeWithAbby | Independent Web Studio" },
+      { property: "og:title", content: "About CodeWithAbby | Web Developer in Delhi" },
       {
         property: "og:description",
         content:
-          "CodeWithAbby is an independent digital studio founded by Syed Abbas Ali, building high-speed, custom web platforms for ambitious businesses worldwide.",
+          "CodeWithAbby is an independent web development studio founded by Syed Abbas Ali in Delhi, India, building high-speed, custom business websites.",
       },
       { property: "og:url", content: `${site.url}/about` },
       { property: "og:image", content: `${site.url}/images/og.jpg` },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "About CodeWithAbby | Independent Web Studio" },
-      { name: "twitter:description", content: "Independent digital studio founded by Syed Abbas Ali." },
+      { name: "twitter:title", content: "About CodeWithAbby | Web Developer in Delhi" },
+      { name: "twitter:description", content: "Independent web development studio founded by Syed Abbas Ali in Delhi, India." },
       { name: "twitter:image", content: `${site.url}/images/og.jpg` },
     ],
     links: [{ rel: "canonical", href: `${site.url}/about` }],

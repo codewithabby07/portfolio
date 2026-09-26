@@ -8,23 +8,23 @@ export const Route = createFileRoute("/team")({
   component: TeamPage,
   head: () => ({
     meta: [
-      { title: "Team & Founder | Syed Abbas Ali — CodeWithAbby Studio" },
+      { title: "Team & Founder | Syed Abbas Ali — Web Developer in Delhi | CodeWithAbby" },
       {
         name: "description",
         content:
-          "Meet Syed Abbas Ali (Abby), Founder & Lead Full Stack Developer of CodeWithAbby. Direct founder-led engineering with zero agency bureaucracy.",
+          "Meet Syed Abbas Ali (Abby), Founder & Lead Web Developer of CodeWithAbby in Delhi, India. Direct founder-led engineering with zero agency bureaucracy.",
       },
-      { property: "og:title", content: "Team & Founder | CodeWithAbby Studio" },
+      { property: "og:title", content: "Team & Founder | CodeWithAbby Studio (Delhi, India)" },
       {
         property: "og:description",
         content:
-          "Meet Syed Abbas Ali (Abby), Founder & Lead Full Stack Developer of CodeWithAbby. Direct founder-led engineering with zero agency bureaucracy.",
+          "Meet Syed Abbas Ali (Abby), Founder & Lead Web Developer of CodeWithAbby in Delhi, India. Direct founder-led engineering with zero agency bureaucracy.",
       },
       { property: "og:url", content: `${site.url}/team` },
       { property: "og:image", content: `${site.url}/images/og.jpg` },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Team & Founder | CodeWithAbby Studio" },
-      { name: "twitter:description", content: "Meet Syed Abbas Ali, Founder & Lead Developer." },
+      { name: "twitter:description", content: "Meet Syed Abbas Ali, Founder & Lead Web Developer in Delhi, India." },
       { name: "twitter:image", content: `${site.url}/images/og.jpg` },
     ],
     links: [{ rel: "canonical", href: `${site.url}/team` }],
