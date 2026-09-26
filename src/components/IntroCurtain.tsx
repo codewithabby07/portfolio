@@ -1,183 +1,166 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const TEXT = "CodeWithAbby";
-// ms per character reveal
-const CHAR_DELAY = 85;
-// total typing duration
-const TYPE_DURATION = TEXT.length * CHAR_DELAY; // ~1020ms
-
-/**
- * Phases:
- * "closed"  — shutter slides DOWN from top, covering screen    (0.65s)
- * "typing"  — text types out L→R while shutter is closed
- * "open"    — shutter slides back UP, revealing the website    (0.75s)
- * "done"    — component unmounts
- */
-type Phase = "closed" | "typing" | "open" | "done";
 
 export function IntroCurtain() {
-  const [phase, setPhase] = useState<Phase>(() => {
-    if (typeof window !== "undefined") {
-      try {
-        if (sessionStorage.getItem("cwa_intro_seen") === "1") {
-          return "done";
-        }
-      } catch {
-        // Fallback safely
-      }
-    }
-    return "closed";
-  });
-  const [revealed, setRevealed] = useState(0); // chars typed so far
-  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const [mounted, setMounted] = useState(false);
+  const [revealed, setRevealed] = useState(0);
+  const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    try {
-      if (sessionStorage.getItem("cwa_intro_seen") === "1") {
-        setPhase("done");
-        return;
-      }
-    } catch {
-      // Fallback safely
-    }
+    // Only run on client
+    setMounted(true);
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setPhase("done");
+    // If user prefers reduced motion, dismiss immediately
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIsDone(true);
       return;
     }
 
-    const push = (fn: () => void, ms: number) => {
-      const id = setTimeout(fn, ms);
-      timers.current.push(id);
-      return id;
-    };
+    // Step 1: Type text smoothly character by character
+    const charDelay = 70;
+    const typingTimers: ReturnType<typeof setTimeout>[] = [];
 
-    // After shutter closes (650ms slide), start typing
-    push(() => {
-      setPhase("typing");
-      for (let i = 1; i <= TEXT.length; i++) {
-        push(() => setRevealed(i), i * CHAR_DELAY);
-      }
-    }, 700);
+    for (let i = 1; i <= TEXT.length; i++) {
+      const t = setTimeout(() => {
+        setRevealed(i);
+      }, 200 + i * charDelay);
+      typingTimers.push(t);
+    }
 
-    // After typing finishes, open the shutter and mark session as seen
-    push(() => {
-      setPhase("open");
+    // Step 2: Hard failsafe unmount timer at 2.6s
+    const doneTimer = setTimeout(() => {
+      setIsDone(true);
       try {
         sessionStorage.setItem("cwa_intro_seen", "1");
-      } catch {
-        // Fallback safely
-      }
-    }, 700 + TYPE_DURATION + 400);
+      } catch {}
+    }, 2500);
 
-    // Unmount after shutter slides away
-    push(() => setPhase("done"), 700 + TYPE_DURATION + 400 + 850);
-
-    return () => timers.current.forEach(clearTimeout);
+    return () => {
+      typingTimers.forEach(clearTimeout);
+      clearTimeout(doneTimer);
+    };
   }, []);
 
-  if (phase === "done") return null;
-
-  const isOpen = phase === "open";
+  if (isDone) return null;
 
   return (
-    <>
-      {/* Dark backdrop so website doesn't flash through */}
+    <div
+      aria-hidden="true"
+      className="intro-curtain-wrapper"
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        pointerEvents: "none",
+        overflow: "hidden",
+      }}
+    >
+      {/* ── Rolling Shutter Panel (Automatic CSS Roll-Up Guarantee) ── */}
       <div
+        className="intro-curtain-shutter"
         style={{
-          position: "fixed",
+          position: "absolute",
           inset: 0,
-          zIndex: 9997,
-          background: "#09090c",
-          pointerEvents: "none",
-          opacity: isOpen ? 0 : 1,
-          transition: isOpen ? "opacity 0.75s ease" : "none",
-        }}
-      />
-
-      {/* ── Shutter panel ─────────────────────────────────────────────── */}
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 9998,
-          transform: isOpen ? "translateY(-100%)" : "translateY(0)",
-          transition: isOpen
-            ? "transform 0.75s cubic-bezier(0.76, 0, 0.24, 1)"
-            : "transform 0.65s cubic-bezier(0.76, 0, 0.24, 1)",
-          // Horizontal slat texture — like a real rolling shutter
           background: `
             repeating-linear-gradient(
               180deg,
-              #0e0e10 0px,
-              #161618 3px,
-              #0a0a0c 6px,
-              #131315 9px,
-              #0e0e10 12px
+              #0d0d10 0px,
+              #17171a 3px,
+              #08080a 6px,
+              #121215 9px,
+              #0d0d10 12px
             )
           `,
-          boxShadow: "0 8px 40px rgba(0,0,0,0.9)",
-          borderBottom: "2px solid rgba(228,76,31,0.25)",
+          boxShadow: "0 10px 50px rgba(0,0,0,0.95)",
+          borderBottom: "2px solid rgba(228,76,31,0.4)",
+          animation: "curtainRollUp 0.85s cubic-bezier(0.76, 0, 0.24, 1) 1.5s forwards",
         }}
       />
 
-      {/* ── Typing text (sits above shutter) ──────────────────────────── */}
+      {/* ── Ambient Radial Glow behind brand ── */}
       <div
         style={{
-          position: "fixed",
+          position: "absolute",
           inset: 0,
-          zIndex: 9999,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          pointerEvents: "none",
-          opacity: isOpen ? 0 : phase === "typing" || revealed > 0 ? 1 : 0,
-          transition: isOpen ? "opacity 0.2s ease" : "none",
+          background: "radial-gradient(circle at center, rgba(228,76,31,0.12) 0%, transparent 65%)",
+          animation: "curtainFadeOut 0.4s ease 1.45s forwards",
+        }}
+      />
+
+      {/* ── Brand Typography Display ── */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          animation: "curtainFadeOut 0.35s ease 1.45s forwards",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 0 }}>
-          {/* Revealed characters */}
+        <div style={{ display: "flex", alignItems: "center" }}>
           <span
             style={{
               fontFamily: "'Birthstone', cursive",
               fontStyle: "normal",
               fontWeight: 400,
-              fontSize: "clamp(3.5rem, 10vw, 8rem)",
+              fontSize: "clamp(3.8rem, 11vw, 8.5rem)",
               color: "#e44c1f",
               letterSpacing: "0.02em",
               userSelect: "none",
               textShadow:
-                "0 0 60px rgba(228,76,31,0.55), 0 0 20px rgba(228,76,31,0.35), 0 2px 24px rgba(0,0,0,1)",
+                "0 0 60px rgba(228,76,31,0.65), 0 0 25px rgba(228,76,31,0.4), 0 4px 30px rgba(0,0,0,0.9)",
               lineHeight: 1.1,
             }}
           >
-            {TEXT.slice(0, revealed)}
+            {mounted ? TEXT.slice(0, revealed) : TEXT}
           </span>
 
-          {/* Blinking cursor — only while typing */}
-          {phase === "typing" && revealed < TEXT.length && (
+          {/* Blinking cursor */}
+          {revealed < TEXT.length && (
             <span
               style={{
                 display: "inline-block",
                 width: "3px",
                 height: "clamp(2.8rem, 8vw, 6.4rem)",
                 background: "#e44c1f",
-                marginLeft: "4px",
+                marginLeft: "6px",
                 borderRadius: "2px",
-                animation: "curtain-blink 0.6s step-end infinite",
+                animation: "curtainBlink 0.5s step-end infinite",
               }}
             />
           )}
         </div>
       </div>
 
-      {/* Blink keyframe injected inline */}
       <style>{`
-        @keyframes curtain-blink {
+        @keyframes curtainRollUp {
+          0% {
+            transform: translateY(0%);
+          }
+          100% {
+            transform: translateY(-102%);
+          }
+        }
+
+        @keyframes curtainFadeOut {
+          0% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+
+        @keyframes curtainBlink {
           0%, 100% { opacity: 1; }
-          50%       { opacity: 0; }
+          50% { opacity: 0; }
         }
       `}</style>
-    </>
+    </div>
   );
 }
