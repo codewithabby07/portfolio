@@ -70,7 +70,7 @@ export const industries: Industry[] = [
       "Fast Mobile-First Layouts & Technical SEO",
     ],
     techFocus: ["React", "Next.js", "Tailwind CSS", "Vercel Edge", "Sharp Image Optimization"],
-    projectSlugs: ["alp-buildcon", "property-broker"],
+    projectSlugs: ["alp-buildcon", "property-broker", "aureline-interiors"],
     relatedServices: ["web-development", "frontend-engineering", "ui-ux-implementation"],
   },
   {

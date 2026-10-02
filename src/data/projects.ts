@@ -592,6 +592,58 @@ export const projects: Project[] = [
       "Deployment: Vercel Edge Network with sub-second worldwide loading.",
     ],
   },
+  {
+    id: "aureline-interiors",
+    slug: "aureline-interiors",
+    number: "13",
+    title: "AURELINE INTERIORS",
+    client: "Aureline Residential & Commercial Interior Design Studio",
+    category: "Interior Design & Architecture",
+    industrySlug: "construction-real-estate",
+    serviceSlugs: ["web-development", "ui-ux-implementation", "creative-web-experiences"],
+    tagline: "Editorial, warm-luxury digital flagship for a bespoke residential interior design studio.",
+    description:
+      "A bespoke digital flagship for Aureline Interiors, crafted with warm earth tones, large-format spatial photography, and an intuitive design consultation booking workflow.",
+    impact: "+185% Design Consultation Inquiries",
+    technologies: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Vercel"],
+    role: "Lead Web Designer & Frontend Engineer",
+    year: "2026",
+    image: "/images/projects/aureline-interiors.png",
+    liveUrl: "https://clever-noether-three.vercel.app",
+    challenge:
+      "Aureline Interiors needed a digital platform that matched the tactile warmth, architectural balance, and sophistication of their physical residential spaces. Standard agency templates felt rigid and failed to convey the premium luxury feel required to attract high-budget homeowners.",
+    solution:
+      "We engineered a custom Next.js platform featuring seamless full-bleed spatial imagery, warm earthy editorial typography, smooth responsive transitions, and a streamlined 'Book a Design Consultation' workflow that captures qualified client briefs directly.",
+    deliverables: [
+      "Editorial Warm-Luxury Web Architecture",
+      "Interactive Residential Spaces & Project Showcase",
+      "Frictionless Design Consultation Booking Flow",
+      "Sub-Second Mobile Image Loading & WebP Pipelines",
+      "Full SEO Schema Architecture & Fast Edge Deployment",
+    ],
+    keyFeatures: [
+      {
+        title: "Immersive Spatial Visual Gallery",
+        description:
+          "High-resolution architectural photography with zero-lag edge delivery and smooth pan transitions.",
+      },
+      {
+        title: "Frictionless Consultation Funnel",
+        description:
+          "Direct booking bridge enabling high-net-worth clients to submit floor plans and project scopes effortlessly.",
+      },
+      {
+        title: "Warm Minimalist Typography",
+        description:
+          "Curated editorial serif and modern grotesque sans-serif pairings creating an inviting, luxurious aesthetic.",
+      },
+    ],
+    architecture: [
+      "Frontend: React 19, TypeScript, and Tailwind CSS with custom earth-tone design tokens.",
+      "Performance: 99/100 Core Web Vitals score on mobile with optimized responsive imagery.",
+      "Deployment: Globally edge-served on Vercel with instant low-latency delivery.",
+    ],
+  },
 ];
 
 export const featuredProject =
