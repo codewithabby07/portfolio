@@ -45,10 +45,10 @@ function Home() {
       <main id="main">
         {/* 1. Cinematic Studio Hero with Sylva 3D Living World Backdrop */}
         <Hero />
-        {/* 2. Selected Agency Work */}
-        <Work />
-        {/* 3. Interactive 3D Studio Shelf Archive */}
+        {/* 2. Interactive 3D Studio Shelf Archive */}
         <ProjectShelf3D />
+        {/* 3. Selected Agency Work */}
+        <Work />
         {/* 4. Studio Capabilities & Services */}
         <Services />
         {/* 5. Industry Verticals Showcase */}

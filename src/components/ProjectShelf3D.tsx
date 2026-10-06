@@ -441,20 +441,22 @@ export function ProjectShelf3D() {
     scene.background = new THREE.Color("#08090c");
     scene.fog = new THREE.FogExp2("#08090c", 0.03);
 
-    const initialZ = width < 768 ? 12.2 : (width < 1200 ? 10.8 : 9.8);
-    targetCameraPosRef.current.set(0, 0.2, initialZ);
-    currentCameraPosRef.current.set(0, 0.2, initialZ);
+    const isMobile = width < 768;
+    const initialZ = isMobile ? 8.8 : (width < 1200 ? 10.8 : 9.8);
+    targetCameraPosRef.current.set(0, isMobile ? 0.1 : 0.2, initialZ);
+    currentCameraPosRef.current.set(0, isMobile ? 0.1 : 0.2, initialZ);
 
-    const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 80);
+    const fov = isMobile ? 44 : 36;
+    const camera = new THREE.PerspectiveCamera(fov, width / height, 0.1, 80);
     camera.position.copy(targetCameraPosRef.current);
 
     // 2. HIGH-PERFORMANCE WEBGL RENDERER
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      powerPreference: "high-performance",
+      antialias: !isMobile,
+      powerPreference: isMobile ? "default" : "high-performance",
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 1.5));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.05;
     container.appendChild(renderer.domElement);
