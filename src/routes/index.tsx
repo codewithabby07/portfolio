@@ -3,6 +3,7 @@ import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Work } from "@/components/Work";
+import { ProjectShelf3D } from "@/components/ProjectShelf3D";
 import { Services } from "@/components/Services";
 import { IndustrySection } from "@/components/IndustrySection";
 import { Process } from "@/components/Process";
@@ -46,6 +47,8 @@ function Home() {
         <Hero />
         {/* 2. Selected Agency Work */}
         <Work />
+        {/* 3. Interactive 3D Studio Shelf Archive */}
+        <ProjectShelf3D />
         {/* 4. Studio Capabilities & Services */}
         <Services />
         {/* 5. Industry Verticals Showcase */}
