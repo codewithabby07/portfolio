@@ -388,6 +388,12 @@ export function ProjectShelf3D() {
     activeIndexRef.current = index;
     setActiveIndex(index);
     setActiveProject(projects[index]);
+
+    if (bookGroupsRef.current[index]) {
+      const bookX = (bookGroupsRef.current[index] as any).basePosition.x;
+      const isMobile = window.innerWidth < 768;
+      targetCameraPosRef.current.x = Math.max(-3.8, Math.min(3.8, bookX + (isMobile ? 0 : 0.4)));
+    }
   }, []);
 
   const handleCloseDetail = useCallback(() => {
@@ -751,21 +757,24 @@ export function ProjectShelf3D() {
     container.addEventListener("touchmove", onTouchMove, { passive: true });
     container.addEventListener("touchend", onTouchEnd);
 
-    // 7. RESIZE LISTENER
+    // 7. RESIZE & ORIENTATION LISTENER (Multi-pass for mobile viewport stabilization)
     const handleResize = () => {
       if (!container || !renderer || !camera) return;
-      const w = container.clientWidth;
-      const h = container.clientHeight;
+      const w = container.clientWidth || window.innerWidth;
+      const h = container.clientHeight || (w < 768 ? 540 : 640);
       camera.aspect = w / h;
-      const zDistance = w < 768 ? 12.2 : (w < 1200 ? 10.8 : 9.8);
-      if (activeIndexRef.current === null) {
-        targetCameraPosRef.current.z = zDistance;
-      }
+      const zDistance = w < 768 ? 11.5 : (w < 1200 ? 10.8 : 9.8);
+      targetCameraPosRef.current.z = zDistance;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     };
+
     window.addEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", handleResize);
     handleResize();
+
+    const t1 = setTimeout(handleResize, 100);
+    const t2 = setTimeout(handleResize, 400);
 
     // 8. 60FPS FRAME-RATE INDEPENDENT RAF LOOP
     let rafId: number;
@@ -779,7 +788,8 @@ export function ProjectShelf3D() {
 
     const animate = () => {
       rafId = requestAnimationFrame(animate);
-      if (!isVisible) return;
+      // Ensure initial frames render even before intersection observer stabilizes
+      if (!isVisible && clock.getElapsedTime() > 3.0) return;
 
       const delta = Math.min(clock.getDelta(), 0.1);
       const lerpFactor = 1 - Math.exp(-12 * delta);
@@ -839,7 +849,10 @@ export function ProjectShelf3D() {
     return () => {
       cancelAnimationFrame(rafId);
       observer.disconnect();
+      clearTimeout(t1);
+      clearTimeout(t2);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("orientationchange", handleResize);
       container.removeEventListener("mousemove", onPointerMove);
       container.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mouseup", onMouseUp);
@@ -909,8 +922,8 @@ export function ProjectShelf3D() {
       </div>
 
       {/* 3D Realistic Architectural Bookcase Viewport */}
-      <div className="relative w-full h-[620px] md:h-[680px] cursor-grab active:cursor-grabbing">
-        <div ref={mountRef} className="w-full h-full" />
+      <div className="relative w-full h-[520px] sm:h-[600px] md:h-[680px] touch-pan-y select-none cursor-grab active:cursor-grabbing">
+        <div ref={mountRef} className="w-full h-full min-h-[520px] sm:min-h-[600px] md:min-h-[680px]" />
 
         {/* Creative Hover Inspection Capsule */}
         {hoveredProjectTitle && activeIndex === null && (
