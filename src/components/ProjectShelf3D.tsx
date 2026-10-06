@@ -391,8 +391,8 @@ export function ProjectShelf3D() {
 
     if (bookGroupsRef.current[index]) {
       const bookX = (bookGroupsRef.current[index] as any).basePosition.x;
-      const isMobile = window.innerWidth < 768;
-      targetCameraPosRef.current.x = Math.max(-3.8, Math.min(3.8, bookX + (isMobile ? 0 : 0.4)));
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+      targetCameraPosRef.current.x = Math.max(-5.0, Math.min(5.0, bookX + (isMobile ? 0 : 0.4)));
     }
   }, []);
 
@@ -439,46 +439,56 @@ export function ProjectShelf3D() {
     // 1. SCENE & CAMERA
     const scene = new THREE.Scene();
     scene.background = new THREE.Color("#08090c");
-    scene.fog = new THREE.FogExp2("#08090c", 0.03);
+    scene.fog = new THREE.FogExp2("#08090c", 0.025);
 
     const isMobile = width < 768;
-    const initialZ = isMobile ? 8.8 : (width < 1200 ? 10.8 : 9.8);
-    targetCameraPosRef.current.set(0, isMobile ? 0.1 : 0.2, initialZ);
-    currentCameraPosRef.current.set(0, isMobile ? 0.1 : 0.2, initialZ);
+    const initialZ = isMobile ? 10.2 : (width < 1200 ? 10.8 : 9.8);
+    targetCameraPosRef.current.set(0, isMobile ? 0.05 : 0.2, initialZ);
+    currentCameraPosRef.current.set(0, isMobile ? 0.05 : 0.2, initialZ);
 
-    const fov = isMobile ? 44 : 36;
-    const camera = new THREE.PerspectiveCamera(fov, width / height, 0.1, 80);
+    const fov = isMobile ? 48 : 36;
+    const camera = new THREE.PerspectiveCamera(fov, width / height, 0.1, 100);
     camera.position.copy(targetCameraPosRef.current);
 
-    // 2. HIGH-PERFORMANCE WEBGL RENDERER
-    const renderer = new THREE.WebGLRenderer({
-      antialias: !isMobile,
-      powerPreference: isMobile ? "default" : "high-performance",
-    });
+    // 2. HIGH-PERFORMANCE WEBGL RENDERER WITH FAILSAFE
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: !isMobile,
+        powerPreference: "high-performance",
+        alpha: false,
+      });
+    } catch {
+      renderer = new THREE.WebGLRenderer({
+        antialias: false,
+        powerPreference: "default",
+      });
+    }
+
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.05;
+    renderer.toneMappingExposure = 1.08;
     container.appendChild(renderer.domElement);
 
     // 3. ARCHITECTURAL LIGHTING (Optimized 60 FPS)
-    const ambientLight = new THREE.AmbientLight("#dcd2c4", 0.6);
+    const ambientLight = new THREE.AmbientLight("#dcd2c4", 0.7);
     scene.add(ambientLight);
 
-    const keySpot = new THREE.DirectionalLight("#fff5e6", 2.2);
+    const keySpot = new THREE.DirectionalLight("#fff5e6", 2.4);
     keySpot.position.set(3, 8, 6);
     scene.add(keySpot);
 
-    const amberRimLight = new THREE.PointLight("#E44C1F", 2.6, 16);
+    const amberRimLight = new THREE.PointLight("#E44C1F", 2.8, 18);
     amberRimLight.position.set(0, -1.8, 3.2);
     scene.add(amberRimLight);
 
-    const fillLight = new THREE.DirectionalLight("#50627a", 0.7);
+    const fillLight = new THREE.DirectionalLight("#50627a", 0.8);
     fillLight.position.set(-6, 4, 4);
     scene.add(fillLight);
 
     // 4. ARCHITECTURAL LUXURY BOOKCASE
-    const shelfWidth = totalProjects * spacing + 1.6;
+    const shelfWidth = totalProjects * spacing + 1.8;
     const bookcaseGroup = new THREE.Group();
 
     const woodTexture = createWalnutWoodTexture();
@@ -654,6 +664,8 @@ export function ProjectShelf3D() {
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
 
+    const maxPanLimit = ((totalProjects - 1) * spacing) / 2 + 0.6;
+
     const updatePointer = (clientX: number, clientY: number) => {
       const rect = container.getBoundingClientRect();
       mouse.x = ((clientX - rect.left) / rect.width) * 2 - 1;
@@ -665,8 +677,7 @@ export function ProjectShelf3D() {
     const onPointerMove = (e: MouseEvent) => {
       if (isDraggingRef.current) {
         const deltaX = (e.clientX - dragStartXRef.current) * 0.008;
-        const maxPan = 3.8;
-        targetCameraPosRef.current.x = Math.max(-maxPan, Math.min(maxPan, startCameraXRef.current - deltaX));
+        targetCameraPosRef.current.x = Math.max(-maxPanLimit, Math.min(maxPanLimit, startCameraXRef.current - deltaX));
       } else {
         updatePointer(e.clientX, e.clientY);
         raycaster.setFromCamera(mouse, camera);
@@ -704,7 +715,7 @@ export function ProjectShelf3D() {
       if (isDraggingRef.current) {
         isDraggingRef.current = false;
         const dragDist = Math.abs(e.clientX - dragStartXRef.current);
-        if (dragDist < 6) {
+        if (dragDist < 8) {
           if (hoveredIndexRef.current !== null) {
             handleSelectBook(hoveredIndexRef.current);
           } else if (activeIndexRef.current !== null) {
@@ -714,7 +725,7 @@ export function ProjectShelf3D() {
       }
     };
 
-    // Mobile touch
+    // Mobile Touch Navigation
     const onTouchStart = (e: TouchEvent) => {
       if (e.touches.length === 1) {
         isDraggingRef.current = true;
@@ -725,9 +736,8 @@ export function ProjectShelf3D() {
 
     const onTouchMove = (e: TouchEvent) => {
       if (isDraggingRef.current && e.touches.length === 1) {
-        const deltaX = (e.touches[0].clientX - dragStartXRef.current) * 0.01;
-        const maxPan = 3.8;
-        targetCameraPosRef.current.x = Math.max(-maxPan, Math.min(maxPan, startCameraXRef.current - deltaX));
+        const deltaX = (e.touches[0].clientX - dragStartXRef.current) * 0.012;
+        targetCameraPosRef.current.x = Math.max(-maxPanLimit, Math.min(maxPanLimit, startCameraXRef.current - deltaX));
       }
     };
 
@@ -737,7 +747,7 @@ export function ProjectShelf3D() {
         if (e.changedTouches.length > 0) {
           const touch = e.changedTouches[0];
           const dist = Math.abs(touch.clientX - dragStartXRef.current);
-          if (dist < 8) {
+          if (dist < 12) {
             updatePointer(touch.clientX, touch.clientY);
             raycaster.setFromCamera(mouse, camera);
             const hits = raycaster.intersectObjects(bookMeshes, false);
@@ -763,10 +773,11 @@ export function ProjectShelf3D() {
     const handleResize = () => {
       if (!container || !renderer || !camera) return;
       const w = container.clientWidth || window.innerWidth;
-      const h = container.clientHeight || (w < 768 ? 540 : 640);
+      const h = container.clientHeight || (w < 768 ? 520 : 640);
       camera.aspect = w / h;
-      const zDistance = w < 768 ? 11.5 : (w < 1200 ? 10.8 : 9.8);
+      const zDistance = w < 768 ? 10.2 : (w < 1200 ? 10.8 : 9.8);
       targetCameraPosRef.current.z = zDistance;
+      targetCameraPosRef.current.y = w < 768 ? 0.05 : 0.2;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     };
@@ -778,27 +789,19 @@ export function ProjectShelf3D() {
     const t1 = setTimeout(handleResize, 100);
     const t2 = setTimeout(handleResize, 400);
 
-    // 8. 60FPS FRAME-RATE INDEPENDENT RAF LOOP
+    // 8. 60FPS RELIABLE RAF LOOP (Always renders without timing freeze)
     let rafId: number;
-    let isVisible = true;
     const clock = new THREE.Clock();
-
-    const observer = new IntersectionObserver(([entry]) => {
-      isVisible = entry.isIntersecting;
-    });
-    observer.observe(container);
 
     const animate = () => {
       rafId = requestAnimationFrame(animate);
-      // Ensure initial frames render even before intersection observer stabilizes
-      if (!isVisible && clock.getElapsedTime() > 3.0) return;
 
       const delta = Math.min(clock.getDelta(), 0.1);
-      const lerpFactor = 1 - Math.exp(-12 * delta);
+      const lerpFactor = 1 - Math.exp(-14 * delta);
 
       currentCameraPosRef.current.lerp(targetCameraPosRef.current, lerpFactor);
       camera.position.copy(currentCameraPosRef.current);
-      camera.lookAt(currentCameraPosRef.current.x * 0.8, 0.0, 0);
+      camera.lookAt(currentCameraPosRef.current.x * 0.85, 0.0, 0);
 
       const activeIdx = activeIndexRef.current;
       const hoveredIdx = hoveredIndexRef.current;
@@ -850,7 +853,6 @@ export function ProjectShelf3D() {
     // 9. CLEANUP
     return () => {
       cancelAnimationFrame(rafId);
-      observer.disconnect();
       clearTimeout(t1);
       clearTimeout(t2);
       window.removeEventListener("resize", handleResize);
@@ -923,9 +925,17 @@ export function ProjectShelf3D() {
         </div>
       </div>
 
+      {/* Mobile Swipe Hint Badge */}
+      <div className="max-w-7xl mx-auto px-6 mb-3 flex md:hidden items-center justify-between text-xs text-white/50">
+        <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-[#E44C1F]">
+          <span>👆 Drag shelf horizontally to view all books</span>
+        </span>
+        <span className="text-[11px] font-mono text-white/40">13 Volumes</span>
+      </div>
+
       {/* 3D Realistic Architectural Bookcase Viewport */}
-      <div className="relative w-full h-[520px] sm:h-[600px] md:h-[680px] touch-pan-y select-none cursor-grab active:cursor-grabbing">
-        <div ref={mountRef} className="w-full h-full min-h-[520px] sm:min-h-[600px] md:min-h-[680px]" />
+      <div className="relative w-full h-[500px] sm:h-[600px] md:h-[680px] touch-pan-y select-none cursor-grab active:cursor-grabbing">
+        <div ref={mountRef} className="w-full h-full min-h-[500px] sm:min-h-[600px] md:min-h-[680px]" />
 
         {/* Creative Hover Inspection Capsule */}
         {hoveredProjectTitle && activeIndex === null && (
