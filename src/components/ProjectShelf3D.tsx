@@ -877,7 +877,7 @@ export function ProjectShelf3D() {
   }, [totalProjects, handleSelectBook]);
 
   return (
-    <section id="shelf" className="relative w-full bg-[#08090c] py-20 border-t border-b border-white/[0.08] overflow-hidden select-none">
+    <section id="shelf" className="relative w-full bg-[#08090c] py-20 border-t border-b border-white/[0.08] overflow-hidden select-none hidden md:block">
       {/* Subtle warm architectural glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[360px] bg-[#E44C1F]/[0.05] blur-[150px] pointer-events-none rounded-full" />
 
