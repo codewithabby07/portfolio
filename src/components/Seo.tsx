@@ -6,11 +6,28 @@ export function Seo() {
   const person = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${site.url}/#person`,
     name: "Syed Abbas Ali",
-    alternateName: ["CodeWithAbby", "Abby"],
+    alternateName: ["CodeWithAbby", "Abby", "wzzz_abby"],
+    description:
+      "Syed Abbas Ali (Abby) is a web developer and founder of CodeWithAbby, a boutique custom web development studio based in Delhi, India. He engineers high-performance React and Next.js business websites for clients in India and worldwide.",
     jobTitle: "Founder & Lead Web Developer",
+    worksFor: {
+      "@type": "Organization",
+      name: "CodeWithAbby",
+      url: `${site.url}/`,
+    },
     url: `${site.url}/`,
-    image: `${site.url}${site.portrait.src}`,
+    image: {
+      "@type": "ImageObject",
+      "@id": `${site.url}/#personphoto`,
+      url: `${site.url}/images/portrait.jpg`,
+      contentUrl: `${site.url}/images/portrait.jpg`,
+      caption: "Syed Abbas Ali — Founder & Lead Web Developer, CodeWithAbby, Delhi, India",
+      representativeOfPage: true,
+      width: 768,
+      height: 1376,
+    },
     knowsAbout: [
       "Custom Web Development",
       "Business Website Development",
@@ -32,7 +49,15 @@ export function Seo() {
       postalCode: "110001",
       addressCountry: "IN",
     },
-    sameAs: site.socials.map((s) => s.href),
+    sameAs: [
+      `${site.url}/`,
+      "https://www.instagram.com/wzzz_abby/",
+      "https://www.instagram.com/codewithabby07/",
+      "https://wa.me/917055859219",
+      "https://www.linkedin.com/in/abby-undefined-436951433/",
+      "https://github.com/codewithabby07",
+      "https://x.com/codewithabby07",
+    ],
   };
 
   const website = {
