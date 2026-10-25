@@ -245,6 +245,59 @@ export const industries: Industry[] = [
     projectSlugs: ["review-funnel"],
     relatedServices: ["web-development", "frontend-engineering", "performance-optimization"],
   },
+  {
+    slug: "restaurants-cafes",
+    number: "06",
+    title: "Restaurants, Cafes & Food Hubs",
+    shortTitle: "Digital QR Menus & Food Hubs",
+    headline: "Interactive digital menus, table QR ordering, and instant WhatsApp food cart pipelines.",
+    description:
+      "Modern diners expect instantaneous visual menus without downloading bulky PDF files. We engineer high-speed digital QR menu web applications with real-time dish searching, dietary tags (Veg/Non-Veg), cart totals, and one-tap WhatsApp order routing.",
+    challenges: [
+      {
+        title: "Slow, Unreadable PDF Menus",
+        description:
+          "Traditional QR codes that link to 20MB scanned PDFs freeze customers' phones and fail to display dynamic prices or dish availability.",
+      },
+      {
+        title: "High Food Delivery Commission Fees",
+        description:
+          "Third-party aggregator apps take 25-30% of every order, eroding restaurant margins on pickup and dine-in tables.",
+      },
+      {
+        title: "Slow Physical Menu Turnaround",
+        description:
+          "Customers wait 10-15 minutes just to get a physical paper menu during peak hours, causing table bottleneck.",
+      },
+    ],
+    solutions: [
+      {
+        title: "Instant Sub-Second Web App Menus",
+        description:
+          "Zero-download mobile-first digital menus that load instantly in Safari or Chrome upon QR scanning.",
+      },
+      {
+        title: "Direct WhatsApp & Table Ordering",
+        description:
+          "Customers build carts and submit orders with table numbers directly to the kitchen counter with zero middleman fees.",
+      },
+      {
+        title: "Dietary & Category Highlighting",
+        description:
+          "Clear Veg, Non-Veg, and Chef Special tags helping customers make faster ordering decisions.",
+      },
+    ],
+    deliverables: [
+      "Custom Branded QR Menu Web Application",
+      "Real-Time Category Filtering & Search",
+      "Interactive Table Number & Cart Management",
+      "Direct Kitchen WhatsApp Order Generation",
+      "Admin Panel for Live Price & Dish Availability Updates",
+    ],
+    techFocus: ["React", "TypeScript", "Tailwind CSS", "Vercel Edge", "WhatsApp API"],
+    projectSlugs: ["nt-cafe", "antilia-menu"],
+    relatedServices: ["web-development", "digital-qr-menus", "ui-ux-implementation"],
+  },
 ];
 
 export function getIndustryBySlug(slug: string) {

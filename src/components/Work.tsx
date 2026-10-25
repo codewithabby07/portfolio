@@ -19,6 +19,9 @@ function getProjectTags(project: Project): string[] {
     "dentiva": ["Healthcare", "Clinic"],
     "review-funnel": ["SaaS", "Growth Tool"],
     "property-broker": ["Real Estate", "PropTech"],
+    "aureline-interiors": ["Interior", "Architecture"],
+    "nt-cafe": ["QR Menu", "Food Hub"],
+    "antilia-menu": ["QR Menu", "Dining & Bar"],
   };
 
   if (customTags[project.slug] || customTags[project.id]) {
@@ -42,6 +45,9 @@ function renderStyledTitle(project: Project) {
     "silvane-estates": { main: "Silvane", accent: "Estates" },
     "kevin-vfx": { main: "Kevin", accent: "VFX" },
     "ai-startup-saas": { main: "AI Startup", accent: "SaaS" },
+    "aureline-interiors": { main: "Aureline", accent: "Interiors" },
+    "nt-cafe": { main: "NT Café", accent: "Food Hub" },
+    "antilia-menu": { main: "Antilia", accent: "Restaurant" },
   };
 
   const item = customTitles[project.slug] || customTitles[project.id];
@@ -219,16 +225,18 @@ export function Work() {
   const tabs = [
     { id: "featured", label: "Featured Showcase" },
     { id: "all", label: "All Projects" },
+    { id: "restaurants-cafes", label: "Digital QR Menus" },
     { id: "creative-agencies", label: "Video & Studios" },
     { id: "construction-real-estate", label: "Real Estate" },
     { id: "healthcare-clinics", label: "Healthcare" },
   ];
 
-  // Homepage Featured list: Project 01, 02, 03, 04 (Dentiva), 06 (Property Broker), 08 (Santha Editing), 10 (Silvane), 11 (Kevin VFX)
-  // Excluded from homepage as requested: Project 07 (sample-video), 09 (aqua-plumbing), 12 (ai-startup-saas)
+  // Homepage Featured list: Includes top agency projects + newest digital QR menus
   const FEATURED_SLUGS = [
     "alp-buildcon",
     "creavo",
+    "nt-cafe",
+    "antilia-menu",
     "zainca",
     "dentiva",
     "property-broker",
@@ -284,7 +292,7 @@ export function Work() {
               to="/work"
               className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-100 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-neutral-900 hover:border-[#E44C1F] hover:bg-[#E44C1F] hover:text-white transition-all shadow-sm shrink-0"
             >
-              <span>Explore All 12 Projects</span>
+              <span>Explore All {projects.length} Projects</span>
               <span>→</span>
             </Link>
           </div>

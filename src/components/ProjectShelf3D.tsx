@@ -930,7 +930,7 @@ export function ProjectShelf3D() {
         <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-[#E44C1F]">
           <span>👆 Drag shelf horizontally to view all books</span>
         </span>
-        <span className="text-[11px] font-mono text-white/40">13 Volumes</span>
+        <span className="text-[11px] font-mono text-white/40">{totalProjects} Volumes</span>
       </div>
 
       {/* 3D Realistic Architectural Bookcase Viewport */}

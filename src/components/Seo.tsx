@@ -37,6 +37,7 @@ export function Seo() {
       "Tailwind CSS",
       "Technical SEO",
       "Core Web Vitals Optimization",
+      "Digital QR Menu Systems",
       "E-commerce Website Development",
       "Website Redesign",
       "WebGL & Three.js",
@@ -182,7 +183,7 @@ export function Seo() {
         name: "What services does CodeWithAbby offer?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "CodeWithAbby provides Business Website Development, Custom Web Development, Website Design & UI/UX Implementation, E-commerce Store Development, Website Redesign, Technical SEO, and Sub-Second Performance Optimization.",
+          text: "CodeWithAbby provides Business Website Development, Custom Web Development, Interactive Digital QR Menus & Food Hub Platforms, Website Design & UI/UX Implementation, E-commerce Store Development, Website Redesign, Technical SEO, and Sub-Second Performance Optimization.",
         },
       },
       {

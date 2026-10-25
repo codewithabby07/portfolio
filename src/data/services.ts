@@ -425,6 +425,82 @@ export const services: Service[] = [
     ],
     relatedIndustries: ["ecommerce-retail", "saas-growth-tools", "construction-real-estate"],
   },
+  {
+    number: "06",
+    slug: "digital-qr-menus",
+    title: "DIGITAL QR MENUS & ORDERING PLATFORMS",
+    shortTitle: "Digital QR Menus",
+    tagline: "Instant-load interactive menus, live table carts, and zero-commission WhatsApp ordering.",
+    summary:
+      "We build modern digital QR menu web applications for cafes, restaurants, lounges, and food hubs. Diners scan and browse with sub-second speed, search dishes in real time, and order directly without PDFs or third-party commissions.",
+    description:
+      "Physical paper menus get dirty and outdated quickly, while PDF QR codes are slow, unreadable on phones, and frustrating for guests. We build custom mobile-first digital menu web applications with blazing-fast search, dietary filters (Veg/Non-Veg), live bill calculators, and one-tap WhatsApp or kitchen counter order dispatch.",
+    whoItsFor: [
+      "Cafes, QSR outlets, and food hubs wanting zero-wait dine-in tabletop ordering.",
+      "Fine-dining restaurants, bars, and lounges looking for luxury digital menus with high-res food showcases.",
+      "Multi-branch restaurants wanting to update daily prices and specials instantly without reprinting paper menus.",
+    ],
+    deliverables: [
+      {
+        title: "Bespoke Mobile-First QR Menu Web App",
+        description: "Zero-download web application that opens in under 400ms upon camera QR scan on iOS and Android.",
+      },
+      {
+        title: "Real-Time Dish Search & Dietary Badges",
+        description: "Instant keyword search with clear Veg, Non-Veg, Spicy, Chef Special, and Best Seller badges.",
+      },
+      {
+        title: "Tabletop Cart & Bill Calculator",
+        description: "Interactive item counter, dish customization notes, and live total calculation.",
+      },
+      {
+        title: "Direct WhatsApp & Kitchen Dispatch",
+        description: "Automatic generation of formatted orders with table numbers sent directly to staff or kitchen WhatsApp.",
+      },
+      {
+        title: "Staff Admin Panel & Dish Manager",
+        description: "Password-protected controls to toggle sold-out items and edit prices in seconds.",
+      },
+    ],
+    methodology: [
+      {
+        step: "01",
+        title: "Menu Structure & Categorization",
+        description: "Organizing your food catalog into intuitive categories, specials, combos, and dietary filters.",
+      },
+      {
+        step: "02",
+        title: "High-Resolution Food Staging",
+        description: "Optimizing dish photography for appetizing presentation with next-gen compressed image delivery.",
+      },
+      {
+        step: "03",
+        title: "Cart & Order Logic Engineering",
+        description: "Building seamless table selection, quantity management, and instant receipt formatting.",
+      },
+      {
+        step: "04",
+        title: "QR Generation & Tabletop Deployment",
+        description: "Providing high-resolution vector QR codes ready for table tents, stickers, and counter stands.",
+      },
+    ],
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Vercel Edge", "Cloudflare Pages", "WhatsApp API"],
+    faqs: [
+      {
+        question: "Do customers need to download an app from Play Store or App Store?",
+        answer: "No, never. The menu opens immediately in their default phone browser (Safari, Chrome) in under half a second.",
+      },
+      {
+        question: "Can we change prices or mark items out of stock?",
+        answer: "Yes, you get a clean, simple admin toggle to mark items sold-out or update prices instantly without touching any code.",
+      },
+      {
+        question: "Does it support WhatsApp orders and table numbers?",
+        answer: "Yes, customers can select their table number and send their order directly to your counter/kitchen WhatsApp with one tap.",
+      },
+    ],
+    relatedIndustries: ["restaurants-cafes", "ecommerce-retail", "creative-agencies"],
+  },
 ];
 
 export const skills = [
@@ -436,6 +512,7 @@ export const skills = [
   "Tailwind CSS",
   "Three.js / WebGL",
   "GLSL Shaders",
+  "Digital QR Menus",
   "REST APIs",
   "Vercel Edge",
   "Technical SEO",

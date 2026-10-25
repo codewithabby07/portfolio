@@ -41,6 +41,7 @@ function WorkIndex() {
 
   const categories = [
     { id: "all", label: "All Projects" },
+    { id: "restaurants-cafes", label: "Digital QR Menus & Food" },
     { id: "construction-real-estate", label: "Real Estate & Construction" },
     { id: "creative-agencies", label: "Creative & Studios" },
     { id: "ecommerce-retail", label: "E-Commerce" },

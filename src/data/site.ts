@@ -39,6 +39,7 @@ export const site = {
   },
   marquee: [
     "Business Website Development",
+    "Interactive Digital QR Menus",
     "Custom React & Next.js Engineering",
     "Creative WebGL & 3D Experiences",
     "Editorial UI/UX & Website Design",

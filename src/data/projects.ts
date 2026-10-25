@@ -644,6 +644,112 @@ export const projects: Project[] = [
       "Deployment: Globally edge-served on Vercel with instant low-latency delivery.",
     ],
   },
+  {
+    id: "nt-cafe",
+    slug: "nt-cafe",
+    number: "14",
+    title: "NT CAFÉ (FOOD HUB)",
+    client: "NT Café Food Hub (Sir Syed Nagar, Civil Lines, Aligarh)",
+    category: "Restaurant & Digital QR Menu",
+    industrySlug: "restaurants-cafes",
+    serviceSlugs: ["web-development", "digital-qr-menus", "ui-ux-implementation"],
+    tagline: "High-speed digital QR menu and food hub catalog with instant dish search and dietary filtering.",
+    description:
+      "A custom mobile-first digital QR menu web app engineered for NT Café (Food Hub). Features instant sub-second dish lookup, Pure Veg / Non-Veg toggles, dynamic category tabs, and smooth dish showcase designed for fast customer ordering.",
+    impact: "Zero-Wait Dine-In Menu Ordering",
+    technologies: ["React", "Vite", "Tailwind CSS", "JavaScript", "Vercel"],
+    role: "Lead Full-Stack Web Developer",
+    year: "2026",
+    image: "/images/projects/nt-cafe.png",
+    liveUrl: "https://nt-cafe-menu.vercel.app/",
+    featured: true,
+    challenge:
+      "NT Café needed an instantaneous, elegant digital QR menu that diners could scan at tables without waiting for physical paper menus or dealing with clunky, slow-loading PDF files. They needed quick item discovery across momos, burgers, sandwiches, shakes, pizzas, and wraps with clear veg/non-veg indicators.",
+    solution:
+      "We engineered an ultra-fast, zero-bloat web application optimized for mobile viewports. Diners scan the tabletop QR code and immediately access an interactive menu with instant search, category scrollbars, high-resolution food plates, and price breakdowns with zero download friction.",
+    deliverables: [
+      "Mobile-First Digital QR Menu Architecture",
+      "Live Real-Time Dish Search & Instant Categorization",
+      "Dietary Indicators (Pure Veg / Non-Veg / Best Sellers)",
+      "Zero-Lag CDN Asset Caching & Lightweight Bundle",
+      "Direct Location & Delivery Contact Integration",
+    ],
+    keyFeatures: [
+      {
+        title: "Instant Dish Search & Filters",
+        description:
+          "Instantaneous search bar filtering through momos, burgers, pizzas, and beverages in real-time.",
+      },
+      {
+        title: "Tabletop QR Optimization",
+        description:
+          "Ultra-compact bundle size loading in under 400ms on 4G cellular connections.",
+      },
+      {
+        title: "High-Contrast Dark Gold Theme",
+        description:
+          "Luxury navy and gold visual aesthetic matching the cafe's physical dining ambiance.",
+      },
+    ],
+    architecture: [
+      "Frontend: React + Vite + Tailwind CSS for zero-runtime overhead.",
+      "Performance: 100/100 Mobile Performance with preloaded critical fonts and logo assets.",
+      "Deployment: Globally served via Vercel Edge CDN.",
+    ],
+  },
+  {
+    id: "antilia-menu",
+    slug: "antilia-menu",
+    number: "15",
+    title: "ANTILIA RESTAURANT & BAR",
+    client: "Antilia Restaurant & Bar",
+    category: "Restaurant & Digital QR Menu",
+    industrySlug: "restaurants-cafes",
+    serviceSlugs: ["web-development", "digital-qr-menus", "ui-ux-implementation"],
+    tagline: "Interactive digital QR menu with table ordering, real-time cart calculation, and direct WhatsApp dispatch.",
+    description:
+      "A full-featured digital dining platform engineered for Antilia Restaurant & Bar. Integrates interactive menu browsing, table number selection, dynamic cart with automatic bill calculation, direct waiter paging, and instant WhatsApp order routing.",
+    impact: "100% Digital Order Flow",
+    technologies: ["JavaScript", "HTML5", "CSS3 / Modern Layout", "Cloudflare Pages", "WhatsApp API"],
+    role: "Lead Frontend Developer & UI Engineer",
+    year: "2026",
+    image: "/images/projects/antilia-menu.png",
+    liveUrl: "https://antilia.pages.dev/",
+    featured: true,
+    challenge:
+      "Antilia Restaurant & Bar wanted to modernize their in-house dining operations with a digital ordering workflow. The objective was to eliminate ordering delays during peak rush hours, provide live price clarity, and allow customers to send their itemized orders directly to staff with table identification.",
+    solution:
+      "We built a dark luxury interactive menu featuring animated category navigation, live cart management, table number input, waiter summon bell, and an automated WhatsApp order format that sends cleanly formatted receipts straight to the manager.",
+    deliverables: [
+      "Interactive Digital Menu & Visual Food Grid",
+      "Live Table Cart & Real-Time Bill Calculator",
+      "Automated WhatsApp Order Dispatch Engine",
+      "Digital Waiter Calling System ('Call Waiter')",
+      "Admin Dashboard with Live Dish & Category Toggles",
+    ],
+    keyFeatures: [
+      {
+        title: "Table-Specific WhatsApp Ordering",
+        description:
+          "Generates formatted order breakdown including table number, items, quantities, and totals directly to staff WhatsApp.",
+      },
+      {
+        title: "Digital Waiter Alert",
+        description:
+          "One-tap waiter summoning button providing visual on-screen confirmation for guests.",
+      },
+      {
+        title: "Built-In Staff Admin Controls",
+        description:
+          "Password-protected admin interface to toggle dish availability and update pricing on the fly.",
+      },
+    ],
+    architecture: [
+      "Frontend: Lightweight vanilla ES6 architecture with zero third-party framework overhead.",
+      "Hosting: Cloudflare Pages Edge network delivering instant globally distributed responses.",
+      "State: LocalStorage-backed cart persistence surviving accidental tab closures.",
+    ],
+  },
 ];
 
 export const featuredProject =
