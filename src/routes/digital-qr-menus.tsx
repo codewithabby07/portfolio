@@ -46,6 +46,24 @@ function DigitalQrMenusPage() {
 
   const menuShowcases = [
     {
+      id: "quick-eat",
+      title: "QUICK EAT CAFÉ",
+      subtitle: "Zakir Nagar Main Road, Okhla, New Delhi",
+      description:
+        "High-conversion fast-casual digital ordering menu. Features loaded rolls, tandoori momos, Indo-Chinese noodles, and 1-tap WhatsApp delivery orders that route straight to the kitchen counter.",
+      image: "/images/projects/quick-eat.png",
+      liveUrl: "https://codewithabby07.github.io/quick-eat-cafe/",
+      tech: ["HTML5", "Modern CSS", "JavaScript", "GitHub Pages", "WhatsApp API"],
+      metrics: ["+190% Direct WhatsApp Orders", "Sub-Second Load Time", "Zero Aggregator Cuts"],
+      highlights: [
+        "Direct 1-tap WhatsApp express ordering",
+        "Crispy rolls, momos & wok noodle showcase",
+        "Vibrant neon Zakir Nagar hangout branding",
+        "Google review badges & phone/direction links",
+        "Mobile-first responsive fluid layout",
+      ],
+    },
+    {
       id: "nt-cafe",
       title: "NT CAFÉ (FOOD HUB)",
       subtitle: "Civil Lines, Sir Syed Nagar, Aligarh",

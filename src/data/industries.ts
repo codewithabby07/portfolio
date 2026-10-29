@@ -295,7 +295,7 @@ export const industries: Industry[] = [
       "Admin Panel for Live Price & Dish Availability Updates",
     ],
     techFocus: ["React", "TypeScript", "Tailwind CSS", "Vercel Edge", "WhatsApp API"],
-    projectSlugs: ["nt-cafe", "antilia-menu"],
+    projectSlugs: ["quick-eat", "nt-cafe", "antilia-menu"],
     relatedServices: ["web-development", "digital-qr-menus", "ui-ux-implementation"],
   },
 ];

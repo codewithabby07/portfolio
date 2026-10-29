@@ -750,6 +750,59 @@ export const projects: Project[] = [
       "State: LocalStorage-backed cart persistence surviving accidental tab closures.",
     ],
   },
+  {
+    id: "quick-eat",
+    slug: "quick-eat",
+    number: "16",
+    title: "QUICK EAT CAFÉ",
+    client: "Quick Eat Café (Zakir Nagar Main Road, Okhla, New Delhi)",
+    category: "Café & Digital Menu",
+    industrySlug: "restaurants-cafes",
+    serviceSlugs: ["web-development", "digital-qr-menus", "ui-ux-implementation"],
+    tagline: "Crispy rolls, sizzling momos, and fast-casual dining menu with instant WhatsApp ordering.",
+    description:
+      "A high-converting, vibrant digital menu and online ordering platform engineered for Quick Eat Café in Zakir Nagar, Okhla. Features chicken tikka rolls, tandoori roasted momos, wok-tossed noodles, and direct 1-tap WhatsApp food ordering.",
+    impact: "+190% Direct WhatsApp Orders",
+    technologies: ["HTML5", "Modern CSS", "JavaScript", "GitHub Pages", "WhatsApp API"],
+    role: "Lead Frontend Developer & UI Engineer",
+    year: "2026",
+    image: "/images/projects/quick-eat.png",
+    liveUrl: "https://codewithabby07.github.io/quick-eat-cafe/",
+    featured: true,
+    challenge:
+      "Quick Eat Café needed a vibrant, visual menu to capture high footfall and delivery demand in Zakir Nagar, Okhla. They needed customers to browse hot rolls, momos, and Chinese dishes with instant WhatsApp delivery ordering without paying hefty commissions to third-party delivery apps.",
+    solution:
+      "We engineered an ultra-fast, mobile-first digital menu website featuring vibrant food reels, category tabs, Google review badges, and instant WhatsApp ordering that sends itemized orders directly to the counter.",
+    deliverables: [
+      "Custom Branded Café & Roll Menu Web Architecture",
+      "Interactive Food Category Showcase & Review Badges",
+      "Direct Single-Tap WhatsApp Express Ordering",
+      "Sub-Second Mobile Load Times with High-Res Visual Plates",
+      "Integrated Location, Call, and Timing Controls",
+    ],
+    keyFeatures: [
+      {
+        title: "Express WhatsApp Food Ordering",
+        description:
+          "Customers select their rolls and dishes and click 'Order on WhatsApp' to dispatch their order directly to staff.",
+      },
+      {
+        title: "Vibrant Zakir Nagar Hangout Identity",
+        description:
+          "High-contrast dark modern theme with neon café aesthetic and glowing food callouts.",
+      },
+      {
+        title: "Frictionless Category Navigation",
+        description:
+          "Quick switching between Rolls, Momos, Indo-Chinese, Shakes, and Combos.",
+      },
+    ],
+    architecture: [
+      "Frontend: Lightweight semantic HTML5, Modern CSS, and modular ES6 JavaScript.",
+      "Deployment: High-speed edge distribution via GitHub Pages CDN.",
+      "Conversion: Direct WhatsApp API hook with automatic message prefill.",
+    ],
+  },
 ];
 
 export const featuredProject =

@@ -22,6 +22,7 @@ function getProjectTags(project: Project): string[] {
     "aureline-interiors": ["Interior", "Architecture"],
     "nt-cafe": ["QR Menu", "Food Hub"],
     "antilia-menu": ["QR Menu", "Dining & Bar"],
+    "quick-eat": ["QR Menu", "Café & Rolls"],
   };
 
   if (customTags[project.slug] || customTags[project.id]) {
@@ -48,6 +49,7 @@ function renderStyledTitle(project: Project) {
     "aureline-interiors": { main: "Aureline", accent: "Interiors" },
     "nt-cafe": { main: "NT Café", accent: "Food Hub" },
     "antilia-menu": { main: "Antilia", accent: "Restaurant" },
+    "quick-eat": { main: "Quick Eat", accent: "Café" },
   };
 
   const item = customTitles[project.slug] || customTitles[project.id];
@@ -235,6 +237,7 @@ export function Work() {
   const FEATURED_SLUGS = [
     "alp-buildcon",
     "creavo",
+    "quick-eat",
     "nt-cafe",
     "antilia-menu",
     "zainca",

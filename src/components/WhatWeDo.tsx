@@ -21,13 +21,13 @@ export function WhatWeDo() {
     {
       id: "digital-qr-menus",
       title: "Digital QR Menus",
-      badge: "Cafes & Dining • Zero Commission",
-      badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+      badge: "",
+      badgeColor: "",
       icon: UtensilsCrossed,
       iconColor: "text-amber-400",
       description:
         "Sub-second interactive mobile menus with live table carts, dietary filters, and direct WhatsApp ordering.",
-      image: "/images/projects/nt-cafe.png",
+      image: "/images/projects/antilia-menu.png",
       href: "/digital-qr-menus",
       cta: "Explore QR Menus",
       highlight: "Live Demos",
@@ -35,8 +35,8 @@ export function WhatWeDo() {
     {
       id: "website-development",
       title: "Website Development",
-      badge: "Bespoke Full-Stack Systems",
-      badgeColor: "bg-[#E44C1F]/10 text-[#E44C1F] border-[#E44C1F]/20",
+      badge: "",
+      badgeColor: "",
       icon: Code2,
       iconColor: "text-[#E44C1F]",
       description:
@@ -102,14 +102,16 @@ export function WhatWeDo() {
                       <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-80" />
 
                       {/* Floating pill badge */}
-                      <div className="absolute top-3 left-3">
-                        <span
-                          className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-mono font-semibold tracking-wide backdrop-blur-md ${item.badgeColor}`}
-                        >
-                          <Icon className="h-3 w-3" />
-                          <span>{item.badge}</span>
-                        </span>
-                      </div>
+                      {item.badge ? (
+                        <div className="absolute top-3 left-3">
+                          <span
+                            className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-mono font-semibold tracking-wide backdrop-blur-md ${item.badgeColor}`}
+                          >
+                            <Icon className="h-3 w-3" />
+                            <span>{item.badge}</span>
+                          </span>
+                        </div>
+                      ) : null}
 
                       {/* Arrow Icon in Top Right */}
                       <div className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 border border-white/15 text-white/70 group-hover:text-white group-hover:bg-[#E44C1F] group-hover:border-[#E44C1F] transition-all">
