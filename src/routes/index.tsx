@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
+import { WhatWeDo } from "@/components/WhatWeDo";
 import { About } from "@/components/About";
 import { Work } from "@/components/Work";
 import { ProjectShelf3D } from "@/components/ProjectShelf3D";
@@ -45,7 +46,9 @@ function Home() {
       <main id="main">
         {/* 1. Cinematic Studio Hero with Sylva 3D Living World Backdrop */}
         <Hero />
-        {/* 2. Interactive 3D Studio Shelf Archive */}
+        {/* 2. Visual "What We Do" Core Capabilities Showcase */}
+        <WhatWeDo />
+        {/* 3. Interactive 3D Studio Shelf Archive */}
         <ProjectShelf3D />
         {/* 3. Selected Agency Work */}
         <Work />

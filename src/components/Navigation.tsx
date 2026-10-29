@@ -6,6 +6,8 @@ import { useReducedMotion } from "@/lib/motion";
 
 const navLinks = [
   { label: "Work", href: "/work" },
+  { label: "Templates", href: "/templates" },
+  { label: "QR Menus", href: "/digital-qr-menus" },
   { label: "Services", href: "/services" },
   { label: "Industries", href: "/industries" },
   { label: "About", href: "/about" },

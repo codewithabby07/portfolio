@@ -67,10 +67,13 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5">
               {[
                 { label: "Home", href: "/" },
-                { label: "About", href: "/about" },
+                { label: "Website Templates (₹99)", href: "/templates" },
+                { label: "Digital QR Menus", href: "/digital-qr-menus" },
+                { label: "Website Development", href: "/website-development" },
                 { label: "Work", href: "/work" },
                 { label: "Services", href: "/services" },
                 { label: "Industries", href: "/industries" },
+                { label: "About", href: "/about" },
                 { label: "Blog", href: "/blog" },
                 { label: "FAQ", href: "/#faq" },
                 { label: "Contact", href: "/contact" },

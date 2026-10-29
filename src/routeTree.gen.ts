@@ -12,13 +12,17 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DigitalQrMenusRouteImport } from './routes/digital-qr-menus'
 import { Route as TeamRouteImport } from './routes/team'
+import { Route as WebsiteDevelopmentRouteImport } from './routes/website-development'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as IndustriesIndexRouteImport } from './routes/industries/index'
 import { Route as IndustriesSlugRouteImport } from './routes/industries/$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services/index'
 import { Route as ServicesSlugRouteImport } from './routes/services/$slug'
+import { Route as TemplatesIndexRouteImport } from './routes/templates/index'
+import { Route as TemplatesPreviewRouteImport } from './routes/templates/preview'
 import { Route as WorkIndexRouteImport } from './routes/work/index'
 import { Route as WorkSlugRouteImport } from './routes/work/$slug'
 
@@ -37,9 +41,19 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DigitalQrMenusRoute = DigitalQrMenusRouteImport.update({
+  id: '/digital-qr-menus',
+  path: '/digital-qr-menus',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebsiteDevelopmentRoute = WebsiteDevelopmentRouteImport.update({
+  id: '/website-development',
+  path: '/website-development',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -72,6 +86,16 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
   path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TemplatesIndexRoute = TemplatesIndexRouteImport.update({
+  id: '/templates/',
+  path: '/templates/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TemplatesPreviewRoute = TemplatesPreviewRouteImport.update({
+  id: '/templates/preview',
+  path: '/templates/preview',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkIndexRoute = WorkIndexRouteImport.update({
   id: '/work/',
   path: '/work/',
@@ -87,28 +111,36 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/digital-qr-menus': typeof DigitalQrMenusRoute
   '/team': typeof TeamRoute
+  '/website-development': typeof WebsiteDevelopmentRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/templates/preview': typeof TemplatesPreviewRoute
   '/work/$slug': typeof WorkSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/industries/': typeof IndustriesIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/templates/': typeof TemplatesIndexRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/digital-qr-menus': typeof DigitalQrMenusRoute
   '/team': typeof TeamRoute
+  '/website-development': typeof WebsiteDevelopmentRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/templates/preview': typeof TemplatesPreviewRoute
   '/work/$slug': typeof WorkSlugRoute
   '/blog': typeof BlogIndexRoute
   '/industries': typeof IndustriesIndexRoute
   '/services': typeof ServicesIndexRoute
+  '/templates': typeof TemplatesIndexRoute
   '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
@@ -116,14 +148,18 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/digital-qr-menus': typeof DigitalQrMenusRoute
   '/team': typeof TeamRoute
+  '/website-development': typeof WebsiteDevelopmentRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/templates/preview': typeof TemplatesPreviewRoute
   '/work/$slug': typeof WorkSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/industries/': typeof IndustriesIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/templates/': typeof TemplatesIndexRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
@@ -132,42 +168,54 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/digital-qr-menus'
     | '/team'
+    | '/website-development'
     | '/blog/$slug'
     | '/industries/$slug'
     | '/services/$slug'
+    | '/templates/preview'
     | '/work/$slug'
     | '/blog/'
     | '/industries/'
     | '/services/'
+    | '/templates/'
     | '/work/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
+    | '/digital-qr-menus'
     | '/team'
+    | '/website-development'
     | '/blog/$slug'
     | '/industries/$slug'
     | '/services/$slug'
+    | '/templates/preview'
     | '/work/$slug'
     | '/blog'
     | '/industries'
     | '/services'
+    | '/templates'
     | '/work'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
+    | '/digital-qr-menus'
     | '/team'
+    | '/website-development'
     | '/blog/$slug'
     | '/industries/$slug'
     | '/services/$slug'
+    | '/templates/preview'
     | '/work/$slug'
     | '/blog/'
     | '/industries/'
     | '/services/'
+    | '/templates/'
     | '/work/'
   fileRoutesById: FileRoutesById
 }
@@ -175,14 +223,18 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  DigitalQrMenusRoute: typeof DigitalQrMenusRoute
   TeamRoute: typeof TeamRoute
+  WebsiteDevelopmentRoute: typeof WebsiteDevelopmentRoute
   BlogSlugRoute: typeof BlogSlugRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  TemplatesPreviewRoute: typeof TemplatesPreviewRoute
   WorkSlugRoute: typeof WorkSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   IndustriesIndexRoute: typeof IndustriesIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
+  TemplatesIndexRoute: typeof TemplatesIndexRoute
   WorkIndexRoute: typeof WorkIndexRoute
 }
 
@@ -209,11 +261,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/digital-qr-menus': {
+      id: '/digital-qr-menus'
+      path: '/digital-qr-menus'
+      fullPath: '/digital-qr-menus'
+      preLoaderRoute: typeof DigitalQrMenusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/team': {
       id: '/team'
       path: '/team'
       fullPath: '/team'
       preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/website-development': {
+      id: '/website-development'
+      path: '/website-development'
+      fullPath: '/website-development'
+      preLoaderRoute: typeof WebsiteDevelopmentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -258,6 +324,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/templates/': {
+      id: '/templates/'
+      path: '/templates'
+      fullPath: '/templates/'
+      preLoaderRoute: typeof TemplatesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/templates/preview': {
+      id: '/templates/preview'
+      path: '/templates/preview'
+      fullPath: '/templates/preview'
+      preLoaderRoute: typeof TemplatesPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/work/': {
       id: '/work/'
       path: '/work'
@@ -279,14 +359,18 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  DigitalQrMenusRoute: DigitalQrMenusRoute,
   TeamRoute: TeamRoute,
+  WebsiteDevelopmentRoute: WebsiteDevelopmentRoute,
   BlogSlugRoute: BlogSlugRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  TemplatesPreviewRoute: TemplatesPreviewRoute,
   WorkSlugRoute: WorkSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   IndustriesIndexRoute: IndustriesIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
+  TemplatesIndexRoute: TemplatesIndexRoute,
   WorkIndexRoute: WorkIndexRoute,
 }
 export const routeTree = rootRouteImport
