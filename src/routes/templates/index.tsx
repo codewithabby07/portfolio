@@ -121,7 +121,7 @@ function TemplatesGallery() {
                         {/* Overlay View Demo Pill on Hover */}
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-xs">
                           <Link
-                            to="/templates/preview"
+                            to="/templates/preview" search={{ template: tpl.slug }}
                             className="inline-flex items-center gap-2 rounded-full bg-white text-neutral-950 px-5 py-2.5 text-xs font-bold uppercase tracking-wider shadow-xl hover:scale-105 transition-all"
                           >
                             <Eye className="h-4 w-4" />
@@ -183,7 +183,7 @@ function TemplatesGallery() {
                       <div className="pt-4 border-t border-white/[0.08] flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                         {/* View Demo Button */}
                         <Link
-                          to="/templates/preview"
+                          to="/templates/preview" search={{ template: tpl.slug }}
                           className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.05] px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-white/10 hover:border-white/30 transition-all text-center"
                         >
                           <Eye className="h-4 w-4 text-[#EE95BB]" />

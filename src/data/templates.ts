@@ -23,6 +23,37 @@ export type WebsiteTemplate = {
 
 export const templates: WebsiteTemplate[] = [
   {
+    id: "birthday-wish",
+    slug: "birthday-wish",
+    name: "Interactive Birthday Wish Website",
+    category: "Birthday & Celebrations",
+    price: 99,
+    originalPrice: 499,
+    currency: "₹",
+    tagline: "Viral iOS lockscreen buzz intro, Spotify-style 'Year Wrapped' stats, interactive candle blow-out, and heartfelt letter.",
+    description:
+      "A cinematic, ultra-engaging birthday experience designed to make someone feel truly special. Features a realistic phone lockscreen notification intro, a personalized 'Year in Review Wrapped' stats card series, an interactive birthday cake where they hold to wish and tap flames to blow out the candles, and an unopened gift box with your customized memories and photos.",
+    features: [
+      "Realistic iOS Lockscreen Notification Buzz Intro",
+      "Spotify-Style 'Your Year, Wrapped' Personalized Stats Cards",
+      "Interactive 3D Cake with Hold-to-Wish & Tap-to-Blow Candles",
+      "Surprise Unopened Gift Box with Private Letter & Photos",
+      "Atmospheric Celebration Music & Sound Effects Included",
+      "Custom Sender & Birthday Star Name Personalization",
+      "Instant Shareable Private Link for WhatsApp & Instagram",
+    ],
+    previewImage: "/images/templates/birthday-wish.png",
+    badge: "Trending • ₹99",
+    demoUrl: "https://birthday-wish-template-mu.vercel.app",
+    demoNotice: "Preview Mode — Test the live interactive cake, wrapped stats, and animations. When you order, all names, stats, photos, and letters are personalized for your birthday star.",
+    customizationFields: {
+      senderName: true,
+      receiverName: true,
+      photoChange: true,
+      customMessage: true,
+    },
+  },
+  {
     id: "cute-apology",
     slug: "cute-apology",
     name: "Cute Apology Website",

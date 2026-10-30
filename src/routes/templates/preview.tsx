@@ -1,25 +1,32 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { templates } from "@/data/templates";
+import { templates, getTemplateBySlug, type WebsiteTemplate } from "@/data/templates";
 import { TemplateOrderModal } from "@/components/TemplateOrderModal";
 import { ArrowLeft, Sparkles, ExternalLink, ShieldAlert } from "lucide-react";
 
 export const Route = createFileRoute("/templates/preview")({
+  validateSearch: (search: Record<string, unknown>) => {
+    return {
+      template: typeof search.template === "string" ? search.template : undefined,
+    };
+  },
   component: TemplateDemoPreview,
   head: () => ({
     meta: [
-      { title: "Live Demo Preview — Cute Apology Website (₹99) | CodeWithAbby" },
+      { title: "Live Demo Preview — Website Templates (₹99) | CodeWithAbby" },
       {
         name: "description",
         content:
-          "Test the live working demo of our viral cute apology website. Listen to romantic music, interact with playful animations, and order your personalized version for ₹99.",
+          "Test live working demos of our viral aesthetic website templates. Interactive animations, music, and personalized order for ₹99.",
       },
     ],
   }),
 });
 
 function TemplateDemoPreview() {
-  const template = templates[0]; // Cute apology template
+  const search = Route.useSearch();
+  const templateSlug = search.template || "birthday-wish";
+  const template: WebsiteTemplate = getTemplateBySlug(templateSlug) || templates[0];
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
 
   return (
@@ -54,7 +61,7 @@ function TemplateDemoPreview() {
         {/* Right Actions */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <a
-            href="/templates/cute-apology/index.html"
+            href={template.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:inline-flex items-center gap-1.5 text-xs text-neutral-400 hover:text-white transition-colors px-2 py-1"
@@ -70,7 +77,7 @@ function TemplateDemoPreview() {
             className="inline-flex items-center gap-2 rounded-full bg-[#E44C1F] px-4 sm:px-5 py-2 text-xs font-bold uppercase tracking-wider text-white hover:bg-[#ff5d2e] shadow-[0_0_20px_rgba(228,76,31,0.4)] transition-all cursor-pointer"
           >
             <Sparkles className="h-3.5 w-3.5" />
-            <span>Customize & Order (₹{template.price})</span>
+            <span>Customize & Order ({template.currency}{template.price})</span>
           </button>
         </div>
       </header>
@@ -84,12 +91,12 @@ function TemplateDemoPreview() {
       </div>
 
       {/* Iframe Viewport */}
-      <div className="relative flex-1 w-full bg-[#FBF5F4] overflow-hidden">
+      <div className="relative flex-1 w-full bg-[#0a0a0c] overflow-hidden">
         <iframe
-          src="/templates/cute-apology/index.html"
-          title="Cute Apology Website Demo Preview"
+          src={template.demoUrl}
+          title={`${template.name} Demo Preview`}
           className="w-full h-full border-0"
-          allow="autoplay"
+          allow="autoplay; fullscreen"
         />
       </div>
 
