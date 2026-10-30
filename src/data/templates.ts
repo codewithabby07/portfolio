@@ -44,7 +44,7 @@ export const templates: WebsiteTemplate[] = [
     ],
     previewImage: "/images/templates/birthday-wish.png",
     badge: "Trending • ₹99",
-    demoUrl: "https://blissful-fermi-sigma.vercel.app/p/6qawdet4",
+    demoUrl: "https://blissful-fermi-sigma.vercel.app/birthday-wish-template/index.html",
     demoNotice: "Preview Mode — Test the live interactive cake, wrapped stats, and animations. When you order, all names, stats, photos, and letters are personalized for your birthday star.",
     customizationFields: {
       senderName: true,
