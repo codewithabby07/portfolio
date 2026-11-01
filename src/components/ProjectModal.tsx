@@ -57,11 +57,7 @@ export function ProjectModal({
           <span className="text-xs font-mono uppercase tracking-wider text-neutral-400">
             {project.category}
           </span>
-          {project.impact ? (
-            <span className="rounded-full bg-[#E44C1F]/15 border border-[#E44C1F]/30 px-2.5 py-0.5 text-[10px] font-bold text-[#E44C1F]">
-              ⚡ {project.impact}
-            </span>
-          ) : null}
+
         </div>
 
         <h3 className="font-agency-headline mt-2 text-2xl sm:text-3xl font-extrabold text-white tracking-tight">

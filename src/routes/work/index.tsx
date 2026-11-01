@@ -183,13 +183,7 @@ function WorkIndex() {
                       {project.description}
                     </p>
 
-                    {/* Impact Metric Badge */}
-                    {project.impact ? (
-                      <div className="mt-3.5 inline-flex items-center gap-1.5 rounded-md bg-[#E44C1F]/10 border border-[#E44C1F]/20 px-2.5 py-1 text-[11px] font-bold text-[#E44C1F]">
-                        <span>⚡</span>
-                        <span>{project.impact}</span>
-                      </div>
-                    ) : null}
+
 
                     {/* Tech Stack Pills */}
                     <div className="mt-4 flex flex-wrap gap-1.5">

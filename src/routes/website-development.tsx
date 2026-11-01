@@ -5,15 +5,9 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { HandwrittenWord, Reveal, SectionLabel } from "@/components/ui";
 import {
-  Code2,
-  Cpu,
-  Layers,
-  Zap,
   ArrowRight,
   ExternalLink,
   MessageCircle,
-  ShieldCheck,
-  CheckCircle2,
 } from "lucide-react";
 
 export const Route = createFileRoute("/website-development")({
@@ -44,37 +38,13 @@ function WebsiteDevelopmentPage() {
     "Hi Abby! I want to discuss a custom website development project for my business."
   )}`;
 
-  // Top flagship projects
-  const flagshipProjects = projects.filter((p) =>
-    ["alp-buildcon", "creavo", "zainca", "aureline-interiors", "dentiva"].includes(p.slug)
+  // All bespoke website development projects (excluding QR menus and templates)
+  const websiteProjects = projects.filter(
+    (p) =>
+      !["nt-cafe", "antilia-menu", "quick-eat"].includes(p.slug) &&
+      !p.category.toLowerCase().includes("menu") &&
+      !p.category.toLowerCase().includes("template")
   );
-
-  const pillars = [
-    {
-      icon: Cpu,
-      title: "Clean React & TypeScript Code",
-      description:
-        "No fragile drag-and-drop builders or bloated WordPress themes. Every project is written with typed, maintainable architecture that loads instantly.",
-    },
-    {
-      icon: Zap,
-      title: "Sub-Second Edge Speeds",
-      description:
-        "Worldwide edge caching, next-gen WebP/AVIF media delivery, and strict optimization targeting 95+ Google Core Web Vitals.",
-    },
-    {
-      icon: Layers,
-      title: "Conversion-Focused UI/UX",
-      description:
-        "Editorial typography, high-contrast layouts, and frictionless lead hooks engineered to convert cold visitors into high-ticket inquiries.",
-    },
-    {
-      icon: ShieldCheck,
-      title: "100% Code Ownership",
-      description:
-        "Full intellectual property ownership and direct GitHub repository access. No recurring proprietary CMS lock-ins.",
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-[#E44C1F] selection:text-white">
@@ -123,110 +93,76 @@ function WebsiteDevelopmentPage() {
             </div>
           </Reveal>
 
-          {/* Pillars */}
+          {/* All Live Website Projects */}
           <div className="mt-16">
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-8">
-              Why Businesses Choose Custom Code
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {pillars.map((pillar, idx) => {
-                const Icon = pillar.icon;
-                return (
-                  <Reveal key={idx} delay={idx * 0.08}>
-                    <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-xl h-full space-y-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#E44C1F]/10 border border-[#E44C1F]/20 text-[#E44C1F]">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <h3 className="font-bold text-lg text-white">{pillar.title}</h3>
-                      <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                        {pillar.description}
-                      </p>
-                    </div>
-                  </Reveal>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Featured Live Client Projects */}
-          <div className="mt-20">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
               <div>
                 <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#E44C1F]">
                   Selected Work
                 </span>
                 <h2 className="font-display text-2xl sm:text-4xl font-bold text-white mt-1">
-                  Recent Production Deployments
+                  Client Websites & Web Platforms
                 </h2>
               </div>
-              <Link
-                to="/work"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E44C1F] hover:underline"
-              >
-                <span>Browse Full Portfolio Archive</span>
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
+              <span className="text-xs font-mono text-neutral-400">
+                Showing <strong className="text-white">{websiteProjects.length}</strong> Production Websites
+              </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-              {flagshipProjects.map((project, index) => (
-                <Reveal key={project.id} delay={index * 0.08}>
-                  <div className="group rounded-3xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]">
-                    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 mb-6">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              {websiteProjects.map((project) => (
+                <div
+                  key={project.id}
+                  className="group rounded-3xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]"
+                >
+                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 mb-6">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
-                      <div className="absolute top-3 left-3">
-                        <span className="rounded-full bg-black/60 border border-white/15 px-3 py-1 text-[11px] font-mono text-white/80 backdrop-blur-md">
-                          {project.category}
-                        </span>
-                      </div>
-
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-xs font-bold uppercase tracking-wider shadow-lg hover:bg-neutral-200 transition-all"
-                        >
-                          <span>Live Site</span>
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      )}
+                    <div className="absolute top-3 left-3">
+                      <span className="rounded-full bg-black/60 border border-white/15 px-3 py-1 text-[11px] font-mono text-white/80 backdrop-blur-md">
+                        {project.category}
+                      </span>
                     </div>
 
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <h3 className="font-display text-xl sm:text-2xl font-bold text-white group-hover:text-[#E44C1F] transition-colors">
-                          {project.title}
-                        </h3>
-                        <span className="text-xs font-mono text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/20">
-                          {project.impact}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-xs font-bold uppercase tracking-wider shadow-lg hover:bg-neutral-200 transition-all"
+                      >
+                        <span>Live Site</span>
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-white group-hover:text-[#E44C1F] transition-colors">
+                      {project.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-neutral-400 line-clamp-2">
+                      {project.tagline}
+                    </p>
+
+                    <div className="pt-3 flex flex-wrap gap-1.5">
+                      {project.technologies.map((t, idx) => (
+                        <span
+                          key={idx}
+                          className="rounded-full bg-white/5 border border-white/10 px-2 py-0.5 text-[10px] font-mono text-neutral-400"
+                        >
+                          {t}
                         </span>
-                      </div>
-
-                      <p className="text-xs sm:text-sm text-neutral-400 line-clamp-2">
-                        {project.tagline}
-                      </p>
-
-                      <div className="pt-3 flex flex-wrap gap-1.5">
-                        {project.technologies.map((t, idx) => (
-                          <span
-                            key={idx}
-                            className="rounded-full bg-white/5 border border-white/10 px-2 py-0.5 text-[10px] font-mono text-neutral-400"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
+                      ))}
                     </div>
                   </div>
-                </Reveal>
+                </div>
               ))}
             </div>
           </div>
