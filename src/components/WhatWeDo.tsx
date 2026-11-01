@@ -82,10 +82,10 @@ export function WhatWeDo() {
 
         {/* 3 Clickable Service Cards */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {services.map((item, index) => {
+          {services.map((item) => {
             const Icon = item.icon;
             return (
-              <Reveal key={item.id} delay={index * 100}>
+              <div key={item.id} className="h-full">
                 <Link
                   to={item.href}
                   className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/12 bg-white/[0.03] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-white/25 hover:bg-white/[0.05] hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)] cursor-pointer h-full"
@@ -144,7 +144,7 @@ export function WhatWeDo() {
                     </div>
                   </div>
                 </Link>
-              </Reveal>
+              </div>
             );
           })}
         </div>
