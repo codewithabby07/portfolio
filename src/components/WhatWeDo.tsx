@@ -5,18 +5,18 @@ import { Sparkles, UtensilsCrossed, Code2, ArrowUpRight } from "lucide-react";
 export function WhatWeDo() {
   const services = [
     {
-      id: "templates",
-      title: "Website Templates",
-      badge: "From ₹99 • Instant Setup",
-      badgeColor: "bg-rose-500/10 text-rose-400 border-rose-500/20",
-      icon: Sparkles,
-      iconColor: "text-rose-400",
+      id: "website-development",
+      title: "Website Development",
+      badge: "",
+      badgeColor: "",
+      icon: Code2,
+      iconColor: "text-[#E44C1F]",
       description:
-        "Viral aesthetic websites for apologies, birthdays, portfolios & celebrations with sweet music and animations.",
-      image: "/templates/cute-apology/cover-v1.webp",
-      href: "/templates",
-      cta: "Explore Templates",
-      highlight: "₹99 Only",
+        "Custom React & Next.js digital platforms engineered for brand authority, high conversion, and sub-second load times.",
+      image: "/images/projects/alp-buildcon.jpg",
+      href: "/website-development",
+      cta: "Explore Custom Websites",
+      highlight: "15+ Live Builds",
     },
     {
       id: "digital-qr-menus",
@@ -33,18 +33,18 @@ export function WhatWeDo() {
       highlight: "Live Demos",
     },
     {
-      id: "website-development",
-      title: "Website Development",
-      badge: "",
-      badgeColor: "",
-      icon: Code2,
-      iconColor: "text-[#E44C1F]",
+      id: "templates",
+      title: "Website Templates",
+      badge: "From ₹99 • Instant Setup",
+      badgeColor: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+      icon: Sparkles,
+      iconColor: "text-rose-400",
       description:
-        "Custom React & Next.js digital platforms engineered for brand authority, high conversion, and sub-second load times.",
-      image: "/images/projects/alp-buildcon.jpg",
-      href: "/website-development",
-      cta: "Explore Custom Websites",
-      highlight: "15+ Live Builds",
+        "Viral aesthetic websites for apologies, birthdays, portfolios & celebrations with sweet music and animations.",
+      image: "/templates/cute-apology/cover-v1.webp",
+      href: "/templates",
+      cta: "Explore Templates",
+      highlight: "₹99 Only",
     },
   ];
 
@@ -69,14 +69,14 @@ export function WhatWeDo() {
               id="what-we-do-heading"
               className="font-display mt-2 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white"
             >
-              Three Ways We{" "}
+              What We{" "}
               <HandwrittenWord variant="swoosh" color="#E44C1F">
                 <span className="text-[#E44C1F]">Build.</span>
               </HandwrittenWord>
             </h2>
           </div>
           <p className="max-w-md text-sm sm:text-base text-neutral-400 leading-relaxed font-sans">
-            From viral ₹99 interactive templates to high-speed digital cafe menus and custom enterprise platforms. Click any discipline to explore.
+            From custom high-conversion enterprise platforms to lightning-fast digital cafe menus and viral ₹99 interactive templates. Click any service to explore.
           </p>
         </Reveal>
 
@@ -85,64 +85,63 @@ export function WhatWeDo() {
           {services.map((item, index) => {
             const Icon = item.icon;
             return (
-              <Reveal key={item.id} delay={index * 0.08}>
+              <Reveal key={item.id} delay={index * 100}>
                 <Link
                   to={item.href}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-7 backdrop-blur-xl transition-all duration-300 hover:border-white/25 hover:bg-white/[0.04] hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#E44C1F]/10 block h-full"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/12 bg-white/[0.03] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-white/25 hover:bg-white/[0.05] hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)] cursor-pointer h-full"
                 >
                   <div>
-                    {/* Visual Preview Image */}
-                    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 mb-6">
+                    {/* Visual Preview Header Image */}
+                    <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-white/10 bg-neutral-900">
                       <img
                         src={item.image}
                         alt={item.title}
-                        loading="lazy"
-                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-80" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent opacity-80" />
 
-                      {/* Floating pill badge */}
-                      {item.badge ? (
-                        <div className="absolute top-3 left-3">
+                      {/* Top Badges */}
+                      <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
+                        {item.badge ? (
                           <span
-                            className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-mono font-semibold tracking-wide backdrop-blur-md ${item.badgeColor}`}
+                            className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold backdrop-blur-md ${item.badgeColor}`}
                           >
-                            <Icon className="h-3 w-3" />
                             <span>{item.badge}</span>
                           </span>
-                        </div>
-                      ) : null}
-
-                      {/* Arrow Icon in Top Right */}
-                      <div className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 border border-white/15 text-white/70 group-hover:text-white group-hover:bg-[#E44C1F] group-hover:border-[#E44C1F] transition-all">
-                        <ArrowUpRight className="h-4 w-4" />
-                      </div>
-                    </div>
-
-                    {/* Card Title & Description */}
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <h3 className="font-display text-2xl font-bold text-white group-hover:text-[#E44C1F] transition-colors">
-                          {item.title}
-                        </h3>
-                        <span className="text-xs font-mono font-semibold text-neutral-400 bg-white/5 px-2 py-0.5 rounded border border-white/10">
+                        ) : (
+                          <span />
+                        )}
+                        <span className="inline-flex items-center rounded-full bg-black/60 border border-white/15 backdrop-blur-md px-2.5 py-1 text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">
                           {item.highlight}
                         </span>
                       </div>
-                      <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-sans">
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6 sm:p-7">
+                      <div className="flex items-center gap-2.5">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.06] border border-white/10">
+                          <Icon className={`h-4.5 w-4.5 ${item.iconColor}`} />
+                        </div>
+                        <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-[#E44C1F] transition-colors">
+                          {item.title}
+                        </h3>
+                      </div>
+
+                      <p className="mt-3 text-sm text-neutral-400 leading-relaxed font-sans">
                         {item.description}
                       </p>
                     </div>
                   </div>
 
-                  {/* Explore Button */}
-                  <div className="mt-6 pt-5 border-t border-white/[0.06] flex items-center justify-between">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-[#E44C1F] group-hover:translate-x-1 transition-transform">
-                      {item.cta} →
-                    </span>
-                    <span className="text-[11px] font-mono text-neutral-500">
-                      View Dedicated Page
-                    </span>
+                  {/* Bottom Action Footer */}
+                  <div className="px-6 pb-6 sm:px-7 sm:pb-7 pt-2">
+                    <div className="flex items-center justify-between border-t border-white/[0.08] pt-4 text-xs font-semibold uppercase tracking-wider text-neutral-300 group-hover:text-white transition-colors">
+                      <span>{item.cta}</span>
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 border border-white/10 group-hover:bg-[#E44C1F] group-hover:border-[#E44C1F] group-hover:text-white transition-all">
+                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </div>
+                    </div>
                   </div>
                 </Link>
               </Reveal>

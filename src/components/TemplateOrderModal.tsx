@@ -34,7 +34,7 @@ export function TemplateOrderModal({
   // Initialize or reset formData when template opens
   useEffect(() => {
     if (template) {
-      setFormData({});
+      const initialData: Record<string, string> = {}; template.editableFields.forEach((field) => { initialData[field.key] = field.defaultValue || ""; }); setFormData(initialData);
       setErrors({});
       setPhotoChange("no");
       setSelectedPhotoName(null);

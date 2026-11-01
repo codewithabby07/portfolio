@@ -295,18 +295,7 @@ function TemplatesGallery() {
                           {tpl.description}
                         </p>
 
-                        {/* Features List */}
-                        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                          {tpl.features.map((feature, idx) => (
-                            <div key={idx} className="flex items-start gap-2 text-xs text-neutral-300">
-                              <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#E44C1F]/20 text-[#E44C1F] mt-0.5">
-                                <Check className="h-2.5 w-2.5 stroke-[3]" />
-                              </span>
-                              <span>{feature}</span>
-                            </div>
-                          ))}
                         </div>
-                      </div>
 
                       {/* Actions */}
                       <div className="pt-4 border-t border-white/[0.08] flex flex-col sm:flex-row items-stretch sm:items-center gap-4">

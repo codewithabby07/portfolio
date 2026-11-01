@@ -23,8 +23,8 @@ export type WebsiteTemplate = {
   badge?: string;
   demoUrl: string;
   demoNotice: string;
-  ordersCount: number; // e.g. 400 to 2000
-  rating: number; // e.g. 4.9
+  ordersCount: number;
+  rating: number;
   reviewsCount: number;
   editableFields: TemplateEditableField[];
   customizationFields: {
@@ -64,13 +64,13 @@ export const templates: WebsiteTemplate[] = [
     demoUrl: "https://blissful-fermi-sigma.vercel.app/birthday-wish-template/index.html",
     demoNotice: "Preview Mode — Test the live interactive cake, wrapped stats, and animations. When you order, all names, stats, photos, and letters are personalized for your birthday star.",
     editableFields: [
-      { key: "birthdayPersonName", label: "Birthday Person Name (Star)", placeholder: "e.g. Kiara / Sneha", required: true },
-      { key: "senderName", label: "Your Name (Sender)", placeholder: "e.g. Rahul / Abby", required: true },
-      { key: "age", label: "Age Turning", placeholder: "e.g. 21 / 25" },
-      { key: "birthdayDate", label: "Birthday Date", placeholder: "e.g. 14 November" },
-      { key: "mainCharacterDays", label: "Wrapped Stat: 'Days you were the main character'", placeholder: "Default: 365" },
-      { key: "topMood", label: "Wrapped Stat: 'Your top mood this year'", placeholder: "Default: Iconic (runner-up: hungry)" },
-      { key: "birthdayLetter", label: "Heartfelt Unopened Letter & Memories", placeholder: "Write a personal message for the surprise gift box...", type: "textarea" },
+      { key: "birthdayPersonName", label: "Birthday Person Name (Star)", placeholder: "e.g. Kiara", defaultValue: "Kiara", required: true },
+      { key: "senderName", label: "Your Name (Sender)", placeholder: "e.g. Abby", defaultValue: "Abby", required: true },
+      { key: "age", label: "Age Turning", placeholder: "e.g. 21", defaultValue: "21" },
+      { key: "birthdayDate", label: "Birthday Date", placeholder: "e.g. 14 November", defaultValue: "14 November" },
+      { key: "mainCharacterDays", label: "Wrapped Stat: 'Days you were the main character'", placeholder: "Default: 365", defaultValue: "365 (no breaks. no notes.)" },
+      { key: "topMood", label: "Wrapped Stat: 'Your top mood this year'", placeholder: "Default: Iconic", defaultValue: "Iconic (runner-up: hungry)" },
+      { key: "birthdayLetter", label: "Heartfelt Unopened Letter & Memories", placeholder: "Write a personal message for the surprise gift box...", defaultValue: "Happy Birthday to my favourite person in the world! You make every single day brighter, funnier, and softer. Keep shining!", type: "textarea" },
     ],
     customizationFields: {
       senderName: true,
@@ -107,10 +107,10 @@ export const templates: WebsiteTemplate[] = [
     demoUrl: "https://the-sorry-bear-apology-website-temp.vercel.app",
     demoNotice: "Preview Mode — Watch the cute bear animations and playful interactions. Customized with your names and personal apologies upon order.",
     editableFields: [
-      { key: "receiverName", label: "Their Name (Angry Cutie)", placeholder: "e.g. Kiara / My Love", required: true },
-      { key: "senderName", label: "Your Name (Sender)", placeholder: "e.g. Rahul / Buddhu", required: true },
-      { key: "apologyMessage", label: "Custom Apology Message", placeholder: "e.g. Please forgive me, I promise never to do this again...", type: "textarea" },
-      { key: "reconciliationNote", label: "Final Warm Reconciliation Note", placeholder: "e.g. Can I take you out for your favourite ice cream tonight?" },
+      { key: "receiverName", label: "Their Name (Angry Cutie)", placeholder: "e.g. Kiara", defaultValue: "Kiara", required: true },
+      { key: "senderName", label: "Your Name (Sender)", placeholder: "e.g. Buddhu Bhaalu", defaultValue: "Buddhu Bhaalu", required: true },
+      { key: "apologyMessage", label: "Custom Apology Message", placeholder: "e.g. I am really sorry...", defaultValue: "I am really sorry for hurting you. You mean the entire world to me, and my day is empty without your smile. Please forgive your silly bear!", type: "textarea" },
+      { key: "reconciliationNote", label: "Final Warm Reconciliation Note", placeholder: "e.g. Can I take you out for ice cream?", defaultValue: "Can I take you out for your favourite ice cream tonight?" },
     ],
     customizationFields: {
       senderName: true,
@@ -147,12 +147,12 @@ export const templates: WebsiteTemplate[] = [
     demoUrl: "https://birthday-premiere-website-template.vercel.app",
     demoNotice: "Preview Mode — Experience the movie-style premiere experience. When you order, your custom ticket details, names, photos, and letters are fully personalized.",
     editableFields: [
-      { key: "starName", label: "Movie Star Name (Birthday Person)", placeholder: "e.g. Kiara / Queen of Drama", required: true },
-      { key: "directorName", label: "Director Name (Your Name)", placeholder: "e.g. Rahul / Your #1 Fan", required: true },
-      { key: "showTitle", label: "Show Title", placeholder: "Default: Saal Ka Sabse Bada Show" },
-      { key: "awardTitle", label: "Award Given", placeholder: "Default: Best Human of the Year" },
-      { key: "premiereDate", label: "Premiere Date & Time", placeholder: "e.g. 18 November • Prime Time" },
-      { key: "scriptMessage", label: "Director's Cut Personal Letter", placeholder: "Write an epic birthday wish letter for them...", type: "textarea" },
+      { key: "starName", label: "Movie Star Name (Birthday Person)", placeholder: "e.g. Sneha", defaultValue: "Sneha", required: true },
+      { key: "directorName", label: "Director Name (Your Name)", placeholder: "e.g. Abby", defaultValue: "Abby", required: true },
+      { key: "showTitle", label: "Show Title", placeholder: "e.g. Saal Ka Sabse Bada Show", defaultValue: "Saal Ka Sabse Bada Show" },
+      { key: "awardTitle", label: "Award Given", placeholder: "e.g. Best Human of the Year", defaultValue: "Best Human of the Year" },
+      { key: "premiereDate", label: "Premiere Date & Time", placeholder: "e.g. 18 November • Prime Time", defaultValue: "18 November • Prime Time" },
+      { key: "scriptMessage", label: "Director's Cut Personal Letter", placeholder: "Write an epic birthday wish letter...", defaultValue: "Roll camera, action! Today we celebrate the absolute main character of our lives. Here's to another blockbuster year full of happiness and wild adventures!", type: "textarea" },
     ],
     customizationFields: {
       senderName: true,
@@ -189,13 +189,13 @@ export const templates: WebsiteTemplate[] = [
     demoUrl: "https://cute-birthday-website-template-cuti.vercel.app",
     demoNotice: "Preview Mode — Test the dreamy animations, sound, and surprise reveal. When you order, your photos, messages, and names are placed seamlessly.",
     editableFields: [
-      { key: "birthdayPersonName", label: "Birthday Person's Name", placeholder: "e.g. Kiara / Princess", required: true },
-      { key: "senderName", label: "Your Name (Sender)", placeholder: "e.g. Rahul / Abby", required: true },
-      { key: "birthdayDate", label: "Celebration Date", placeholder: "e.g. 24 October" },
-      { key: "loveLetter", label: "Special Birthday Letter", placeholder: "Write your custom sweet birthday message...", type: "textarea" },
-      { key: "wishesCard1", label: "Wish Card 1", placeholder: "Default: Always keep smiling that cute smile" },
-      { key: "wishesCard2", label: "Wish Card 2", placeholder: "Default: May all your biggest dreams turn real this year" },
-      { key: "wishesCard3", label: "Wish Card 3", placeholder: "Default: Endless happiness, good food, and great adventures" },
+      { key: "birthdayPersonName", label: "Birthday Person's Name", placeholder: "e.g. Aastha", defaultValue: "Aastha", required: true },
+      { key: "senderName", label: "Your Name (Sender)", placeholder: "e.g. Abby", defaultValue: "Abby", required: true },
+      { key: "birthdayDate", label: "Celebration Date", placeholder: "e.g. 24 October", defaultValue: "24 October" },
+      { key: "loveLetter", label: "Special Birthday Letter", placeholder: "Write your custom sweet birthday message...", defaultValue: "Happy Birthday, Beautiful! Today is all about celebrating the most amazing soul in my world. May every wish you make today come true tenfold!", type: "textarea" },
+      { key: "wishesCard1", label: "Wish Card 1", placeholder: "Default: Always keep smiling", defaultValue: "Always keep smiling that pure, heartwarming smile" },
+      { key: "wishesCard2", label: "Wish Card 2", placeholder: "Default: May all your dreams come true", defaultValue: "May all your biggest dreams turn real this year" },
+      { key: "wishesCard3", label: "Wish Card 3", placeholder: "Default: Endless happiness", defaultValue: "Endless happiness, good food, and unforgettable memories" },
     ],
     customizationFields: {
       senderName: true,
@@ -232,13 +232,13 @@ export const templates: WebsiteTemplate[] = [
     demoUrl: "https://cute-website-v2-love-website-templa.vercel.app",
     demoNotice: "Preview Mode — Try unlocking secret.exe using the hint. When customized, you choose the passcode, names, and love note.",
     editableFields: [
-      { key: "receiverName", label: "Recipient Name", placeholder: "e.g. My Cutie / Sneha", required: true },
-      { key: "senderName", label: "Your Name (Sender)", placeholder: "e.g. Rahul / Abby", required: true },
-      { key: "secretPassword", label: "Secret Unlock Password", placeholder: "e.g. iloveyou / ourspecialdate" },
-      { key: "passwordHint", label: "Hint Text Shown on Lockscreen", placeholder: "Default: the three words I say most (iloveyou)" },
-      { key: "recipientGreeting", label: "Screen 1 Greeting Headline", placeholder: "Default: to the person who makes life softer" },
-      { key: "loveLetterText", label: "Romantic Letter in Screen 1", placeholder: "Write your heartfelt message here...", type: "textarea" },
-      { key: "stickyNotes", label: "Sticky Notes (5 Sweet Reasons)", placeholder: "e.g. Your laugh, how caring you are, our late night talks..." },
+      { key: "receiverName", label: "Recipient Name", placeholder: "e.g. My Cutie", defaultValue: "My Cutie", required: true },
+      { key: "senderName", label: "Your Name (Sender)", placeholder: "e.g. Abby", defaultValue: "Abby", required: true },
+      { key: "secretPassword", label: "Secret Unlock Password", placeholder: "e.g. iloveyou", defaultValue: "iloveyou" },
+      { key: "passwordHint", label: "Hint Text Shown on Lockscreen", placeholder: "e.g. the three words I say most", defaultValue: "the three words I say most (iloveyou)" },
+      { key: "recipientGreeting", label: "Screen 1 Greeting Headline", placeholder: "e.g. to the person who makes life softer", defaultValue: "to the person who makes life softer" },
+      { key: "loveLetterText", label: "Romantic Letter in Screen 1", placeholder: "Write your heartfelt message here...", defaultValue: "Sometimes words aren't enough to say how lucky I am to have you. You bring peace to my chaos and joy to my everyday life.", type: "textarea" },
+      { key: "stickyNotes", label: "Sticky Notes (5 Sweet Reasons)", placeholder: "e.g. Your laugh, late night talks...", defaultValue: "1. Your infectious laugh • 2. How deeply you care • 3. Our late night talks • 4. Your warm hugs • 5. Just being you" },
     ],
     customizationFields: {
       senderName: true,
@@ -275,10 +275,10 @@ export const templates: WebsiteTemplate[] = [
     demoUrl: "/templates/cute-apology/index.html",
     demoNotice: "Preview Mode — This demo shows the live animations and music. When you order, we customize all names, photos, and messages for you.",
     editableFields: [
-      { key: "receiverName", label: "Their Name (Person you're apologizing to)", placeholder: "e.g. Sneha / My Love", required: true },
-      { key: "senderName", label: "Your Name (Sender)", placeholder: "e.g. Rahul / Abby", required: true },
-      { key: "customMessage", label: "Heartfelt Apology Note", placeholder: "Write your emotional apology message here...", type: "textarea" },
-      { key: "cuteQuestion", label: "Interactive 'Forgive Me?' Text", placeholder: "Default: Will you forgive your silly cutie?" },
+      { key: "receiverName", label: "Their Name (Person you're apologizing to)", placeholder: "e.g. Sneha", defaultValue: "Sneha", required: true },
+      { key: "senderName", label: "Your Name (Sender)", placeholder: "e.g. Rahul", defaultValue: "Rahul", required: true },
+      { key: "customMessage", label: "Heartfelt Apology Note", placeholder: "Write your emotional apology message here...", defaultValue: "I know I upset you, and a sorry over text felt too small. So I made you this tiny website instead, to steal at least one smile from you 🤍", type: "textarea" },
+      { key: "cuteQuestion", label: "Interactive 'Forgive Me?' Text", placeholder: "e.g. Will you forgive me?", defaultValue: "Will you forgive your silly cutie?" },
     ],
     customizationFields: {
       senderName: true,
