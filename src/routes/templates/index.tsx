@@ -6,7 +6,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { TemplateOrderModal } from "@/components/TemplateOrderModal";
 import { HandwrittenWord, Reveal, SectionLabel } from "@/components/ui";
-import { Sparkles, Eye, MessageCircle, Check, Music, Heart, Smartphone, Zap } from "lucide-react";
+import { Sparkles, Eye, Check, Music, Heart, Smartphone, Zap, ShoppingBag, Star } from "lucide-react";
 
 export const Route = createFileRoute("/templates/")({
   component: TemplatesGallery,
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/templates/")({
       {
         name: "description",
         content:
-          "Browse viral aesthetic website templates starting at just ₹99. Interactive cute apology sites, love letters, celebrations, and creator portfolios personalized with your names, photos, and music.",
+          "Browse viral aesthetic website templates starting at just ₹99. Interactive cute apology sites, love letters, celebrations, and birthday portals personalized with your names, photos, and music.",
       },
       { property: "og:title", content: "Website Templates Gallery (₹99) | CodeWithAbby" },
       {
@@ -81,7 +81,7 @@ function TemplatesGallery() {
             <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-neutral-300">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.04] border border-white/10 px-3.5 py-1.5">
                 <Music className="h-3.5 w-3.5 text-[#EE95BB]" />
-                <span>Romantic Music Included</span>
+                <span>Romantic & Lo-Fi Music Included</span>
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.04] border border-white/10 px-3.5 py-1.5">
                 <Smartphone className="h-3.5 w-3.5 text-emerald-400" />
@@ -158,6 +158,19 @@ function TemplatesGallery() {
                           </div>
                         </div>
 
+                        {/* Social Proof: Sold Count & Rating */}
+                        <div className="mt-2.5 flex flex-wrap items-center gap-3 text-xs text-neutral-400 font-mono">
+                          <span className="inline-flex items-center gap-1.5 text-emerald-400 font-semibold bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-0.5 rounded-full">
+                            <ShoppingBag className="h-3.5 w-3.5" />
+                            <span>{tpl.ordersCount.toLocaleString()}+ orders placed</span>
+                          </span>
+                          <span>•</span>
+                          <span className="inline-flex items-center gap-1 text-amber-400 font-semibold">
+                            <Star className="h-3.5 w-3.5 fill-amber-400" />
+                            <span>{tpl.rating} ({tpl.reviewsCount} reviews)</span>
+                          </span>
+                        </div>
+
                         <h2 className="font-display mt-2 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
                           {tpl.name}
                         </h2>
@@ -197,7 +210,7 @@ function TemplatesGallery() {
                           className="flex-1 inline-flex items-center justify-center gap-2.5 rounded-full bg-[#E44C1F] px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#ff5d2e] shadow-[0_0_25px_rgba(228,76,31,0.35)] transition-all cursor-pointer text-center"
                         >
                           <Sparkles className="h-4 w-4" />
-                          <span>Customize / Order Now • {tpl.currency}{tpl.price}</span>
+                          <span>Customize & Order • {tpl.currency}{tpl.price}</span>
                         </button>
                       </div>
                     </div>
@@ -226,9 +239,9 @@ function TemplatesGallery() {
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#E44C1F]/20 text-[#E44C1F] font-mono text-sm font-bold">
                   1
                 </span>
-                <h4 className="font-bold text-base text-white">Fill Simple Details</h4>
+                <h4 className="font-bold text-base text-white">Fill Editable Details</h4>
                 <p className="text-xs text-neutral-400">
-                  Enter your sender name, receiver name, and optional custom message in the customization form.
+                  Click 'Customize & Order' and enter names, personal letter, dates, and optional photo requests.
                 </p>
               </div>
 
@@ -238,7 +251,7 @@ function TemplatesGallery() {
                 </span>
                 <h4 className="font-bold text-base text-white">WhatsApp Order & UPI</h4>
                 <p className="text-xs text-neutral-400">
-                  WhatsApp opens with your prefilled brief. Send the message and complete the ₹99 payment securely via UPI.
+                  WhatsApp opens with your complete customization brief prefilled. Confirm with Abby and pay ₹99 via UPI.
                 </p>
               </div>
 
