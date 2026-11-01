@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { templates, type WebsiteTemplate } from "@/data/templates";
 import { site } from "@/data/site";
@@ -6,7 +6,19 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { TemplateOrderModal } from "@/components/TemplateOrderModal";
 import { HandwrittenWord, Reveal, SectionLabel } from "@/components/ui";
-import { Sparkles, Eye, Check, Music, Heart, Smartphone, Zap, ShoppingBag, Star } from "lucide-react";
+import {
+  Sparkles,
+  Eye,
+  Check,
+  Music,
+  Heart,
+  Smartphone,
+  Zap,
+  ShoppingBag,
+  Star,
+  Cake,
+  HeartHandshake
+} from "lucide-react";
 
 export const Route = createFileRoute("/templates/")({
   component: TemplatesGallery,
@@ -31,7 +43,10 @@ export const Route = createFileRoute("/templates/")({
   }),
 });
 
+type CategoryFilter = "all" | "birthday" | "apology";
+
 function TemplatesGallery() {
+  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
   const [selectedTemplate, setSelectedTemplate] = useState<WebsiteTemplate | null>(null);
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
 
@@ -39,6 +54,34 @@ function TemplatesGallery() {
     setSelectedTemplate(tpl);
     setIsOrderModalOpen(true);
   };
+
+  const filteredTemplates = useMemo(() => {
+    if (selectedCategory === "all") return templates;
+    if (selectedCategory === "birthday") {
+      return templates.filter((t) => t.category.toLowerCase().includes("birthday"));
+    }
+    if (selectedCategory === "apology") {
+      return templates.filter(
+        (t) =>
+          t.category.toLowerCase().includes("love") ||
+          t.category.toLowerCase().includes("relationship") ||
+          t.slug.includes("sorry") ||
+          t.slug.includes("apology") ||
+          t.slug.includes("cute-website-v2")
+      );
+    }
+    return templates;
+  }, [selectedCategory]);
+
+  const birthdayCount = templates.filter((t) => t.category.toLowerCase().includes("birthday")).length;
+  const apologyCount = templates.filter(
+    (t) =>
+      t.category.toLowerCase().includes("love") ||
+      t.category.toLowerCase().includes("relationship") ||
+      t.slug.includes("sorry") ||
+      t.slug.includes("apology") ||
+      t.slug.includes("cute-website-v2")
+  ).length;
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-[#E44C1F] selection:text-white">
@@ -64,7 +107,7 @@ function TemplatesGallery() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Hero Header */}
-          <Reveal className="border-b border-white/[0.08] pb-12">
+          <Reveal className="border-b border-white/[0.08] pb-10">
             <SectionLabel>Template Catalog</SectionLabel>
             <h1 className="font-editorial-serif italic text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-white leading-[1.05] mt-2">
               Website{" "}
@@ -94,9 +137,82 @@ function TemplatesGallery() {
             </div>
           </Reveal>
 
+          {/* Category Filter Section */}
+          <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-6">
+            <div className="flex flex-wrap items-center gap-2.5">
+              {/* All Templates */}
+              <button
+                type="button"
+                onClick={() => setSelectedCategory("all")}
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold tracking-wide transition-all cursor-pointer ${
+                  selectedCategory === "all"
+                    ? "bg-white text-black shadow-lg shadow-white/10"
+                    : "bg-white/[0.05] text-neutral-300 border border-white/10 hover:bg-white/10 hover:text-white"
+                }`}
+              >
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>All Templates</span>
+                <span
+                  className={`ml-1 text-[11px] rounded-full px-2 py-0.5 font-mono ${
+                    selectedCategory === "all" ? "bg-black/10 text-black" : "bg-white/10 text-neutral-400"
+                  }`}
+                >
+                  {templates.length}
+                </span>
+              </button>
+
+              {/* Birthday Category */}
+              <button
+                type="button"
+                onClick={() => setSelectedCategory("birthday")}
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold tracking-wide transition-all cursor-pointer ${
+                  selectedCategory === "birthday"
+                    ? "bg-[#E44C1F] text-white shadow-lg shadow-[#E44C1F]/30"
+                    : "bg-white/[0.05] text-neutral-300 border border-white/10 hover:bg-white/10 hover:text-white"
+                }`}
+              >
+                <Cake className="h-3.5 w-3.5 text-amber-300" />
+                <span>Birthday</span>
+                <span
+                  className={`ml-1 text-[11px] rounded-full px-2 py-0.5 font-mono ${
+                    selectedCategory === "birthday" ? "bg-black/20 text-white" : "bg-white/10 text-neutral-400"
+                  }`}
+                >
+                  {birthdayCount}
+                </span>
+              </button>
+
+              {/* Apology & Love Category */}
+              <button
+                type="button"
+                onClick={() => setSelectedCategory("apology")}
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold tracking-wide transition-all cursor-pointer ${
+                  selectedCategory === "apology"
+                    ? "bg-rose-500 text-white shadow-lg shadow-rose-500/30"
+                    : "bg-white/[0.05] text-neutral-300 border border-white/10 hover:bg-white/10 hover:text-white"
+                }`}
+              >
+                <HeartHandshake className="h-3.5 w-3.5 text-rose-200" />
+                <span>Apology & Love</span>
+                <span
+                  className={`ml-1 text-[11px] rounded-full px-2 py-0.5 font-mono ${
+                    selectedCategory === "apology" ? "bg-black/20 text-white" : "bg-white/10 text-neutral-400"
+                  }`}
+                >
+                  {apologyCount}
+                </span>
+              </button>
+            </div>
+
+            {/* Showing status counter */}
+            <span className="text-xs font-mono text-neutral-400">
+              Showing <strong className="text-white">{filteredTemplates.length}</strong> of {templates.length} templates
+            </span>
+          </div>
+
           {/* Templates Grid */}
-          <div className="mt-12 space-y-12">
-            {templates.map((tpl) => (
+          <div className="mt-10 space-y-12">
+            {filteredTemplates.map((tpl) => (
               <Reveal key={tpl.id}>
                 <div className="overflow-hidden rounded-3xl border border-white/12 bg-white/[0.02] backdrop-blur-xl transition-all duration-300 hover:border-white/20 p-6 sm:p-8 lg:p-10">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -220,7 +336,7 @@ function TemplatesGallery() {
             ))}
           </div>
 
-          {/* How It Works & Future Templates Notice */}
+          {/* How It Works */}
           <div className="mt-16 rounded-3xl border border-white/10 bg-white/[0.02] p-8 sm:p-10 backdrop-blur-xl">
             <div className="text-center max-w-2xl mx-auto space-y-3">
               <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#E44C1F]">
